@@ -1,0 +1,786 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60E718EC78FE7D009F0A43BE /* Pods_SchoolChatIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B3D796985F2F1DED1F6012 /* Pods_SchoolChatIOS.framework */; };
+		7BF569E4AD8E5211414341DC /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */; };
+		D981215042D026FF53175A1D /* Pods_SchoolChatIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BB8C226131BE82494369AA /* Pods_SchoolChatIOSTests.framework */; };
+		EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */; };
+		EF08E24B275FC55000219285 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E24A275FC55000219285 /* ContentView.swift */; };
+		EF08E24D275FC55300219285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08E24C275FC55300219285 /* Assets.xcassets */; };
+		EF08E250275FC55300219285 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08E24F275FC55300219285 /* Preview Assets.xcassets */; };
+		EF08E25A275FC55400219285 /* SchoolChatIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E259275FC55400219285 /* SchoolChatIOSTests.swift */; };
+		EF08E264275FC55400219285 /* SchoolChatIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E263275FC55400219285 /* SchoolChatIOSUITests.swift */; };
+		EF08E266275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */; };
+		EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E273275FC5D900219285 /* SocketIOManager.swift */; };
+		EF08E276275FC62E00219285 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E275275FC62E00219285 /* LoginView.swift */; };
+		EF08E278275FC64100219285 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E277275FC64100219285 /* ChatView.swift */; };
+		EF08E27A275FC66300219285 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E279275FC66300219285 /* Models.swift */; };
+		EF08E27C275FC67500219285 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27B275FC67500219285 /* MessageView.swift */; };
+		EF08E27E275FC69600219285 /* MessengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27D275FC69600219285 /* MessengerView.swift */; };
+		EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatMiniPreview.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF08E256275FC55400219285 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF08E23D275FC55000219285 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF08E244275FC55000219285;
+			remoteInfo = SchoolChatIOS;
+		};
+		EF08E260275FC55400219285 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF08E23D275FC55000219285 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF08E244275FC55000219285;
+			remoteInfo = SchoolChatIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		42BB8C226131BE82494369AA /* Pods_SchoolChatIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67B3D796985F2F1DED1F6012 /* Pods_SchoolChatIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78115B964FC946C45012D830 /* Pods-SchoolChatIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS.release.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS.release.xcconfig"; sourceTree = "<group>"; };
+		82100073ADA53423EB7A55FB /* Pods-SchoolChatIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOSTests.release.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOSTests/Pods-SchoolChatIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		96E1415344855CFACAB4062B /* Pods-SchoolChatIOS-SchoolChatIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS-SchoolChatIOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9EC1F2BFB7D9B79629654B5A /* Pods-SchoolChatIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOSTests/Pods-SchoolChatIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C1BD7FC462A4DEC03556ECB3 /* Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E1E349016882AD9F80F9B4C3 /* Pods-SchoolChatIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EF08E245275FC55000219285 /* SchoolChatIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SchoolChatIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSApp.swift; sourceTree = "<group>"; };
+		EF08E24A275FC55000219285 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EF08E24C275FC55300219285 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF08E24F275FC55300219285 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EF08E255275FC55400219285 /* SchoolChatIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchoolChatIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF08E259275FC55400219285 /* SchoolChatIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSTests.swift; sourceTree = "<group>"; };
+		EF08E25F275FC55400219285 /* SchoolChatIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchoolChatIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF08E263275FC55400219285 /* SchoolChatIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSUITests.swift; sourceTree = "<group>"; };
+		EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EF08E273275FC5D900219285 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		EF08E275275FC62E00219285 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EF08E277275FC64100219285 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		EF08E279275FC66300219285 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		EF08E27B275FC67500219285 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		EF08E27D275FC69600219285 /* MessengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerView.swift; sourceTree = "<group>"; };
+		EF08E281275FC6C100219285 /* ChatMiniPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMiniPreview.swift; sourceTree = "<group>"; };
+		F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOS_SchoolChatIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF08E242275FC55000219285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60E718EC78FE7D009F0A43BE /* Pods_SchoolChatIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E252275FC55400219285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D981215042D026FF53175A1D /* Pods_SchoolChatIOSTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E25C275FC55400219285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BF569E4AD8E5211414341DC /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29CF1751F5A9F244749EB80F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67B3D796985F2F1DED1F6012 /* Pods_SchoolChatIOS.framework */,
+				F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */,
+				42BB8C226131BE82494369AA /* Pods_SchoolChatIOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9288D58B587B5693309A5AC6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1E349016882AD9F80F9B4C3 /* Pods-SchoolChatIOS.debug.xcconfig */,
+				78115B964FC946C45012D830 /* Pods-SchoolChatIOS.release.xcconfig */,
+				96E1415344855CFACAB4062B /* Pods-SchoolChatIOS-SchoolChatIOSUITests.debug.xcconfig */,
+				C1BD7FC462A4DEC03556ECB3 /* Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig */,
+				9EC1F2BFB7D9B79629654B5A /* Pods-SchoolChatIOSTests.debug.xcconfig */,
+				82100073ADA53423EB7A55FB /* Pods-SchoolChatIOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EF08E23C275FC55000219285 = {
+			isa = PBXGroup;
+			children = (
+				EF08E247275FC55000219285 /* SchoolChatIOS */,
+				EF08E258275FC55400219285 /* SchoolChatIOSTests */,
+				EF08E262275FC55400219285 /* SchoolChatIOSUITests */,
+				EF08E246275FC55000219285 /* Products */,
+				9288D58B587B5693309A5AC6 /* Pods */,
+				29CF1751F5A9F244749EB80F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF08E246275FC55000219285 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E245275FC55000219285 /* SchoolChatIOS.app */,
+				EF08E255275FC55400219285 /* SchoolChatIOSTests.xctest */,
+				EF08E25F275FC55400219285 /* SchoolChatIOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E273275FC5D900219285 /* SocketIOManager.swift */,
+				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
+				EF08E24A275FC55000219285 /* ContentView.swift */,
+				EF08E24C275FC55300219285 /* Assets.xcassets */,
+				EF08E24E275FC55300219285 /* Preview Content */,
+				EF08E275275FC62E00219285 /* LoginView.swift */,
+				EF08E277275FC64100219285 /* ChatView.swift */,
+				EF08E279275FC66300219285 /* Models.swift */,
+				EF08E27B275FC67500219285 /* MessageView.swift */,
+				EF08E27D275FC69600219285 /* MessengerView.swift */,
+				EF08E281275FC6C100219285 /* ChatMiniPreview.swift */,
+			);
+			path = SchoolChatIOS;
+			sourceTree = "<group>";
+		};
+		EF08E24E275FC55300219285 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E24F275FC55300219285 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EF08E258275FC55400219285 /* SchoolChatIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E259275FC55400219285 /* SchoolChatIOSTests.swift */,
+			);
+			path = SchoolChatIOSTests;
+			sourceTree = "<group>";
+		};
+		EF08E262275FC55400219285 /* SchoolChatIOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E263275FC55400219285 /* SchoolChatIOSUITests.swift */,
+				EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */,
+			);
+			path = SchoolChatIOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF08E244275FC55000219285 /* SchoolChatIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF08E269275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOS" */;
+			buildPhases = (
+				8A151DDDE0CC69AFA21C7466 /* [CP] Check Pods Manifest.lock */,
+				EF08E241275FC55000219285 /* Sources */,
+				EF08E242275FC55000219285 /* Frameworks */,
+				EF08E243275FC55000219285 /* Resources */,
+				D7D8C4DD22582FAD1C307D01 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SchoolChatIOS;
+			productName = SchoolChatIOS;
+			productReference = EF08E245275FC55000219285 /* SchoolChatIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF08E254275FC55400219285 /* SchoolChatIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF08E26C275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOSTests" */;
+			buildPhases = (
+				141839939BED7820C6B69DDA /* [CP] Check Pods Manifest.lock */,
+				EF08E251275FC55400219285 /* Sources */,
+				EF08E252275FC55400219285 /* Frameworks */,
+				EF08E253275FC55400219285 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF08E257275FC55400219285 /* PBXTargetDependency */,
+			);
+			name = SchoolChatIOSTests;
+			productName = SchoolChatIOSTests;
+			productReference = EF08E255275FC55400219285 /* SchoolChatIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EF08E25E275FC55400219285 /* SchoolChatIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF08E26F275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOSUITests" */;
+			buildPhases = (
+				E854EC6E0D08BD1583E49DE1 /* [CP] Check Pods Manifest.lock */,
+				EF08E25B275FC55400219285 /* Sources */,
+				EF08E25C275FC55400219285 /* Frameworks */,
+				EF08E25D275FC55400219285 /* Resources */,
+				34FD8024C7401F05BBB7364C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF08E261275FC55400219285 /* PBXTargetDependency */,
+			);
+			name = SchoolChatIOSUITests;
+			productName = SchoolChatIOSUITests;
+			productReference = EF08E25F275FC55400219285 /* SchoolChatIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF08E23D275FC55000219285 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					EF08E244275FC55000219285 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					EF08E254275FC55400219285 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = EF08E244275FC55000219285;
+					};
+					EF08E25E275FC55400219285 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = EF08E244275FC55000219285;
+					};
+				};
+			};
+			buildConfigurationList = EF08E240275FC55000219285 /* Build configuration list for PBXProject "SchoolChatIOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF08E23C275FC55000219285;
+			productRefGroup = EF08E246275FC55000219285 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF08E244275FC55000219285 /* SchoolChatIOS */,
+				EF08E254275FC55400219285 /* SchoolChatIOSTests */,
+				EF08E25E275FC55400219285 /* SchoolChatIOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF08E243275FC55000219285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF08E250275FC55300219285 /* Preview Assets.xcassets in Resources */,
+				EF08E24D275FC55300219285 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E253275FC55400219285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E25D275FC55400219285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		141839939BED7820C6B69DDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SchoolChatIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34FD8024C7401F05BBB7364C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A151DDDE0CC69AFA21C7466 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SchoolChatIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7D8C4DD22582FAD1C307D01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E854EC6E0D08BD1583E49DE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SchoolChatIOS-SchoolChatIOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF08E241275FC55000219285 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
+				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
+				EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */,
+				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
+				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
+				EF08E27A275FC66300219285 /* Models.swift in Sources */,
+				EF08E276275FC62E00219285 /* LoginView.swift in Sources */,
+				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,
+				EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E251275FC55400219285 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF08E25A275FC55400219285 /* SchoolChatIOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF08E25B275FC55400219285 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF08E266275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift in Sources */,
+				EF08E264275FC55400219285 /* SchoolChatIOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF08E257275FC55400219285 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF08E244275FC55000219285 /* SchoolChatIOS */;
+			targetProxy = EF08E256275FC55400219285 /* PBXContainerItemProxy */;
+		};
+		EF08E261275FC55400219285 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF08E244275FC55000219285 /* SchoolChatIOS */;
+			targetProxy = EF08E260275FC55400219285 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EF08E267275FC55400219285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EF08E268275FC55400219285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF08E26A275FC55400219285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1E349016882AD9F80F9B4C3 /* Pods-SchoolChatIOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SchoolChatIOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF08E26B275FC55400219285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78115B964FC946C45012D830 /* Pods-SchoolChatIOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SchoolChatIOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF08E26D275FC55400219285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EC1F2BFB7D9B79629654B5A /* Pods-SchoolChatIOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SchoolChatIOS.app/SchoolChatIOS";
+			};
+			name = Debug;
+		};
+		EF08E26E275FC55400219285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82100073ADA53423EB7A55FB /* Pods-SchoolChatIOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SchoolChatIOS.app/SchoolChatIOS";
+			};
+			name = Release;
+		};
+		EF08E270275FC55400219285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E1415344855CFACAB4062B /* Pods-SchoolChatIOS-SchoolChatIOSUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SchoolChatIOS;
+			};
+			name = Debug;
+		};
+		EF08E271275FC55400219285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1BD7FC462A4DEC03556ECB3 /* Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SchoolChatIOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF08E240275FC55000219285 /* Build configuration list for PBXProject "SchoolChatIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF08E267275FC55400219285 /* Debug */,
+				EF08E268275FC55400219285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF08E269275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF08E26A275FC55400219285 /* Debug */,
+				EF08E26B275FC55400219285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF08E26C275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF08E26D275FC55400219285 /* Debug */,
+				EF08E26E275FC55400219285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF08E26F275FC55400219285 /* Build configuration list for PBXNativeTarget "SchoolChatIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF08E270275FC55400219285 /* Debug */,
+				EF08E271275FC55400219285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF08E23D275FC55000219285 /* Project object */;
+}
