@@ -48,7 +48,7 @@ struct ChatView: View {
     
     var chat_id: Int64
     @State private var message = ""
-    @StateObject private var model = ChatViewModel(chat: 5)
+    @StateObject private var model = ChatViewModel(chat: 2)
     
     private func onAppear() {
         model.connect()
@@ -95,7 +95,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-            ChatView(chat_id: 5)
+            ChatView(chat_id: 2)
     }
 }
 

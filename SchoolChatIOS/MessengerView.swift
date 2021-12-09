@@ -15,30 +15,27 @@ final class MessengerViewModel: ObservableObject {
     
     func connect() {
         manager.establishConnection()
-        manager.react_chats(complete: FillChats2)
+        manager.react_chats(completionHandler: FillChats2)
         manager.react_con(completionHandler: FillChats)
-        manager.recieve_chats(complete: FillChats3)
+        manager.recieve_chats(completionHandler: FillChats3)
     }
     
     func FillChats() {
-        manager.get_chat_ids(user_id: USER?.id ?? 0)
+        manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
-    func FillChats2(incoming: NSArray) {
+    func FillChats2(incoming: [Any]) {
         //print(" aboba")
-        var chat_ids = [Int64]()
-        for elem in incoming {
-            let id = Int64(((elem as! [String: Any])["chat_id"] as! NSString) as String)!
-            chat_ids.append(id)
-        }
-        print(chat_ids)
-        for chat in chat_ids{
-            manager.request_chat_data(chat_id: chat)
+        print(incoming)
+        for chat in incoming {
+            manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
         }
     }
     
     func FillChats3(incoming: [String:Any]){
-        
+        let chatinfo = incoming["chat"] as! [String: Any]
+        let last_msg_info = incoming["last_msg"] as! [String: Any]
+        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: "\(chatinfo["pic"])", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: "\(last_msg_info["time"])"))
     }
     
     func disconnect(){
@@ -71,7 +68,9 @@ struct MessengerView: View {
             ScrollView {
                 LazyVStack(spacing: 8){
                     ForEach(model.chats) { chat in
-                        ChatMiniPreview(chat: chat)
+                        Button(action: {}) {
+                            ChatMiniPreview(chat: chat)
+                        }
                     }
                 }
             }

@@ -21,12 +21,21 @@ struct ChatMiniPreview: View {
                     }.padding()
                     VStack{
                         Text(chat.name)
-                            .padding()
+                            .padding(.bottom, 6)
                             .font(.system(size: 27))
                             .font(Font.headline.weight(.heavy))
-                        Text(chat.last_msg_text)
-                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .lineLimit(1)
+                            .foregroundColor(Color.red)
+                        Text(chat.last_msg_text == "" ? " ":chat.last_msg_text)
+                            //.padding(.bottom, 20)
+                            //.padding(.top, 2)
+                            .foregroundColor(Color.cyan)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .lineLimit(1)
                     }
+                    .padding(.bottom, 20)
+                    .padding(.top, 20)
                     Spacer()
                 }
             }
@@ -38,6 +47,6 @@ struct ChatMiniPreview: View {
 
 struct ChatMiniPreview_Previews: PreviewProvider {
     static var previews: some View {
-        ChatMiniPreview(chat: Chat(id: 5, name: "aboba", creator: 16, picture_url: "  ", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: "12"))
+        ChatMiniPreview(chat: Chat(id: 5, name: "aaa", creator: 16, picture_url: "  ", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: "12"))
     }
 }

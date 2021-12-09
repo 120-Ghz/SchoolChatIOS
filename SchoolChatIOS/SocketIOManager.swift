@@ -17,7 +17,7 @@ class SocketIOManagerDefault: NSObject {
     override init() {
         super.init()
         
-        manager = SocketManager(socketURL: URL(string: "http://192.168.0.13:3000")!)
+        manager = SocketManager(socketURL: WShost!)
         socket = manager.defaultSocket
     }
     
@@ -40,17 +40,18 @@ class SocketIOManagerDefault: NSObject {
         }
     }
     
-    func react_chats(complete: @escaping (NSArray) -> Void) {
+    func react_chats(completionHandler: @escaping ([Any]) -> Void) {
         socket.on("recieve-chats") { (data, ack) in
             guard let chats = data[0] as? [String:Any] else {return}
-            let ch = chats["res"] as! NSArray
-            complete(ch)
+            print(chats)
+            let ch = chats["res"] as! [Any]
+            completionHandler(ch)
         }
     }
     
-    func recieve_chats(complete: @escaping ([String:Any]) -> Void){
+    func recieve_chats(completionHandler: @escaping ([String:Any]) -> Void){
         socket.on("chat_preview_info") { (data, ack) in
-            print(data)
+            completionHandler(data[0] as! [String: Any])
         }
     }
     
@@ -67,12 +68,12 @@ class SocketIOManagerDefault: NSObject {
     
     func get_chat_ids(user_id: Int64){
         print("in func")
-        socket.emit("chats", ["user_id": 5])
+        socket.emit("chats", ["user_id": user_id])
         print("emited")
     }
     
-    func request_chat_data(chat_id: Int64){
-        socket.emit("get-info", ["flag":"chat", "data":["chat_id": chat_id]])
+    func request_chat_data_for_preview(chat_id: Int64){
+        socket.emit("get-info", ["flag":"chat-for-preview", "data":["chat_id": chat_id]])
     }
     
     func send(message: Message) {
