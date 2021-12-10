@@ -10,15 +10,8 @@ import SocketIO
 
 class SocketIOManagerDefault: NSObject {
     
-    private var manager: SocketManager!
-    private var socket: SocketIOClient!
-    
-    
     override init() {
         super.init()
-        
-        manager = SocketManager(socketURL: WShost!)
-        socket = manager.defaultSocket
     }
     
     // Connect and Disconnect

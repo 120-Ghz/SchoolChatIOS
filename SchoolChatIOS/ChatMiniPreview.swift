@@ -16,7 +16,7 @@ struct ChatMiniPreview: View {
                     Spacer()
                     VStack {
                         Circle()
-                            .fill(Color.white)
+                            .fill(Color.green)
                             .frame(width: 70, height: 70)
                     }.padding()
                     VStack{
@@ -26,11 +26,11 @@ struct ChatMiniPreview: View {
                             .font(Font.headline.weight(.heavy))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .lineLimit(1)
-                            .foregroundColor(Color.red)
+                            .foregroundColor(Color.black)
                         Text(chat.last_msg_text == "" ? " ":chat.last_msg_text)
                             //.padding(.bottom, 20)
                             //.padding(.top, 2)
-                            .foregroundColor(Color.cyan)
+                            .foregroundColor(Color.black)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .lineLimit(1)
                     }
@@ -40,8 +40,11 @@ struct ChatMiniPreview: View {
                 }
             }
         }
-        .background(Color.gray)
-        .cornerRadius(50)
+        .overlay(
+            RoundedRectangle(cornerRadius: 7)
+                .stroke(Color.blue, lineWidth: 4)
+        )
+        .padding(.horizontal, 4)
     }
 }
 

@@ -18,9 +18,37 @@ struct MiniView: View {
 }
 
 struct ContentView: View {
+    private func onAppear(){
+        socket.connect()
+    }
+    
+    private func onDisappear(){
+        socket.disconnect()
+    }
+    
     var body: some View {
-        //ChatView(chat_id: 5)
-        MessengerView()
+        VStack {
+            TabView {
+                MessengerView()
+                    .tabItem {
+                        Image(systemName: "message.fill")
+                        Text("Chats")
+                }
+                Text("Settings Screen")
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                }
+                Text("Feed Screen")
+                    .tabItem {
+                        Image(systemName: "heart.fill")
+                        Text("Settings")
+                }
+            }
+        }
+        .padding()
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
     }
 }
 

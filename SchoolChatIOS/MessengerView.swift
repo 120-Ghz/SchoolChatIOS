@@ -13,8 +13,7 @@ final class MessengerViewModel: ObservableObject {
     
     var manager = SocketIOManagerDefault()
     
-    func connect() {
-        manager.establishConnection()
+    func create() {
         manager.react_chats(completionHandler: FillChats2)
         manager.react_con(completionHandler: FillChats)
         manager.recieve_chats(completionHandler: FillChats3)
@@ -52,11 +51,7 @@ struct MessengerView: View {
     @StateObject private var model = MessengerViewModel()
     
     private func onAppear(){
-        model.connect()
-    }
-    
-    private func onDisappear(){
-        model.disconnect()
+        model.create()
     }
     
     private func onCommit() {
@@ -64,27 +59,31 @@ struct MessengerView: View {
     }
     
     var body: some View {
-        VStack{
-            ScrollView {
-                LazyVStack(spacing: 8){
-                    ForEach(model.chats) { chat in
-                        Button(action: {}) {
-                            ChatMiniPreview(chat: chat)
+        VStack {
+            VStack{
+                ScrollView {
+                    LazyVStack(spacing: 8){
+                        ForEach(model.chats) { chat in
+                            Button(action: {}) {
+                                ChatMiniPreview(chat: chat)
+                                    .padding(.horizontal, 0)
+                                    .padding(.vertical, 2)
+                            }
+                            .padding(.horizontal, 0)
                         }
                     }
                 }
             }
-        }
-        HStack {
-            Button(action:onCommit) {
-                Image(systemName: "arrow.turn.up.right")
-                    .font(.system(size: 20))
+            HStack {
+                Button(action:onCommit) {
+                    Image(systemName: "arrow.turn.up.right")
+                        .font(.system(size: 20))
+                }
+                .padding()
             }
             .padding()
+            .onAppear(perform: onAppear)
         }
-        .padding()
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
     }
 }
 
