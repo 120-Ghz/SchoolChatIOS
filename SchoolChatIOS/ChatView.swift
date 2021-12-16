@@ -54,10 +54,6 @@ struct ChatView: View {
         model.connect()
     }
     
-    private func onDisappear(){
-        model.disconnect()
-    }
-    
     private func onCommit() {
         if !message.isEmpty {
             model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id ?? 0, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false))
@@ -89,7 +85,6 @@ struct ChatView: View {
             .padding()
         }
         .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
     }
 }
 

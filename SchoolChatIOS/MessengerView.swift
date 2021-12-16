@@ -20,6 +20,7 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats() {
+        chats = []
         manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
@@ -60,30 +61,18 @@ struct MessengerView: View {
     
     var body: some View {
         VStack {
-            VStack{
-                ScrollView {
-                    LazyVStack(spacing: 8){
-                        ForEach(model.chats) { chat in
-                            Button(action: {}) {
-                                ChatMiniPreview(chat: chat)
-                                    .padding(.horizontal, 0)
-                                    .padding(.vertical, 2)
-                            }
-                            .padding(.horizontal, 0)
-                        }
+            NavigationView {
+                List(model.chats) { chat in
+                    NavigationLink {
+                        ChatView(chat_id: chat.id)
+                    } label: {
+                        ChatMiniPreview(chat: chat)
                     }
                 }
+                .navigationBarTitle("Chats", displayMode: .inline)
             }
-            HStack {
-                Button(action:onCommit) {
-                    Image(systemName: "arrow.turn.up.right")
-                        .font(.system(size: 20))
-                }
-                .padding()
-            }
-            .padding()
-            .onAppear(perform: onAppear)
         }
+        .onAppear(perform: onAppear)
     }
 }
 

@@ -27,7 +27,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
+        /*VStack {
             TabView {
                 MessengerView()
                     .tabItem {
@@ -48,7 +48,8 @@ struct ContentView: View {
         }
         .padding()
         .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
+        .onDisappear(perform: onDisappear)*/
+        MessengerView().onAppear(perform: onAppear)
     }
 }
 

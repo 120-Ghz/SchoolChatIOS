@@ -12,39 +12,32 @@ struct ChatMiniPreview: View {
     var body: some View {
         HStack {
             VStack {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 70, height: 70)
-                    }.padding()
-                    VStack{
-                        Text(chat.name)
-                            .padding(.bottom, 6)
-                            .font(.system(size: 27))
-                            .font(Font.headline.weight(.heavy))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .lineLimit(1)
-                            .foregroundColor(Color.black)
-                        Text(chat.last_msg_text == "" ? " ":chat.last_msg_text)
-                            //.padding(.bottom, 20)
-                            //.padding(.top, 2)
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .lineLimit(1)
-                    }
-                    .padding(.bottom, 20)
-                    .padding(.top, 20)
-                    Spacer()
+                ZStack {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: 70, height: 70)
+                    Text(chat.name.prefix(1).uppercased())
+                        .font(.system(size: 45))
+                        .foregroundColor(Color.white)
                 }
+            }.padding()
+            VStack{
+                Text(chat.name)
+                    .padding(.bottom, 6)
+                    .font(.system(size: 27))
+                    .font(Font.headline.weight(.heavy))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(1)
+                    .foregroundColor(Color.black)
+                Text(chat.last_msg_text == "" ? " ":chat.last_msg_text)
+                    .foregroundColor(Color.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(1)
             }
+            //.padding(.bottom, 20)
+            //.padding(.top, 20)
+            Spacer()
         }
-        .overlay(
-            RoundedRectangle(cornerRadius: 7)
-                .stroke(Color.blue, lineWidth: 4)
-        )
-        .padding(.horizontal, 4)
     }
 }
 
