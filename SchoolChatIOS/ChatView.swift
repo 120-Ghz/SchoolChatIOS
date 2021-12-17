@@ -25,7 +25,7 @@ final class ChatViewModel: ObservableObject {
     
     private func NewMsg(incoming: Message) {
         print("handled")
-        if (incoming.chat_id == chat_id) && (!incoming.deleted_all) && ((USER?.id == incoming.user_id) && (!incoming.deleted_user)){
+        if (incoming.chat_id == chat_id) && (!incoming.deleted_all){
             messages.append(incoming)
         }
     }
@@ -64,7 +64,7 @@ struct ChatView: View {
     var body: some View {
         VStack {
             ScrollView {
-                LazyVStack(spacing: 8){
+                LazyVStack {
                     ForEach(model.messages) { message in
                         MessageView(message: message)
                     }
