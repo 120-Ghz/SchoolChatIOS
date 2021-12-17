@@ -37,7 +37,7 @@ struct LoginView: View {
                 }
                 HStack {
                     Spacer()
-                    NavigationLink(destination: ChatView(chat_id: 5), tag: true, selection: $status) { EmptyView() }
+                    NavigationLink(destination: ChatView(back: NavigationBeetweenChats(), chat_id: 5), tag: true, selection: $status) { EmptyView() }
                     Button("Login") {
                         auth()
                     }

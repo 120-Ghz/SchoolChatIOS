@@ -11,16 +11,11 @@ final class ChatViewModel: ObservableObject {
     
     @Published private(set) var messages: [Message] = []
     
-    var chat_id: Int64?
+    var chat_id: Int64 = 0
     
-    init(chat: Int64){
-        chat_id = chat
-    }
-    
-    var manager = SocketIOManagerDefault()
+    var manager = SocketIOManager()
     
     func connect() {
-        manager.establishConnection()
         manager.observeMessages(completionHandler: NewMsg)
     }
     
@@ -46,12 +41,17 @@ final class ChatViewModel: ObservableObject {
 
 struct ChatView: View {
     
-    var chat_id: Int64
     @State private var message = ""
-    @StateObject private var model = ChatViewModel(chat: 2)
     
+    @ObservedObject var back: NavigationBeetweenChats
+    
+    var chat_id: Int64?
+    @StateObject private var model: ChatViewModel = ChatViewModel()
+
     private func onAppear() {
+        model.chat_id = chat_id!
         model.connect()
+        back.Allower = false
     }
     
     private func onCommit() {
@@ -85,12 +85,13 @@ struct ChatView: View {
             .padding()
         }
         .onAppear(perform: onAppear)
+        .onDisappear(perform: {back.toggler.toggle()})
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-            ChatView(chat_id: 2)
+            ChatView(back: NavigationBeetweenChats(), chat_id: 2)
     }
 }
 

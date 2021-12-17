@@ -24,6 +24,7 @@
 		EF08E27C275FC67500219285 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27B275FC67500219285 /* MessageView.swift */; };
 		EF08E27E275FC69600219285 /* MessengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27D275FC69600219285 /* MessengerView.swift */; };
 		EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatMiniPreview.swift */; };
+		EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		EF08E27B275FC67500219285 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EF08E27D275FC69600219285 /* MessengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerView.swift; sourceTree = "<group>"; };
 		EF08E281275FC6C100219285 /* ChatMiniPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMiniPreview.swift; sourceTree = "<group>"; };
+		EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat-Messenger_Navigation.swift"; sourceTree = "<group>"; };
 		F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOS_SchoolChatIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -148,7 +150,8 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
-				EF08E273275FC5D900219285 /* SocketIOManager.swift */,
+				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
+				EFDD1D39276C6922000BDE25 /* Managers */,
 				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
 				EF08E24A275FC55000219285 /* ContentView.swift */,
 				EF08E24C275FC55300219285 /* Assets.xcassets */,
@@ -186,6 +189,22 @@
 				EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */,
 			);
 			path = SchoolChatIOSUITests;
+			sourceTree = "<group>";
+		};
+		EFDD1D39276C6922000BDE25 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E273275FC5D900219285 /* SocketIOManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		EFDD1D3C276D04ED000BDE25 /* StateObjects */ = {
+			isa = PBXGroup;
+			children = (
+				EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */,
+			);
+			path = StateObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,6 +450,7 @@
 				EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
+				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF08E276275FC62E00219285 /* LoginView.swift in Sources */,
 				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,

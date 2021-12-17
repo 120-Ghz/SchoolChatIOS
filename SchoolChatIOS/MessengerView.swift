@@ -10,18 +10,30 @@ import SwiftUI
 final class MessengerViewModel: ObservableObject {
     
     @Published private(set) var chats: [Chat] = []
+    @Published var AllowUpdate: Bool = true
     
-    var manager = SocketIOManagerDefault()
+    var manager = SocketIOManager()
     
     func create() {
         manager.react_chats(completionHandler: FillChats2)
         manager.react_con(completionHandler: FillChats)
         manager.recieve_chats(completionHandler: FillChats3)
+        manager.observeMessages(completionHandler: FillChatsWhenMessageForUser)
     }
     
     func FillChats() {
         chats = []
         manager.get_chat_ids(user_id: USER?.id ?? 2)
+    }
+    
+    func FillChatsWhenMessageForUser(message: Message) {
+        if !AllowUpdate {return}
+        if message.user_id != USER?.id { return }
+        let chs = chats
+        chats = []
+        for chat in chs {
+            manager.request_chat_data_for_preview(chat_id: chat.id)
+        }
     }
     
     func FillChats2(incoming: [Any]) {
@@ -50,13 +62,27 @@ final class MessengerViewModel: ObservableObject {
 struct MessengerView: View {
     
     @StateObject private var model = MessengerViewModel()
+    @StateObject private var updater = NavigationBeetweenChats()
     
     private func onAppear(){
         model.create()
+        print("OnAppear Messenger")
     }
     
     private func onCommit() {
         model.FillChats()
+    }
+    
+    private func onChange(state: Bool) {
+        model.FillChats()
+        model.AllowUpdate = true
+        updater.Allower = true
+        print("changed")
+    }
+    
+    private func BlockUpdates(state: Bool) {
+        if updater.Allower {return}
+        model.AllowUpdate = false
     }
     
     var body: some View {
@@ -64,7 +90,7 @@ struct MessengerView: View {
             NavigationView {
                 List(model.chats) { chat in
                     NavigationLink {
-                        ChatView(chat_id: chat.id)
+                        ChatView(back: updater, chat_id: chat.id)
                     } label: {
                         ChatMiniPreview(chat: chat)
                     }
@@ -73,6 +99,8 @@ struct MessengerView: View {
             }
         }
         .onAppear(perform: onAppear)
+        .onChange(of: updater.toggler, perform: onChange)
+        .onChange(of: updater.Allower, perform: BlockUpdates)
     }
 }
 

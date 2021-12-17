@@ -8,7 +8,7 @@
 import Foundation
 import SocketIO
 
-class SocketIOManagerDefault: NSObject {
+class SocketIOManager: NSObject {
     
     override init() {
         super.init()
@@ -48,16 +48,20 @@ class SocketIOManagerDefault: NSObject {
         }
     }
     
+    func recieve_chat_msgs(completionHandler: @escaping ([Any]) -> Void){
+        socket.on("chat-message-recieve") { (data, ack) in
+            completionHandler(data[0] as! [Any])
+        }
+    }
+    
     func observeMessages(completionHandler: @escaping (Message) -> Void) {
         socket.on("msg") { (dataArray, ack) in
             guard let data = dataArray[0] as? [String: Any] else {return}
             print(dataArray[0])
-            var msg = Message(id: data["id"] as! Int64, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as! Bool, deleted_user: data["deleted_user"] as! Bool, edited: data["edited"] as! Bool)
+            var msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as! Bool, deleted_user: data["deleted_user"] as! Bool, edited: data["edited"] as! Bool)
             completionHandler(msg)
         }
     }
-    
-    // Requests
     
     func get_chat_ids(user_id: Int64){
         print("in func")
@@ -71,6 +75,11 @@ class SocketIOManagerDefault: NSObject {
     
     func send(message: Message) {
         socket.emit("newMessage", ["user_id": message.user_id, "id": message.id, "chat_id": message.chat_id, "text": message.text, "attachments": message.attachments, "deleted_all": message.deleted_all, "deleted_user": message.deleted_user, "edited": message.edited])
+        print("sent \(message.user_id), \(message.id)")
+    }
+    
+    func requestChatMsgs(user_id: Int64, chat_id: Int64) {
+        socket.emit("get-msgs", ["user_id": user_id, "chat_id": chat_id])
     }
 }
 
