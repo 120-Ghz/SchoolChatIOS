@@ -26,9 +26,18 @@ final class MessengerViewModel: ObservableObject {
         manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
+    func Check_if_message_in_user_chats(message: Message) -> Bool {
+        for ch in chats {
+            if message.chat_id == ch.id {
+                return true
+            }
+        }
+        return false
+    }
+    
     func FillChatsWhenMessageForUser(message: Message) {
         if !AllowUpdate {return}
-        if message.user_id != USER?.id { return }
+        if !Check_if_message_in_user_chats(message: message) { return }
         let chs = chats
         chats = []
         for chat in chs {
@@ -47,7 +56,8 @@ final class MessengerViewModel: ObservableObject {
     func FillChats3(incoming: [String:Any]){
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
-        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: "\(chatinfo["pic"])", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: "\(last_msg_info["time"])"))
+        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: last_msg_info["time"] as! String))
+        print(last_msg_info["time"])
     }
     
     func disconnect(){
@@ -88,13 +98,24 @@ struct MessengerView: View {
     var body: some View {
         VStack {
             NavigationView {
-                List(model.chats) { chat in
-                    NavigationLink {
-                        ChatView(back: updater, chat_id: chat.id)
-                    } label: {
-                        ChatMiniPreview(chat: chat)
+                List {
+                    ForEach(model.chats) { chat in
+                        ZStack {
+                            
+                            ChatRow(chat: chat)
+                            
+                            NavigationLink(destination: {
+                                ChatView(back: updater, chat_id: chat.id)
+                            }) {
+                                EmptyView()
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .frame(width: 0)
+                            .opacity(0)
+                        }
                     }
                 }
+                .listStyle(PlainListStyle())
                 .navigationBarTitle("Chats", displayMode: .inline)
             }
         }

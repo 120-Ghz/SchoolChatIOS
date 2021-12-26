@@ -17,10 +17,7 @@ final class ChatViewModel: ObservableObject {
     
     func connect() {
         manager.observeMessages(completionHandler: NewMsg)
-    }
-    
-    func disconnect(){
-        manager.closeConnection()
+        manager.recieve_chat_msgs(completionHandler: getMessages)
     }
     
     private func NewMsg(incoming: Message) {
@@ -34,8 +31,15 @@ final class ChatViewModel: ObservableObject {
         manager.send(message: message)
     }
     
-    deinit {
-        disconnect()
+    func getMessages(incoming: [[String:Any]]) {
+        print("MESSAGES RECIEVED")
+        for msg in incoming{
+            messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false))
+        }
+    }
+    
+    func requestMessages() {
+        manager.requestChatMsgs(user_id: USER!.id, chat_id: chat_id)
     }
 }
 
@@ -51,6 +55,7 @@ struct ChatView: View {
     private func onAppear() {
         model.chat_id = chat_id!
         model.connect()
+        model.requestMessages()
         back.Allower = false
     }
     

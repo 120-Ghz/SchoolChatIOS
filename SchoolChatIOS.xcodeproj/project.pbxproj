@@ -18,12 +18,13 @@
 		EF08E264275FC55400219285 /* SchoolChatIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E263275FC55400219285 /* SchoolChatIOSUITests.swift */; };
 		EF08E266275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */; };
 		EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E273275FC5D900219285 /* SocketIOManager.swift */; };
-		EF08E276275FC62E00219285 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E275275FC62E00219285 /* LoginView.swift */; };
 		EF08E278275FC64100219285 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E277275FC64100219285 /* ChatView.swift */; };
 		EF08E27A275FC66300219285 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E279275FC66300219285 /* Models.swift */; };
 		EF08E27C275FC67500219285 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27B275FC67500219285 /* MessageView.swift */; };
 		EF08E27E275FC69600219285 /* MessengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27D275FC69600219285 /* MessengerView.swift */; };
-		EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatMiniPreview.swift */; };
+		EF08E282275FC6C100219285 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatRow.swift */; };
+		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
+		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
 		EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,12 +65,13 @@
 		EF08E263275FC55400219285 /* SchoolChatIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSUITests.swift; sourceTree = "<group>"; };
 		EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF08E273275FC5D900219285 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
-		EF08E275275FC62E00219285 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EF08E277275FC64100219285 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		EF08E279275FC66300219285 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		EF08E27B275FC67500219285 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EF08E27D275FC69600219285 /* MessengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerView.swift; sourceTree = "<group>"; };
-		EF08E281275FC6C100219285 /* ChatMiniPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMiniPreview.swift; sourceTree = "<group>"; };
+		EF08E281275FC6C100219285 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
 		EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat-Messenger_Navigation.swift"; sourceTree = "<group>"; };
 		F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOS_SchoolChatIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -150,18 +152,16 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
+				EFA5357F2778C550005A2502 /* Extensions */,
+				EFA5357E2774A4B2005A2502 /* MiniViews */,
+				EFA5357D2774A498005A2502 /* Views */,
 				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
 				EFDD1D39276C6922000BDE25 /* Managers */,
 				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
 				EF08E24A275FC55000219285 /* ContentView.swift */,
 				EF08E24C275FC55300219285 /* Assets.xcassets */,
 				EF08E24E275FC55300219285 /* Preview Content */,
-				EF08E275275FC62E00219285 /* LoginView.swift */,
-				EF08E277275FC64100219285 /* ChatView.swift */,
 				EF08E279275FC66300219285 /* Models.swift */,
-				EF08E27B275FC67500219285 /* MessageView.swift */,
-				EF08E27D275FC69600219285 /* MessengerView.swift */,
-				EF08E281275FC6C100219285 /* ChatMiniPreview.swift */,
 			);
 			path = SchoolChatIOS;
 			sourceTree = "<group>";
@@ -189,6 +189,33 @@
 				EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */,
 			);
 			path = SchoolChatIOSUITests;
+			sourceTree = "<group>";
+		};
+		EFA5357D2774A498005A2502 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E277275FC64100219285 /* ChatView.swift */,
+				EF08E27D275FC69600219285 /* MessengerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EFA5357E2774A4B2005A2502 /* MiniViews */ = {
+			isa = PBXGroup;
+			children = (
+				EF08E281275FC6C100219285 /* ChatRow.swift */,
+				EF08E27B275FC67500219285 /* MessageView.swift */,
+				EFA535822778C9F9005A2502 /* ChatPicture.swift */,
+			);
+			path = MiniViews;
+			sourceTree = "<group>";
+		};
+		EFA5357F2778C550005A2502 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EFA535802778C569005A2502 /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EFDD1D39276C6922000BDE25 /* Managers */ = {
@@ -445,14 +472,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
-				EF08E282275FC6C100219285 /* ChatMiniPreview.swift in Sources */,
+				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
-				EF08E276275FC62E00219285 /* LoginView.swift in Sources */,
+				EFA535812778C569005A2502 /* String.swift in Sources */,
 				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,
 				EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */,
 			);

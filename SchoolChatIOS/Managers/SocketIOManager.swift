@@ -48,9 +48,9 @@ class SocketIOManager: NSObject {
         }
     }
     
-    func recieve_chat_msgs(completionHandler: @escaping ([Any]) -> Void){
+    func recieve_chat_msgs(completionHandler: @escaping ([[String:Any]]) -> Void){
         socket.on("chat-message-recieve") { (data, ack) in
-            completionHandler(data[0] as! [Any])
+            completionHandler((data[0] as! [String:Any])["data"] as! [[String:Any]])
         }
     }
     
@@ -58,7 +58,7 @@ class SocketIOManager: NSObject {
         socket.on("msg") { (dataArray, ack) in
             guard let data = dataArray[0] as? [String: Any] else {return}
             print(dataArray[0])
-            var msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as! Bool, deleted_user: data["deleted_user"] as! Bool, edited: data["edited"] as! Bool)
+            var msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false)
             completionHandler(msg)
         }
     }
