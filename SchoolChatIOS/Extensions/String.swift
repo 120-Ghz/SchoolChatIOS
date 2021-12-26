@@ -10,6 +10,7 @@ import Foundation
 extension String {
     
     func FormatToChatRow() -> String? {
+        // TODO: create this function
         return self
     }
     
