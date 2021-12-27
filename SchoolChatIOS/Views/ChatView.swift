@@ -61,20 +61,30 @@ struct ChatView: View {
     
     private func onCommit() {
         if !message.isEmpty {
-            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id ?? 0, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false))
+            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false))
             message = ""
+        }
+    }
+    
+    let columns = [GridItem(.flexible(minimum: 10))]
+    
+    func MessagesView(viewWidth: CGFloat) -> some View {
+        LazyVGrid(columns: columns, spacing: 2) {
+            ForEach(model.messages) { message in
+                MessageView(message: message)
+            }
         }
     }
     
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVStack {
-                    ForEach(model.messages) { message in
-                        MessageView(message: message)
-                    }
+            
+            GeometryReader { reader in
+                ScrollView {
+                    MessagesView(viewWidth: reader.size.width)
                 }
             }
+            
             HStack {
                 TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: onCommit)
                     .padding(10)
