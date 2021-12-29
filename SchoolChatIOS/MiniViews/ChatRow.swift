@@ -12,7 +12,7 @@ struct ChatRow: View {
     var body: some View {
         HStack(spacing: 20) {
             
-            ChatPicture(chat: chat)
+            ChatPicture(chat: chat, frameRadius: 70)
                 .padding()
             
             ZStack {

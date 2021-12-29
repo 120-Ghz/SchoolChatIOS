@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatPicture: View {
     let chat: Chat
+    let frameRadius: CGFloat
     
     func check_is_digit(data: String) -> Bool {
         guard Int(data) != nil else {return false}
@@ -34,11 +35,11 @@ struct ChatPicture: View {
             ZStack {
                 Circle()
                     .fill(Color.green)
-                    .frame(width: 70, height: 70)
+                    .frame(width: frameRadius, height: frameRadius)
                 
                 if chat.picture_url.space_deleter() == "" {
                     Text(PicText())
-                        .font(.system(size: 40))
+                        .font(.system(size: frameRadius/2))
                         .foregroundColor(Color.white)
                 } else {
                     Image(chat.picture_url)
@@ -51,6 +52,6 @@ struct ChatPicture: View {
 
 struct ChatPicture_Previews: PreviewProvider {
     static var previews: some View {
-        ChatPicture(chat: Chat(id: 5, name: "11Б Инженерный", creator: 16, picture_url: "", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: Date.now))
+        ChatPicture(chat: Chat(id: 5, name: "11Б Инженерный", creator: 16, picture_url: "", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: Date.now), frameRadius: 70)
     }
 }

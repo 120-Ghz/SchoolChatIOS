@@ -101,7 +101,7 @@ struct MessengerView: View {
                             ChatRow(chat: chat)
                             
                             NavigationLink(destination: {
-                                ChatView(back: updater, chat_id: chat.id)
+                                ChatView(back: updater, chat: chat)
                             }) {
                                 EmptyView()
                             }

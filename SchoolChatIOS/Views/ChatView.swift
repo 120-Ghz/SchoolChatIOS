@@ -47,7 +47,7 @@ struct ChatView: View {
     
     @ObservedObject var back: NavigationBeetweenChats
     
-    var chat_id: Int64?
+    var chat: Chat
     @StateObject private var model: ChatViewModel = ChatViewModel()
     
     @State private var lastMessageUUID: UUID?
@@ -55,7 +55,7 @@ struct ChatView: View {
     @State private var isFirst: Bool = true
 
     private func onAppear() {
-        model.chat_id = chat_id!
+        model.chat_id = chat.id
         model.connect()
         model.requestMessages()
         back.Allower = false
@@ -121,14 +121,32 @@ struct ChatView: View {
             }
             .padding()
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(leading: leadingBtn)
         .onAppear(perform: onAppear)
         .onDisappear(perform: {back.toggler.toggle()})
+    }
+    
+    var leadingBtn: some View {
+        HStack {
+            Button(action: {}) {
+                HStack {
+                    ChatPicture(chat: chat, frameRadius: 40)
+                        .frame(width: 40, height: 40)
+                        .padding(.horizontal, 0)
+                    Text(chat.name)
+                        .bold()
+                        .foregroundColor(Color.black)
+                        .padding(.horizontal, 3)
+                }
+            }
+        }
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-            ChatView(back: NavigationBeetweenChats(), chat_id: 2)
+        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now))
     }
 }
 
