@@ -47,7 +47,6 @@ final class MessengerViewModel: ObservableObject {
     
     func FillChats2(incoming: [Any]) {
         //print(" aboba")
-        print(incoming)
         for chat in incoming {
             manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
         }
@@ -56,8 +55,7 @@ final class MessengerViewModel: ObservableObject {
     func FillChats3(incoming: [String:Any]){
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
-        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: last_msg_info["time"] as! String))
-        print(last_msg_info["time"])
+        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate()))
     }
     
     func disconnect(){
@@ -76,7 +74,6 @@ struct MessengerView: View {
     
     private func onAppear(){
         model.create()
-        print("OnAppear Messenger")
     }
     
     private func onCommit() {
@@ -87,7 +84,6 @@ struct MessengerView: View {
         model.FillChats()
         model.AllowUpdate = true
         updater.Allower = true
-        print("changed")
     }
     
     private func BlockUpdates(state: Bool) {

@@ -28,7 +28,6 @@ class SocketIOManager: NSObject {
     
     func react_con(completionHandler: @escaping () -> Void) {
         socket.on("connected") { _, ack in
-            print("conn")
             completionHandler()
         }
     }
@@ -36,7 +35,6 @@ class SocketIOManager: NSObject {
     func react_chats(completionHandler: @escaping ([Any]) -> Void) {
         socket.on("recieve-chats") { (data, ack) in
             guard let chats = data[0] as? [String:Any] else {return}
-            print(chats)
             let ch = chats["res"] as! [Any]
             completionHandler(ch)
         }
@@ -57,16 +55,13 @@ class SocketIOManager: NSObject {
     func observeMessages(completionHandler: @escaping (Message) -> Void) {
         socket.on("msg") { (dataArray, ack) in
             guard let data = dataArray[0] as? [String: Any] else {return}
-            print(dataArray[0])
-            let msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false)
+            let msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["time"] as! String).JSDateToDate())
             completionHandler(msg)
         }
     }
     
     func get_chat_ids(user_id: Int64){
-        print("in func")
         socket.emit("chats", ["user_id": user_id])
-        print("emited")
     }
     
     func request_chat_data_for_preview(chat_id: Int64){
@@ -75,7 +70,6 @@ class SocketIOManager: NSObject {
     
     func send(message: Message) {
         socket.emit("newMessage", ["user_id": message.user_id, "id": message.id, "chat_id": message.chat_id, "text": message.text, "attachments": message.attachments, "deleted_all": message.deleted_all, "deleted_user": message.deleted_user, "edited": message.edited])
-        print("sent \(message.user_id), \(message.id)")
     }
     
     func requestChatMsgs(user_id: Int64, chat_id: Int64) {

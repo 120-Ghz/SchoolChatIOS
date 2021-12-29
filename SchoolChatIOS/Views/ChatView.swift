@@ -21,7 +21,6 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func NewMsg(incoming: Message) {
-        print("handled")
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all){
             messages.append(incoming)
         }
@@ -32,9 +31,8 @@ final class ChatViewModel: ObservableObject {
     }
     
     func getMessages(incoming: [[String:Any]]) {
-        print("MESSAGES RECIEVED")
         for msg in incoming{
-            messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false))
+            messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate()))
         }
     }
     
@@ -51,17 +49,30 @@ struct ChatView: View {
     
     var chat_id: Int64?
     @StateObject private var model: ChatViewModel = ChatViewModel()
+    
+    @State private var lastMessageUUID: UUID?
+    
+    @State private var isFirst: Bool = true
 
     private func onAppear() {
         model.chat_id = chat_id!
         model.connect()
         model.requestMessages()
         back.Allower = false
+
     }
     
-    private func onCommit() {
+    func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
+        DispatchQueue.main.async {
+            withAnimation(shouldAnimate ? Animation.easeIn : nil) {
+                scrollReader.scrollTo(messageUUID, anchor: anchor)
+            }
+        }
+    }
+    
+    private func send_button() {
         if !message.isEmpty {
-            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false))
+            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now))
             message = ""
         }
     }
@@ -72,25 +83,36 @@ struct ChatView: View {
         LazyVGrid(columns: columns, spacing: 2) {
             ForEach(model.messages) { message in
                 MessageView(message: message)
+                    .id(message.InternalId)
             }
         }
     }
     
     var body: some View {
         VStack {
-            
             GeometryReader { reader in
                 ScrollView {
-                    MessagesView(viewWidth: reader.size.width)
+                    ScrollViewReader { scrollReader in
+                        MessagesView(viewWidth: reader.size.width)
+                            .onChange(of: model.messages.count) { _ in
+                                lastMessageUUID = model.messages.last?.InternalId
+                                if let messageID = lastMessageUUID {
+                                    ScrollToMessage(messageUUID: messageID, shouldAnimate: !isFirst, scrollReader: scrollReader)
+                                    if isFirst {
+                                        isFirst.toggle()
+                                    }
+                                }
+                            }
+                    }
                 }
             }
             
             HStack {
-                TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: onCommit)
+                TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
                     .padding(10)
                     .background(Color.secondary.opacity(0.2))
                     .cornerRadius(5)
-                Button(action:onCommit) {
+                Button(action: send_button) {
                     Image(systemName: "arrow.turn.up.right")
                         .font(.system(size: 20))
                 }

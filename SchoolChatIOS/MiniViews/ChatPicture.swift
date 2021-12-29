@@ -51,6 +51,6 @@ struct ChatPicture: View {
 
 struct ChatPicture_Previews: PreviewProvider {
     static var previews: some View {
-        ChatPicture(chat: Chat(id: 5, name: "11Б Инженерный", creator: 16, picture_url: "", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: "December"))
+        ChatPicture(chat: Chat(id: 5, name: "11Б Инженерный", creator: 16, picture_url: "", deleted: false, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: Date.now))
     }
 }

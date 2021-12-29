@@ -32,6 +32,6 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(message: Message(id: 5, chat_id: 1, user_id: 2, text: "Я купил сочных булочек", attachments: [:], deleted_all: false, deleted_user: false, edited: false))
+        MessageView(message: Message(id: 5, chat_id: 1, user_id: 2, text: "Я купил сочных булочек", attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now))
     }
 }
