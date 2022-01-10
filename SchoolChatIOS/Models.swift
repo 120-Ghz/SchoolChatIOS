@@ -19,6 +19,7 @@ struct Message: Identifiable {
     let deleted_user: Bool
     let edited: Bool
     let time: Date
+    let service: Bool
 }
 
 struct User {
