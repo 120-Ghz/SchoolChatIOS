@@ -11,6 +11,11 @@ extension String {
     
     func JSDateToDate() -> Date {
         // 2021-12-28T22:20:50.508Z
+        
+        if self.count == 0 {
+            return Date.now // Костыли
+        }
+        
         let EndYearIndex = self.index(self.startIndex, offsetBy: 4)
         let Year = String(self[..<EndYearIndex])
         

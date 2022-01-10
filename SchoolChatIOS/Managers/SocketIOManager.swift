@@ -75,5 +75,9 @@ class SocketIOManager: NSObject {
     func requestChatMsgs(user_id: Int64, chat_id: Int64) {
         socket.emit("get-msgs", ["user_id": user_id, "chat_id": chat_id])
     }
+    
+    func createChat(creator_id: Int64, name: String) {
+        socket.emit("add-chat", ["name": name, "user_id": creator_id])
+    }
 }
 

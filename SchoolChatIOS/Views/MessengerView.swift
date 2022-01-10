@@ -55,7 +55,10 @@ final class MessengerViewModel: ObservableObject {
     func FillChats3(incoming: [String:Any]){
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
-        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate()))
+        let last_msg_time = (last_msg_info["time"] as! String)
+        let last_msg_stat = !(last_msg_time.count == 0)
+        guard let userdata = last_msg_info["userdata"] as? [String: Any] else {return}
+        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])"))
     }
     
     func disconnect(){
@@ -71,6 +74,8 @@ struct MessengerView: View {
     
     @StateObject private var model = MessengerViewModel()
     @StateObject private var updater = NavigationBeetweenChats()
+    
+    @State var AddChatsShow = false
     
     private func onAppear(){
         model.create()
@@ -89,6 +94,12 @@ struct MessengerView: View {
     private func BlockUpdates(state: Bool) {
         if updater.Allower {return}
         model.AllowUpdate = false
+    }
+    
+    var PlusButton: some View {
+        NavigationLink(destination: NewChatView()) {
+            Image(systemName: "plus")
+        }
     }
     
     var body: some View {
@@ -113,6 +124,7 @@ struct MessengerView: View {
                 }
                 .listStyle(PlainListStyle())
                 .navigationBarTitle("Chats", displayMode: .inline)
+                .navigationBarItems(trailing: PlusButton)
             }
         }
         .onAppear(perform: onAppear)

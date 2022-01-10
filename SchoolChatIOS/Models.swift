@@ -37,7 +37,9 @@ struct Chat: Identifiable {
     let creator: Int64
     let picture_url: String
     let deleted: Bool
+    let hasLastMsg: Bool
     let last_msg_text: String
     let last_msg_user: Int64
     let last_msg_time: Date
+    let last_msg_username: String
 }
