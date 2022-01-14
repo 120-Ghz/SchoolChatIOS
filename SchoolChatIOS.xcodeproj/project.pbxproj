@@ -28,6 +28,7 @@
 		EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE90277F79CF00C612E2 /* NewChatView.swift */; };
 		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
 		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
+		EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthViewSelector.swift */; };
 		EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		EF60FE90277F79CF00C612E2 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
 		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
+		EFADA83F2790322000DFA595 /* AuthViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewSelector.swift; sourceTree = "<group>"; };
 		EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat-Messenger_Navigation.swift"; sourceTree = "<group>"; };
 		F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolChatIOS_SchoolChatIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 		EFA5357D2774A498005A2502 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFADA841279032B500DFA595 /* Auth */,
 				EF08E277275FC64100219285 /* ChatView.swift */,
 				EF08E27D275FC69600219285 /* MessengerView.swift */,
 				EF60FE90277F79CF00C612E2 /* NewChatView.swift */,
@@ -225,6 +228,14 @@
 				EF60FE8C277CCF7700C612E2 /* Date.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EFADA841279032B500DFA595 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EFADA83F2790322000DFA595 /* AuthViewSelector.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		EFDD1D39276C6922000BDE25 /* Managers */ = {
@@ -492,6 +503,7 @@
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
+				EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */,
 				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,
 				EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */,
 				EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */,

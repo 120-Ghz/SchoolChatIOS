@@ -32,6 +32,12 @@ class SocketIOManager: NSObject {
         }
     }
     
+    func react_users(completionHandler: @escaping (Any) -> Void) {
+        socket.on("get_users_school") { data, ack in
+            completionHandler(data)
+        }
+    }
+    
     func react_chats(completionHandler: @escaping ([Any]) -> Void) {
         socket.on("recieve-chats") { (data, ack) in
             guard let chats = data[0] as? [String:Any] else {return}
@@ -64,12 +70,16 @@ class SocketIOManager: NSObject {
         socket.emit("chats", ["user_id": user_id])
     }
     
-    func request_chat_data_for_preview(chat_id: Int64){
+    func request_chat_data_for_preview(chat_id: Int64) {
         socket.emit("get-info", ["flag":"chat-for-preview", "data":["chat_id": chat_id]])
     }
     
     func send(message: Message) {
         socket.emit("newMessage", ["user_id": message.user_id, "id": message.id, "chat_id": message.chat_id, "text": message.text, "attachments": message.attachments, "deleted_all": message.deleted_all, "deleted_user": message.deleted_user, "edited": message.edited])
+    }
+    
+    func get_users_from_school_id(school_id: Int64) {
+        socket.emit("", ["school_id": school_id])
     }
     
     func requestChatMsgs(user_id: Int64, chat_id: Int64) {
