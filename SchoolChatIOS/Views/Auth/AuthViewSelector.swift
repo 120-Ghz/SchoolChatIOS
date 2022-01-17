@@ -13,7 +13,7 @@ struct AuthView: View {
         
     }
     
-    func LogInButton() {
+    func SignInButton() {
         
     }
     

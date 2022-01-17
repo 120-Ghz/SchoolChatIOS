@@ -79,7 +79,7 @@ class SocketIOManager: NSObject {
     }
     
     func get_users_from_school_id(school_id: Int64) {
-        socket.emit("", ["school_id": school_id])
+        socket.emit("get-users-by-school", ["school_id": school_id])
     }
     
     func requestChatMsgs(user_id: Int64, chat_id: Int64) {

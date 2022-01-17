@@ -30,6 +30,7 @@ struct User {
     let class_id: Int64
     let email: String
     let phone: String
+    let avatar: String = ""
 }
 
 struct Chat: Identifiable {
