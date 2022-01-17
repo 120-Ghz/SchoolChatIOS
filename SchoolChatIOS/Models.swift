@@ -33,6 +33,15 @@ struct User {
     let avatar: String = ""
 }
 
+struct MiniUser {
+    let id: Int64
+    let name: String
+    let surname: String
+    let school_id: Int64
+    let class_id: Int64
+    let avatar: String
+}
+
 struct Chat: Identifiable {
     let id: Int64
     let name: String

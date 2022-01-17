@@ -9,7 +9,7 @@ import SwiftUI
 
 final class NewChatViewModel: ObservableObject {
     
-    @State var UsersInSchool: [User] = []
+    @State var FilteredUsers: [User] = []
     
     let manager = SocketIOManager()
     
@@ -22,7 +22,11 @@ final class NewChatViewModel: ObservableObject {
     }
     
     func getSchoolUsers(incoming: Any) {
-        print(incoming)
+//        let Users = incoming as! [String: Any]
+        let Users = incoming as! [[String: Any]]
+        for user in Users {
+            print(user)
+        }
     }
     
     func createChat(creator_id: Int64, name: String) {
@@ -72,6 +76,12 @@ struct NewChatView: View {
         }
     }
     
+    func OnAppear() {
+        print("OnAppear")
+        model.create()
+        model.requestSchoolUsers(school_id: 4)
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -87,6 +97,7 @@ struct NewChatView: View {
             bottomButtons()
         }
         .padding()
+        .onAppear(perform: OnAppear)
     }
 }
 

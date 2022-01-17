@@ -34,7 +34,8 @@ class SocketIOManager: NSObject {
     
     func react_users(completionHandler: @escaping (Any) -> Void) {
         socket.on("get_users_school") { data, ack in
-            completionHandler(data)
+            let da = data as! [[String: Any]]
+            completionHandler(da[0]["data"])
         }
     }
     
