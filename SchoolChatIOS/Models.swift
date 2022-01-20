@@ -22,7 +22,7 @@ struct Message: Identifiable {
     let service: Bool
 }
 
-struct User {
+struct User: Identifiable, Equatable {
     let id: Int64
     let name: String
     let surname: String

@@ -97,7 +97,7 @@ struct MessengerView: View {
     }
     
     var PlusButton: some View {
-        NavigationLink(destination: NewChatView()) {
+        NavigationLink(destination: NewChatView(back: updater)) {
             Image(systemName: "plus")
         }
     }

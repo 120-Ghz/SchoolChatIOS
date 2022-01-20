@@ -9,7 +9,9 @@ import SwiftUI
 
 final class NewChatViewModel: ObservableObject {
     
-    @State var FilteredUsers: [User] = []
+    @Published var FilteredUsers: [User] = []
+    @Published var UsersToSend: [User] = []
+    
     
     let manager = SocketIOManager()
     
@@ -24,13 +26,16 @@ final class NewChatViewModel: ObservableObject {
     func getSchoolUsers(incoming: Any) {
 //        let Users = incoming as! [String: Any]
         let Users = incoming as! [[String: Any]]
+        var counter = 0
         for user in Users {
-            print(user)
+//            print(user)
+            counter += 1
+            FilteredUsers.append(User(id: Int64(user["id"] as! String)!, name: user["name"] as! String, surname: user["surname"] as! String, school_id: Int64(user["school_id"] as! String)!, class_id: Int64(user["class_id"] as! String)!, email: user["email"] as! String, phone: user["phone"] as! String))
         }
     }
     
     func createChat(creator_id: Int64, name: String) {
-        manager.createChat(creator_id: creator_id, name: name)
+        manager.createChat(creator_id: creator_id, name: name, users: UsersToSend)
     }
     
 }
@@ -40,7 +45,7 @@ struct NewChatView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var chatName: String = ""
-    
+    @ObservedObject var back: NavigationBeetweenChats
     @StateObject var model = NewChatViewModel()
     
     func OkButton() {
@@ -61,6 +66,7 @@ struct NewChatView: View {
             Spacer()
             Button(action: {
                 OkButton()
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Готово")
             }
@@ -70,9 +76,29 @@ struct NewChatView: View {
         }
     }
     
-    func UsersBox() -> some View{
+    func PressedUser(user: User) {
+        if !CheckUserSelect(user: user) {
+            model.UsersToSend.append(user)
+        } else {
+            if let index = model.UsersToSend.firstIndex(of: user) {
+                model.UsersToSend.remove(at: index)
+            }
+        }
+    }
+    
+    func CheckUserSelect(user: User) -> Bool {
+        return model.UsersToSend.contains(user)
+    }
+    
+    func UsersBox() -> some View {
         return VStack {
-            Spacer()
+            List {
+                ForEach(model.FilteredUsers) { user in
+                    Button(action: {PressedUser(user: user)}) {
+                        UserRow(user: user, selected: CheckUserSelect(user: user))
+                    }
+                }
+            }
         }
     }
     
@@ -98,11 +124,14 @@ struct NewChatView: View {
         }
         .padding()
         .onAppear(perform: OnAppear)
+        .onDisappear(perform: {
+            back.toggler.toggle()
+        })
     }
 }
 
 struct NewChatView_Previews: PreviewProvider {
     static var previews: some View {
-        NewChatView()
+        NewChatView(back: NavigationBeetweenChats())
     }
 }
