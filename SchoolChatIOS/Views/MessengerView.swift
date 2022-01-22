@@ -136,23 +136,12 @@ struct MessengerView: View {
         print("delete")
     }
     
-    private func MakeAsRead(chat: Chat) {
-        print("read-unread")
-    }
-    
     var body: some View {
         VStack {
             NavigationView {
                 List {
                     ForEach(model.chats) { chat in
                         Row(chat: chat)
-                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                Button(action: {
-                                    MakeAsRead(chat: chat)
-                                }) {
-                                    Text("Read")
-                                }.tint(.gray)
-                            }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 
                                 Button(action: {
