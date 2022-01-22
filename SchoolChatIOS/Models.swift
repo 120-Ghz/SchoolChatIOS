@@ -54,4 +54,5 @@ struct Chat: Identifiable, Equatable {
     let last_msg_time: Date
     let last_msg_username: String
     let admins: [Int64]
+    let left: Bool
 }

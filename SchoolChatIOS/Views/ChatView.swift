@@ -106,20 +106,23 @@ struct ChatView: View {
                     }
                 }
             }
-            
-            HStack {
-                TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
-                    .padding(10)
-                    .background(Color.secondary.opacity(0.2))
-                    .cornerRadius(5)
-                Button(action: send_button) {
-                    Image(systemName: "arrow.turn.up.right")
-                        .font(.system(size: 20))
+            if (chat.left) {
+                Text("You cannot send messages to this channel")
+            } else {
+                HStack {
+                    TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
+                        .padding(10)
+                        .background(Color.secondary.opacity(0.2))
+                        .cornerRadius(5)
+                    Button(action: send_button) {
+                        Image(systemName: "arrow.turn.up.right")
+                            .font(.system(size: 20))
+                    }
+                    .padding()
+                    .disabled(message.isEmpty)
                 }
                 .padding()
-                .disabled(message.isEmpty)
             }
-            .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(leading: leadingBtn)
@@ -146,7 +149,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", admins: []))
+        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", admins: [], left: false))
     }
 }
 

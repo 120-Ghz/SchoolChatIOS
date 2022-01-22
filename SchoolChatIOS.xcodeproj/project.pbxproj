@@ -172,9 +172,7 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
-				EF6ABA8F279C74A200DF33C1 /* LocalData */,
 				EFA5357F2778C550005A2502 /* Extensions */,
-				EFA5357E2774A4B2005A2502 /* MiniViews */,
 				EFA5357D2774A498005A2502 /* Views */,
 				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
 				EFDD1D39276C6922000BDE25 /* Managers */,
@@ -212,16 +210,10 @@
 			path = SchoolChatIOSUITests;
 			sourceTree = "<group>";
 		};
-		EF6ABA8F279C74A200DF33C1 /* LocalData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LocalData;
-			sourceTree = "<group>";
-		};
 		EFA5357D2774A498005A2502 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFA5357E2774A4B2005A2502 /* MiniViews */,
 				EFADA841279032B500DFA595 /* Auth */,
 				EF08E277275FC64100219285 /* ChatView.swift */,
 				EF08E27D275FC69600219285 /* MessengerView.swift */,

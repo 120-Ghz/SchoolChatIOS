@@ -62,12 +62,13 @@ final class MessengerViewModel: ObservableObject {
         let last_msg_time = (last_msg_info["time"] as! String)
         let last_msg_stat = !(last_msg_time.count == 0)
         let raw_admins = chatinfo["admins"] as! [Any]
+        print(chatinfo)
         var chat_admins: [Int64] = []
         for admin in raw_admins {
             chat_admins.append(Int64(admin as! String)!)
         }
         guard let userdata = last_msg_info["userdata"] as? [String: Any] else {return}
-        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins))
+        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool))
     }
     
     func disconnect(){
@@ -135,6 +136,10 @@ struct MessengerView: View {
         print("delete")
     }
     
+    private func MakeAsRead(chat: Chat) {
+        print("read-unread")
+    }
+    
     var body: some View {
         VStack {
             NavigationView {
@@ -142,6 +147,13 @@ struct MessengerView: View {
                     ForEach(model.chats) { chat in
                         Row(chat: chat)
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button(action: {
+                                    MakeAsRead(chat: chat)
+                                }) {
+                                    Text("Read")
+                                }.tint(.gray)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 
                                 Button(action: {
                                     LeaveChat(chat: chat)
