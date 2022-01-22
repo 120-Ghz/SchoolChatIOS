@@ -22,12 +22,15 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats() {
-        chats = LocalManager.get_chats()
+//        chats = LocalManager.get_chats()
         manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
     private func FindChatIndex(chat_id: Int64) -> Int{
-        for i in 0...chats.count {
+        if chats.count == 0 {
+            return -1
+        }
+        for i in 0...chats.count-1 {
             if (chats[i].id == chat_id) {
                 return i
             }
@@ -46,14 +49,22 @@ final class MessengerViewModel: ObservableObject {
     func FillChats2(incoming: [Any]) {
         //print(" aboba")
         for chat in incoming {
+            print("requested new")
             manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
         }
     }
     
     func DataWorker(chat: Chat) {
-        if (!chats.contains(chat)) {
-            chats.append(chat)
+        for cchat in chats {
+            if (chat == cchat) {
+                return
+            }
         }
+        let index = FindChatIndex(chat_id: chat.id)
+        if index != -1 {
+            chats.remove(at: index)
+        }
+        chats.append(chat)
     }
     
     func FillChats3(incoming: [String:Any]){
@@ -62,7 +73,7 @@ final class MessengerViewModel: ObservableObject {
         let last_msg_time = (last_msg_info["time"] as! String)
         let last_msg_stat = !(last_msg_time.count == 0)
         let raw_admins = chatinfo["admins"] as! [Any]
-        print(chatinfo)
+//        print(chatinfo)
         var chat_admins: [Int64] = []
         for admin in raw_admins {
             chat_admins.append(Int64(admin as! String)!)
