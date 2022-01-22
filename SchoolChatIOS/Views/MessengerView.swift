@@ -97,6 +97,8 @@ struct MessengerView: View {
     @StateObject private var updater = NavigationBeetweenChats()
     
     @State var AddChatsShow = false
+    @State private var ConfirmDelete = false
+    @State private var ConfirmLeave = false
     
     private func onAppear(){
         model.create()
@@ -153,28 +155,40 @@ struct MessengerView: View {
                 List {
                     ForEach(model.chats) { chat in
                         Row(chat: chat)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                
-                                Button(action: {
-                                    LeaveChat(chat: chat)
-                                }) {
-                                    VStack {
-                                        Image(systemName: "")
-                                        Text("Leave")
-                                    }
-                                }.tint(.blue)
-                                
+                            .swipeActions(edge: .trailing) {
+        
                                 if (chat.creator == USER!.id) {
                                     Button(action: {
-                                        DeleteChat(chat: chat)
+                                        ConfirmDelete = true
                                     }) {
                                         VStack {
                                             Image(systemName: "trash")
                                             Text("Delete")
                                         }
                                     }.tint(.red)
-                                    
                                 }
+                                
+                                Button(action: {
+                                    ConfirmLeave = true
+                                }) {
+                                    VStack {
+                                        Image(systemName: "")
+                                        Text("Leave")
+                                    }
+                                }
+                                .tint(.blue)
+                            }
+                            .confirmationDialog("Are you sure?", isPresented: $ConfirmLeave, titleVisibility: .visible) {
+                                Button("Yes", role: .destructive) {
+                                    LeaveChat(chat: chat)
+                                }
+                                Button("Cancel", role: .cancel) {}
+                            }
+                            .confirmationDialog("Are you sure you want delete \(chat.name)?", isPresented: $ConfirmDelete, titleVisibility: .visible) {
+                                Button("Yes", role: .destructive) {
+                                    DeleteChat(chat: chat)
+                                }
+                                Button("Cancel", role: .cancel) {}
                             }
                     }
                 }
