@@ -22,27 +22,25 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats() {
-        chats = []
+        chats = LocalManager.get_chats()
         manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
-    func Check_if_message_in_user_chats(message: Message) -> Bool {
-        for ch in chats {
-            if message.chat_id == ch.id {
-                return true
+    private func FindChatIndex(chat_id: Int64) -> Int{
+        for i in 0...chats.count {
+            if (chats[i].id == chat_id) {
+                return i
             }
         }
-        return false
+        return -1
     }
     
     func FillChatsWhenMessageForUser(message: Message) {
         if !AllowUpdate {return}
-        if !Check_if_message_in_user_chats(message: message) { return }
-        let chs = chats
-        chats = []
-        for chat in chs {
-            manager.request_chat_data_for_preview(chat_id: chat.id)
-        }
+        let index = FindChatIndex(chat_id: message.chat_id)
+        if (index == -1) { return }
+        chats.remove(at: index)
+        manager.request_chat_data_for_preview(chat_id: message.chat_id)
     }
     
     func FillChats2(incoming: [Any]) {
@@ -52,13 +50,24 @@ final class MessengerViewModel: ObservableObject {
         }
     }
     
+    func DataWorker(chat: Chat) {
+        if (!chats.contains(chat)) {
+            chats.append(chat)
+        }
+    }
+    
     func FillChats3(incoming: [String:Any]){
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
         let last_msg_time = (last_msg_info["time"] as! String)
         let last_msg_stat = !(last_msg_time.count == 0)
+        let raw_admins = chatinfo["admins"] as! [Any]
+        var chat_admins: [Int64] = []
+        for admin in raw_admins {
+            chat_admins.append(Int64(admin as! String)!)
+        }
         guard let userdata = last_msg_info["userdata"] as? [String: Any] else {return}
-        chats.append(Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])"))
+        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins))
     }
     
     func disconnect(){
@@ -96,10 +105,34 @@ struct MessengerView: View {
         model.AllowUpdate = false
     }
     
-    var PlusButton: some View {
+    private var PlusButton: some View {
         NavigationLink(destination: NewChatView(back: updater)) {
             Image(systemName: "plus")
         }
+    }
+    
+    private func Row(chat: Chat) -> some View {
+        return ZStack {
+            
+            ChatRow(chat: chat)
+            
+            NavigationLink(destination: {
+                ChatView(back: updater, chat: chat)
+            }) {
+                EmptyView()
+            }
+            .buttonStyle(PlainButtonStyle())
+            .frame(width: 0)
+            .opacity(0)
+        }
+    }
+    
+    private func LeaveChat(chat: Chat) {
+        print("leave")
+    }
+    
+    private func DeleteChat(chat: Chat) {
+        print("delete")
     }
     
     var body: some View {
@@ -107,19 +140,30 @@ struct MessengerView: View {
             NavigationView {
                 List {
                     ForEach(model.chats) { chat in
-                        ZStack {
-                            
-                            ChatRow(chat: chat)
-                            
-                            NavigationLink(destination: {
-                                ChatView(back: updater, chat: chat)
-                            }) {
-                                EmptyView()
+                        Row(chat: chat)
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                
+                                Button(action: {
+                                    LeaveChat(chat: chat)
+                                }) {
+                                    VStack {
+                                        Image(systemName: "")
+                                        Text("Leave")
+                                    }
+                                }.tint(.blue)
+                                
+                                if (chat.creator == USER!.id) {
+                                    Button(action: {
+                                        DeleteChat(chat: chat)
+                                    }) {
+                                        VStack {
+                                            Image(systemName: "trash")
+                                            Text("Delete")
+                                        }
+                                    }.tint(.red)
+                                    
+                                }
                             }
-                            .buttonStyle(PlainButtonStyle())
-                            .frame(width: 0)
-                            .opacity(0)
-                        }
                     }
                 }
                 .listStyle(PlainListStyle())

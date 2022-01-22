@@ -42,7 +42,7 @@ struct MiniUser {
     let avatar: String
 }
 
-struct Chat: Identifiable {
+struct Chat: Identifiable, Equatable {
     let id: Int64
     let name: String
     let creator: Int64
@@ -53,4 +53,5 @@ struct Chat: Identifiable {
     let last_msg_user: Int64
     let last_msg_time: Date
     let last_msg_username: String
+    let admins: [Int64]
 }

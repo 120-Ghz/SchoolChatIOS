@@ -26,6 +26,9 @@
 		EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8A277CCCB900C612E2 /* Color.swift */; };
 		EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8C277CCF7700C612E2 /* Date.swift */; };
 		EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE90277F79CF00C612E2 /* NewChatView.swift */; };
+		EF6ABA91279C74C400DF33C1 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */; };
+		EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */; };
+		EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
 		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
 		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
@@ -80,6 +83,9 @@
 		EF60FE8A277CCCB900C612E2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EF60FE8C277CCF7700C612E2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EF60FE90277F79CF00C612E2 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
+		EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManagerInterface.swift; sourceTree = "<group>"; };
+		EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManagerProtocol.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
+				EF6ABA8F279C74A200DF33C1 /* LocalData */,
 				EFA5357F2778C550005A2502 /* Extensions */,
 				EFA5357E2774A4B2005A2502 /* MiniViews */,
 				EFA5357D2774A498005A2502 /* Views */,
@@ -203,6 +210,13 @@
 				EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */,
 			);
 			path = SchoolChatIOSUITests;
+			sourceTree = "<group>";
+		};
+		EF6ABA8F279C74A200DF33C1 /* LocalData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalData;
 			sourceTree = "<group>";
 		};
 		EFA5357D2774A498005A2502 /* Views */ = {
@@ -251,6 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				EF08E273275FC5D900219285 /* SocketIOManager.swift */,
+				EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */,
+				EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */,
+				EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -502,18 +519,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */,
+				EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
 				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
 				EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */,
 				EFADA845279555B700DFA595 /* SignInView.swift in Sources */,
+				EF6ABA91279C74C400DF33C1 /* LocalDataManager.swift in Sources */,
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
 				EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */,
+				EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */,
 				EFADA843279555A100DFA595 /* SignUpView.swift in Sources */,
 				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,
 				EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */,

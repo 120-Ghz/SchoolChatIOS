@@ -8,12 +8,7 @@
 import Foundation
 import SocketIO
 
-class SocketIOManager: NSObject {
-    
-    override init() {
-        super.init()
-    }
-    
+class SocketIOManager: SocketIOManagerProtocol {
     // Connect and Disconnect
     
     func establishConnection() {
@@ -49,6 +44,7 @@ class SocketIOManager: NSObject {
     
     func recieve_chats(completionHandler: @escaping ([String:Any]) -> Void){
         socket.on("chat_preview_info") { (data, ack) in
+//            print(data[0])
             completionHandler(data[0] as! [String: Any])
         }
     }
