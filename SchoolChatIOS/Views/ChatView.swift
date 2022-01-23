@@ -21,6 +21,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func NewMsg(incoming: Message) {
+        print("recieved")
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all){
             messages.append(incoming)
         }
@@ -49,17 +50,18 @@ struct ChatView: View {
     @State private var lastMessageUUID: UUID?
     @State private var isFirst: Bool = true
     
+    @State var LinkToInfo = false
+    
     var chat: Chat
 
     private func onAppear() {
-        model.chat_id = chat.id
-        model.connect()
-        model.requestMessages()
+        if !LinkToInfo {
+            model.chat_id = chat.id
+            model.connect()
+            model.requestMessages()
+        }
+        LinkToInfo = false
         back.Allower = false
-    }
-    
-    private func ChatNameOnPressed() {
-        print("pressed")
     }
     
     private func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
@@ -141,6 +143,8 @@ struct ChatView: View {
         }
     }
     
+    
+    
     var body: some View {
         VStack {
             GeometryReader { reader in
@@ -180,14 +184,19 @@ struct ChatView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(leading: leadingBtn)
         .onAppear(perform: onAppear)
-        .onDisappear(perform: {back.toggler.toggle()})
+        .onDisappear(perform: onDisappear)
+    }
+    
+    private func onDisappear() {
+        if LinkToInfo {
+            return
+        }
+        back.toggler.toggle()
     }
     
     var leadingBtn: some View {
         HStack {
-            Button(action: {
-                ChatNameOnPressed()
-            }) {
+            NavigationLink(destination: ChatInfoView(chat: chat)) {
                 HStack {
                     ChatPicture(chat: chat, frameRadius: 40)
                         .frame(width: 40, height: 40)
@@ -198,6 +207,10 @@ struct ChatView: View {
                         .padding(.horizontal, 3)
                 }
             }
+            .simultaneousGesture(TapGesture().onEnded{
+                print("aboba")
+                LinkToInfo = true
+            })
         }
     }
 }

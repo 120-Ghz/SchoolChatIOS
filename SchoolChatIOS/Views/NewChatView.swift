@@ -44,6 +44,7 @@ struct NewChatView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    
     @State var chatName: String = ""
     @ObservedObject var back: NavigationBeetweenChats
     @StateObject var model = NewChatViewModel()
@@ -99,6 +100,7 @@ struct NewChatView: View {
                     }
                 }
             }
+            .listStyle(PlainListStyle())
         }
     }
     
