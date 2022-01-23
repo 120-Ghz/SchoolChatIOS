@@ -84,6 +84,19 @@ struct ChatView: View {
             ForEach(model.messages) { message in
                 MessageView(message: message)
                     .id(message.InternalId)
+                    .onLongPressGesture(minimumDuration: 0.2) {
+                        
+                    }
+                    .contextMenu {
+                        Group {
+                            Button("Reply") {}
+                            Button("Copy") {}
+                            Button("Delete for me") {}
+                            if (message.user_id == USER?.id) {
+                                Button("Delete All") {}
+                            }
+                    }
+                }
             }
         }
     }

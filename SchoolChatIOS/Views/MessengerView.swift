@@ -91,7 +91,7 @@ final class MessengerViewModel: ObservableObject {
         if query == "" {
             return sortedChats
         }
-        return sortedChats
+        return sortedChats.filter { $0.name.lowercased().contains(query.lowercased()) }
     }
 }
 
@@ -198,6 +198,7 @@ struct MessengerView: View {
                     }
                 }
                 .listStyle(PlainListStyle())
+                .searchable(text: $query)
                 .navigationBarTitle("Chats", displayMode: .inline)
                 .navigationBarItems(trailing: PlusButton)
             }
