@@ -9,13 +9,10 @@ import SwiftUI
 
 struct MessageView: View {
     let message: Message
-    var body: some View {
+    
+    var DefaultMessage: some View {
         HStack {
-            if message.service {
-                Spacer()
-            }
-            
-            if message.user_id == USER?.id && !message.service {
+            if message.user_id == USER?.id {
                 Spacer()
             }
             Text(message.text)
@@ -27,12 +24,25 @@ struct MessageView: View {
                 .foregroundColor(message.user_id == USER?.id ? Color.white : Color.black)
                 .cornerRadius(16)
             
-            if message.user_id != USER?.id && !message.service {
+            if message.user_id != USER?.id {
                 Spacer()
             }
-            if message.service {
-                Spacer()
-            }
+        }
+    }
+    
+    var ServiceMessage: some View {
+        HStack {
+            Spacer()
+            Text("service")
+            Spacer()
+        }
+    }
+    
+    var body: some View {
+        if message.service {
+            ServiceMessage
+        } else {
+            DefaultMessage
         }
     }
 }
