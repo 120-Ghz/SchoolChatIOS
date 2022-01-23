@@ -98,13 +98,13 @@ struct ChatView: View {
                                 Button(action: {
                                     
                                 }) {
-                                    contextButton(text: "Reply", img: "")
+                                    contextButton(text: "Reply", img: "arrowshape.turn.up.right")
                                 }
                                 
                                 Button(action: {
                                     
                                 }) {
-                                    contextButton(text: "Copy", img: "")
+                                    contextButton(text: "Copy", img: "doc.on.doc")
                                 }
                                 
                                 Button(role: .destructive) {
