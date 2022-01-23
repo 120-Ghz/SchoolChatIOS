@@ -56,10 +56,13 @@ struct ChatView: View {
         model.connect()
         model.requestMessages()
         back.Allower = false
-
     }
     
-    func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
+    private func ChatNameOnPressed() {
+        print("pressed")
+    }
+    
+    private func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
         DispatchQueue.main.async {
             withAnimation(shouldAnimate ? Animation.easeIn : nil) {
                 scrollReader.scrollTo(messageUUID, anchor: anchor)
@@ -76,7 +79,7 @@ struct ChatView: View {
     
     let columns = [GridItem(.flexible(minimum: 10))]
     
-    func contextButton(text: String, img: String) -> some View{
+    private func contextButton(text: String, img: String) -> some View{
         return HStack {
             Text(text)
             Spacer()
@@ -182,7 +185,9 @@ struct ChatView: View {
     
     var leadingBtn: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: {
+                ChatNameOnPressed()
+            }) {
                 HStack {
                     ChatPicture(chat: chat, frameRadius: 40)
                         .frame(width: 40, height: 40)
