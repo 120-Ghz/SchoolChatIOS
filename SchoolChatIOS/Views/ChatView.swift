@@ -93,29 +93,31 @@ struct ChatView: View {
                         
                     }
                     .contextMenu {
-                        Group {
-                            Button(action: {
+                        if (!message.service) {
+                            Group {
+                                Button(action: {
+                                    
+                                }) {
+                                    contextButton(text: "Reply", img: "")
+                                }
                                 
-                            }) {
-                                contextButton(text: "Reply", img: "")
-                            }
-                            
-                            Button(action: {
+                                Button(action: {
+                                    
+                                }) {
+                                    contextButton(text: "Copy", img: "")
+                                }
                                 
-                            }) {
-                                contextButton(text: "Copy", img: "")
-                            }
-                            
-                            Button(role: .destructive) {
-                                
-                            } label: {
-                                contextButton(text: "Delete for me", img: "trash")
-                            }
-                            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
                                 Button(role: .destructive) {
                                     
                                 } label: {
-                                    contextButton(text: "Delete for all", img: "trash")
+                                    contextButton(text: "Delete for me", img: "trash")
+                                }
+                                if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
+                                    Button(role: .destructive) {
+                                        
+                                    } label: {
+                                        contextButton(text: "Delete for all", img: "trash")
+                                    }
                                 }
                             }
                     }
