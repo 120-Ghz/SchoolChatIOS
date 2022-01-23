@@ -13,69 +13,62 @@ extension Date {
         func DayFromNumber(num: Int) -> String {
             switch (num) {
             case 1:
-                return "Sunday"
+                return "Sun"
             case 2:
-                return "Monday"
+                return "Mon"
             case 3:
-                return "Tuesday"
+                return "Tue"
             case 4:
-                return "Wednesday"
+                return "Wed"
             case 5:
-                return "Thursday"
+                return "Thu"
             case 6:
-                return "Friday"
+                return "Fri"
             case 7:
-                return "Saturday"
+                return "Sat"
             default:
-                return ""
+                return "Day"
             }
         }
         
         func MonthFromNumber(num: Int) -> String {
             switch (num) {
-            case 1:
-                return "January"
-            case 2:
-                return "February"
-            case 3:
-                return "March"
-            case 4:
-                return "April"
-            case 5:
-                return "May"
-            case 6:
-                return "June"
-            case 7:
-                return "July"
-            case 8:
-                return "August"
-            case 9:
-                return "September"
-            case 10:
-                return "October"
-            case 11:
-                return "November"
-            case 12:
-                return "December"
+            case 1, 2, 3, 4, 5, 6, 7, 8, 9:
+                return "0\(num)"
+            case 10, 11, 12:
+                return String(num)
             default:
                 return ""
             }
         }
         
+        func TimeFormat(hour: Int, minutes: Int) -> String {
+            var hoursstr = String(hour)
+            var minutestr = String(minutes)
+            if (hour < 10) {
+                hoursstr = "0" + hoursstr
+            }
+            if (minutes < 10) {
+                minutestr = "0" + minutestr
+            }
+            return hoursstr + ":" + minutestr
+        }
+        
         let calendar = Calendar.current
-        let diff = abs(Int(self.timeIntervalSince1970 - Date.now.timeIntervalSince1970))
-        let hour_diff = diff/3600
         
-        if (hour_diff < 24) {
-            return "\(calendar.component(.hour, from: self)):\(calendar.component(.minute, from: self))"
+        let todaystart = calendar.startOfDay(for: Date.now)
+        let timedelta_since_today = abs(Int(self.timeIntervalSince1970 - todaystart.timeIntervalSince1970))
+        
+        if (self.timeIntervalSince1970 >= todaystart.timeIntervalSince1970) {
+            return TimeFormat(hour: calendar.component(.hour, from: self), minutes: calendar.component(.minute, from: self))
         }
         
-        if (hour_diff < 48) {
-            return "Yesterday"
-        }
-        
-        if (hour_diff < 24*7) {
+        if (timedelta_since_today < 24*7*3600) {
             return DayFromNumber(num: Int(calendar.component(.weekday, from: self)))
+        }
+        
+        if (calendar.component(.month, from: self) == calendar.component(.month, from: Date.now)) {
+            return "\(calendar.component(.day, from: self)).\(MonthFromNumber(num: calendar.component(.month, from: self)))"
         }
         
         if (calendar.component(.year, from: self) == calendar.component(.year, from: Date.now)) {

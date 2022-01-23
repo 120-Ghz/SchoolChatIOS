@@ -82,12 +82,16 @@ final class MessengerViewModel: ObservableObject {
         DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool))
     }
     
-    func disconnect(){
-        manager.closeConnection()
-    }
-
-    deinit {
-        disconnect()
+    func getSortedFilteredChats(query: String) -> [Chat] {
+        let sortedChats = chats.sorted {
+            let date1 = $0.last_msg_time
+            let date2 = $1.last_msg_time
+            return date1 > date2
+        }
+        if query == "" {
+            return sortedChats
+        }
+        return sortedChats
     }
 }
 
@@ -99,6 +103,7 @@ struct MessengerView: View {
     @State var AddChatsShow = false
     @State private var ConfirmDelete = false
     @State private var ConfirmLeave = false
+    @State private var query = ""
     
     private func onAppear(){
         model.create()
@@ -153,7 +158,7 @@ struct MessengerView: View {
         VStack {
             NavigationView {
                 List {
-                    ForEach(model.chats) { chat in
+                    ForEach(model.getSortedFilteredChats(query: query)) { chat in
                         Row(chat: chat)
                             .swipeActions(edge: .trailing) {
         
