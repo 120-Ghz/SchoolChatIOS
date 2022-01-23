@@ -10,9 +10,9 @@ import SwiftUI
 final class ChatViewModel: ObservableObject {
     
     @Published private(set) var messages: [Message] = []
+    @Published var scroll = false
     
     var chat_id: Int64 = 0
-    
     var manager = SocketIOManager()
     
     func connect() {
@@ -24,6 +24,7 @@ final class ChatViewModel: ObservableObject {
         print("recieved")
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all){
             messages.append(incoming)
+            scroll.toggle()
         }
     }
     
@@ -35,6 +36,7 @@ final class ChatViewModel: ObservableObject {
         for msg in incoming {
             messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false))
         }
+        scroll.toggle()
     }
     
     func requestMessages() {
@@ -101,43 +103,41 @@ struct ChatView: View {
         print("delete")
     }
     
-    private func MessagesView(viewWidth: CGFloat) -> some View {
-        LazyVGrid(columns: columns, spacing: 2) {
-            ForEach(model.messages) { message in
-                MessageView(message: message)
-                    .id(message.InternalId)
-                    .onLongPressGesture(minimumDuration: 0.2) {
-                        
-                    }
-                    .contextMenu {
-                        if (!message.service) {
-                            Group {
-                                Button(action: {
-                                    reply(msg: message)
-                                }) {
-                                    contextButton(text: "Reply", img: "arrowshape.turn.up.right")
-                                }
-                                
-                                Button(action: {
-                                    copy(msg: message)
-                                }) {
-                                    contextButton(text: "Copy", img: "doc.on.doc")
-                                }
-                                
+    private func MessagesView() -> some View {
+        ForEach(model.messages) { message in
+            MessageView(message: message)
+                .id(message.InternalId)
+                .onLongPressGesture(minimumDuration: 0.2) {
+                    
+                }
+                .contextMenu {
+                    if (!message.service) {
+                        Group {
+                            Button(action: {
+                                reply(msg: message)
+                            }) {
+                                contextButton(text: "Reply", img: "arrowshape.turn.up.right")
+                            }
+                            
+                            Button(action: {
+                                copy(msg: message)
+                            }) {
+                                contextButton(text: "Copy", img: "doc.on.doc")
+                            }
+                            
+                            Button(role: .destructive) {
+                                delete(for_all: false, msg: message)
+                            } label: {
+                                contextButton(text: "Delete for me", img: "trash")
+                            }
+                            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
                                 Button(role: .destructive) {
-                                    delete(for_all: false, msg: message)
+                                    delete(for_all: true, msg: message)
                                 } label: {
-                                    contextButton(text: "Delete for me", img: "trash")
-                                }
-                                if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
-                                    Button(role: .destructive) {
-                                        delete(for_all: true, msg: message)
-                                    } label: {
-                                        contextButton(text: "Delete for all", img: "trash")
-                                    }
+                                    contextButton(text: "Delete for all", img: "trash")
                                 }
                             }
-                    }
+                        }
                 }
             }
         }
@@ -147,19 +147,14 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
-            GeometryReader { reader in
-                ScrollView {
-                    ScrollViewReader { scrollReader in
-                        MessagesView(viewWidth: reader.size.width)
-                            .onChange(of: model.messages.count) { _ in
-                                lastMessageUUID = model.messages.last?.InternalId
-                                if let messageID = lastMessageUUID {
-                                    ScrollToMessage(messageUUID: messageID, shouldAnimate: !isFirst, scrollReader: scrollReader)
-                                    if isFirst {
-                                        isFirst.toggle()
-                                    }
-                                }
-                            }
+            ScrollView(.vertical) {
+                ScrollViewReader { scrollReader in
+                    VStack {
+                    MessagesView()
+                        .onChange(of: model.scroll) { _ in
+                            lastMessageUUID = model.messages.last?.InternalId
+                            scrollReader.scrollTo(lastMessageUUID, anchor: nil)
+                        }
                     }
                 }
             }
