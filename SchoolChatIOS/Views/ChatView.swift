@@ -84,7 +84,19 @@ struct ChatView: View {
         }
     }
     
-    func MessagesView(viewWidth: CGFloat) -> some View {
+    private func reply(msg: Message) {
+        print("reply")
+    }
+    
+    private func copy(msg: Message) {
+        print("copy")
+    }
+    
+    private func delete(for_all: Bool, msg: Message) {
+        print("delete")
+    }
+    
+    private func MessagesView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 2) {
             ForEach(model.messages) { message in
                 MessageView(message: message)
@@ -96,25 +108,25 @@ struct ChatView: View {
                         if (!message.service) {
                             Group {
                                 Button(action: {
-                                    
+                                    reply(msg: message)
                                 }) {
                                     contextButton(text: "Reply", img: "arrowshape.turn.up.right")
                                 }
                                 
                                 Button(action: {
-                                    
+                                    copy(msg: message)
                                 }) {
                                     contextButton(text: "Copy", img: "doc.on.doc")
                                 }
                                 
                                 Button(role: .destructive) {
-                                    
+                                    delete(for_all: false, msg: message)
                                 } label: {
                                     contextButton(text: "Delete for me", img: "trash")
                                 }
                                 if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
                                     Button(role: .destructive) {
-                                        
+                                        delete(for_all: true, msg: message)
                                     } label: {
                                         contextButton(text: "Delete for all", img: "trash")
                                     }
