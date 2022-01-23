@@ -57,10 +57,12 @@ extension Date {
         let calendar = Calendar.current
         
         let todaystart = calendar.startOfDay(for: Date.now)
-        let timedelta_since_today = abs(Int(self.timeIntervalSince1970 - todaystart.timeIntervalSince1970))
+        let timedelta_since_today = abs(Int(self.timeIntervalSince1970
+                                            - todaystart.timeIntervalSince1970))
         
         if (self.timeIntervalSince1970 >= todaystart.timeIntervalSince1970) {
-            return TimeFormat(hour: calendar.component(.hour, from: self), minutes: calendar.component(.minute, from: self))
+            return TimeFormat(hour: calendar.component(.hour, from: self),
+                              minutes: calendar.component(.minute, from: self))
         }
         
         if (timedelta_since_today < 24*7*3600) {
@@ -68,13 +70,15 @@ extension Date {
         }
         
         if (calendar.component(.month, from: self) == calendar.component(.month, from: Date.now)) {
-            return "\(calendar.component(.day, from: self)).\(MonthFromNumber(num: calendar.component(.month, from: self)))"
+            return "\(calendar.component(.day, from: self))."
+                + "\(MonthFromNumber(num: calendar.component(.month, from: self)))"
         }
         
         if (calendar.component(.year, from: self) == calendar.component(.year, from: Date.now)) {
             return MonthFromNumber(num: Int(calendar.component(.month, from: self)))
         }
         
-        return "\(MonthFromNumber(num: Int(calendar.component(.month, from: self)))) \(calendar.component(.year, from: self))"
+        return "\(MonthFromNumber(num: Int(calendar.component(.month, from: self)))) "
+                + "\(calendar.component(.year, from: self))"
     }
 }
