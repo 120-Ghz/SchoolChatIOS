@@ -44,15 +44,12 @@ final class ChatViewModel: ObservableObject {
 struct ChatView: View {
     
     @State private var message = ""
-    
     @ObservedObject var back: NavigationBeetweenChats
+    @StateObject private var model: ChatViewModel = ChatViewModel()
+    @State private var lastMessageUUID: UUID?
+    @State private var isFirst: Bool = true
     
     var chat: Chat
-    @StateObject private var model: ChatViewModel = ChatViewModel()
-    
-    @State private var lastMessageUUID: UUID?
-    
-    @State private var isFirst: Bool = true
 
     private func onAppear() {
         model.chat_id = chat.id
@@ -79,6 +76,14 @@ struct ChatView: View {
     
     let columns = [GridItem(.flexible(minimum: 10))]
     
+    func contextButton(text: String, img: String) -> some View{
+        return HStack {
+            Text(text)
+            Spacer()
+            Image(systemName: img)
+        }
+    }
+    
     func MessagesView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 2) {
             ForEach(model.messages) { message in
@@ -89,11 +94,29 @@ struct ChatView: View {
                     }
                     .contextMenu {
                         Group {
-                            Button("Reply") {}
-                            Button("Copy") {}
-                            Button("Delete for me") {}
-                            if (message.user_id == USER?.id) {
-                                Button("Delete All") {}
+                            Button(action: {
+                                
+                            }) {
+                                contextButton(text: "Reply", img: "")
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                contextButton(text: "Copy", img: "")
+                            }
+                            
+                            Button(role: .destructive) {
+                                
+                            } label: {
+                                contextButton(text: "Delete for me", img: "trash")
+                            }
+                            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
+                                Button(role: .destructive) {
+                                    
+                                } label: {
+                                    contextButton(text: "Delete for all", img: "trash")
+                                }
                             }
                     }
                 }
