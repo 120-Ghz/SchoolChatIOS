@@ -103,6 +103,36 @@ struct ChatView: View {
         print("delete")
     }
     
+    private func ctxMenu(message: Message) -> some View {
+        return
+            Group {
+                Button(action: {
+                    reply(msg: message)
+                }) {
+                    contextButton(text: "Reply", img: "arrowshape.turn.up.right")
+                }
+                
+                Button(action: {
+                    copy(msg: message)
+                }) {
+                    contextButton(text: "Copy", img: "doc.on.doc")
+                }
+                
+                Button(role: .destructive) {
+                    delete(for_all: false, msg: message)
+                } label: {
+                    contextButton(text: "Delete for me", img: "trash")
+                }
+                if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
+                    Button(role: .destructive) {
+                        delete(for_all: true, msg: message)
+                    } label: {
+                        contextButton(text: "Delete for all", img: "trash")
+                    }
+                }
+            }
+    }
+    
     private func MessagesView() -> some View {
         ForEach(model.messages) { message in
             Spacer()
@@ -114,33 +144,8 @@ struct ChatView: View {
                 }
                 .contextMenu {
                     if (!message.service) {
-                        Group {
-                            Button(action: {
-                                reply(msg: message)
-                            }) {
-                                contextButton(text: "Reply", img: "arrowshape.turn.up.right")
-                            }
-                            
-                            Button(action: {
-                                copy(msg: message)
-                            }) {
-                                contextButton(text: "Copy", img: "doc.on.doc")
-                            }
-                            
-                            Button(role: .destructive) {
-                                delete(for_all: false, msg: message)
-                            } label: {
-                                contextButton(text: "Delete for me", img: "trash")
-                            }
-                            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
-                                Button(role: .destructive) {
-                                    delete(for_all: true, msg: message)
-                                } label: {
-                                    contextButton(text: "Delete for all", img: "trash")
-                                }
-                            }
-                        }
-                }
+                        ctxMenu(message: message)
+                    }
             }
         }
     }

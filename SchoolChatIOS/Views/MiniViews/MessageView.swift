@@ -37,7 +37,7 @@ struct MessageView: View {
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.vertical, 4)
-                .padding(.horizontal, 12)
+                .padding()
                 .foregroundColor(.black)
                 .background(Color.green)
                 .cornerRadius(16)
