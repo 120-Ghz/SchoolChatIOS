@@ -137,20 +137,10 @@ struct ChatView: View {
         ForEach(model.messages) { message in
             Spacer()
                 .frame(height: 2)
-            MessageView(message: message)
+            MessageView(message: message, ctxmenu: AnyView(ctxMenu(message: message)))
                 .id(message.InternalId)
-                .onLongPressGesture(minimumDuration: 0.2) {
-                    
-                }
-                .contextMenu {
-                    if (!message.service) {
-                        ctxMenu(message: message)
-                    }
             }
         }
-    }
-
-    
     
     var body: some View {
         VStack {
@@ -160,7 +150,10 @@ struct ChatView: View {
                     MessagesView()
                         .onChange(of: model.scroll) { _ in
                             lastMessageUUID = model.messages.last?.InternalId
-                            scrollReader.scrollTo(lastMessageUUID, anchor: nil)
+                            ScrollToMessage(messageUUID: lastMessageUUID!, anchor: nil, shouldAnimate: !isFirst, scrollReader: scrollReader)
+                            if isFirst {
+                                isFirst = !isFirst
+                            }
                         }
                     }
                 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MessageView: View {
     let message: Message
+    var ctxmenu: AnyView
     
     var DefaultMessage: some View {
         HStack {
@@ -50,12 +51,16 @@ struct MessageView: View {
             ServiceMessage
         } else {
             DefaultMessage
+                .onLongPressGesture(minimumDuration: 0.2) {}
+                .contextMenu {
+                    ctxmenu
+                }
         }
     }
 }
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(message: Message(id: 5, chat_id: 1, user_id: 2, text: "Я купил сочных булочек", attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: true))
+        MessageView(message: Message(id: 5, chat_id: 1, user_id: 2, text: "Я купил сочных булочек", attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: true), ctxmenu: AnyView(EmptyView()))
     }
 }
