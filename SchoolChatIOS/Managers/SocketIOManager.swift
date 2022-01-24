@@ -60,7 +60,7 @@ class SocketIOManager: SocketIOManagerProtocol {
         socket.on("msg") { (dataArray, ack) in
             guard let data = dataArray[0] as? [String: Any] else {return}
             print(data["user_name"])
-            let msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["time"] as! String).JSDateToDate(), service: data["service"] as? Bool ?? false)
+            let msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["updatedAt"] as! String).JSDateToDate(), service: data["service"] as? Bool ?? false)
             completionHandler(msg)
         }
     }
