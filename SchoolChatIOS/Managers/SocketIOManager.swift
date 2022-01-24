@@ -37,6 +37,7 @@ class SocketIOManager: SocketIOManagerProtocol {
     func react_chats(completionHandler: @escaping ([Any]) -> Void) {
         socket.on("recieve-chats") { (data, ack) in
             guard let chats = data[0] as? [String:Any] else {return}
+//            print(chats["res"])
             let ch = chats["res"] as! [Any]
             completionHandler(ch)
         }

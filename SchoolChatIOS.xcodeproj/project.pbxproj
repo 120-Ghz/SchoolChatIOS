@@ -32,6 +32,7 @@
 		EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
 		EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */; };
+		EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4F279EDE2100D61D32 /* Themes.swift */; };
 		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
 		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
 		EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthViewSelector.swift */; };
@@ -91,6 +92,7 @@
 		EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManagerProtocol.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		EF8F7C4F279EDE2100D61D32 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
 		EFADA83F2790322000DFA595 /* AuthViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewSelector.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */,
+				EF8F7C4F279EDE2100D61D32 /* Themes.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */,
+				EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,

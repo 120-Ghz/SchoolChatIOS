@@ -92,7 +92,7 @@ struct ChatView: View {
     }
     
     private func reply(msg: Message) {
-        print("reply")
+        print("reply", chat.name)
     }
     
     private func copy(msg: Message) {
