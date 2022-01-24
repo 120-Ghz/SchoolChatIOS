@@ -105,6 +105,8 @@ struct ChatView: View {
     
     private func MessagesView() -> some View {
         ForEach(model.messages) { message in
+            Spacer()
+                .frame(height: 2)
             MessageView(message: message)
                 .id(message.InternalId)
                 .onLongPressGesture(minimumDuration: 0.2) {
@@ -142,7 +144,7 @@ struct ChatView: View {
             }
         }
     }
-    
+
     
     
     var body: some View {
