@@ -53,6 +53,7 @@ final class MessengerViewModel: ObservableObject {
 //            manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
 //            print(chat)
             print("requested")
+            print(chat)
             FillChats3(incoming: chat as! [String: Any])
         }
     }
@@ -71,6 +72,7 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats3(incoming: [String:Any]){
+//        print(incoming)
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
         let last_msg_time = (last_msg_info["time"] as! String)
