@@ -15,7 +15,7 @@ protocol SocketIOManagerProtocol {
     func react_users(completionHandler: @escaping (Any) -> Void)
     func recieve_chats(completionHandler: @escaping ([String:Any]) -> Void)
     func recieve_chat_users(completionHandler: @escaping ([Any]) -> Void)
-    func recieve_chat_msgs(completionHandler: @escaping ([[String:Any]]) -> Void)
+    func recieve_chat_msgs(completionHandler: @escaping ([String:Any]) -> Void)
     func observeMessages(completionHandler: @escaping (Message) -> Void)
     
     func get_chat_ids(user_id: Int64)

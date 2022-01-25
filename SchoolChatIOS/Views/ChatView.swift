@@ -37,11 +37,12 @@ final class ChatViewModel: ObservableObject {
         manager.send(message: message)
     }
     
-    func getMessages(incoming: [[String:Any]]) {
-        print(incoming.last?["user_name"])
-        for msg in incoming {
+    func getMessages(incoming: [String:Any]) {
+//        print(incoming.last?["user_name"])
+        let msg = incoming
+//        for msg in incoming {
             messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false))
-        }
+//        }
         scroll.toggle()
     }
     
