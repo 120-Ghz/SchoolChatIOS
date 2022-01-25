@@ -34,17 +34,15 @@ class SocketIOManager: SocketIOManagerProtocol {
         }
     }
     
-    func react_chats(completionHandler: @escaping ([Any]) -> Void) {
-        socket.on("recieve-chats") { (data, ack) in
-            guard let chats = data[0] as? [String:Any] else {return}
-            let ch = chats["res"] as! [Any]
-            completionHandler(ch)
-        }
-    }
-    
     func recieve_chats(completionHandler: @escaping ([String:Any]) -> Void){
         socket.on("chat_preview_info") { (data, ack) in
             completionHandler(data[0] as! [String: Any])
+        }
+    }
+    
+    func recieve_chat_users(completionHandler: @escaping ([Any]) -> Void) {
+        socket.on("recieve-chat-users") { (data, ack) in
+            print(data)
         }
     }
     
@@ -89,6 +87,10 @@ class SocketIOManager: SocketIOManagerProtocol {
             users_ids.append(user.id)
         }
         socket.emit("add-chat", ["name": name, "user_id": creator_id, "users": users_ids])
+    }
+    
+    func request_chat_users(chat_id: Int64) {
+        socket.emit("chat-users", ["chat_id": chat_id])
     }
 }
 

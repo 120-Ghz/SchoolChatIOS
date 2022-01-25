@@ -16,7 +16,6 @@ final class MessengerViewModel: ObservableObject {
     var manager = SocketIOManager()
     
     func create() {
-        manager.react_chats(completionHandler: FillChats2)
         manager.react_con(completionHandler: FillChats)
         manager.recieve_chats(completionHandler: FillChats3)
         manager.observeMessages(completionHandler: FillChatsWhenMessageForUser)
@@ -41,35 +40,10 @@ final class MessengerViewModel: ObservableObject {
     
     func FillChatsWhenMessageForUser(message: Message) {
         if !AllowUpdate {return}
-        let index = FindChatIndex(chat_id: message.chat_id)
-        if (index == -1) { return }
-        chats.remove(at: index)
         manager.request_chat_data_for_preview(chat_id: message.chat_id)
     }
     
-    func FillChats2(incoming: [Any]) {
-        //print(" aboba")
-        if (!firstdata) {
-            for chat in incoming {
-    //            print("requested new")
-    //            manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
-    //            print(chat)
-                print("requested")
-                print(chat)
-                FillChats3(incoming: chat as! [String: Any])
-            }
-        } else {
-            firstdata.toggle()
-            FillChats()
-        }
-    }
-    
     func DataWorker(chat: Chat) {
-        for cchat in chats {
-            if (chat == cchat) {
-                return
-            }
-        }
         let index = FindChatIndex(chat_id: chat.id)
         if index != -1 {
             chats.remove(at: index)
@@ -84,13 +58,12 @@ final class MessengerViewModel: ObservableObject {
         let last_msg_time = (last_msg_info["time"] as! String)
         let last_msg_stat = !(last_msg_time.count == 0)
         let raw_admins = chatinfo["admins"] as! [Any]
-//        print(chatinfo)
         var chat_admins: [Int64] = []
         for admin in raw_admins {
             chat_admins.append(Int64(admin as! String)!)
         }
         guard let userdata = last_msg_info["userdata"] as? [String: Any] else {return}
-        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: (chatinfo["name"] as! String), creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool))
+        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: (chatinfo["name"] as! String), creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool, users: []))
     }
     
     func getSortedFilteredChats(query: String) -> [Chat] {

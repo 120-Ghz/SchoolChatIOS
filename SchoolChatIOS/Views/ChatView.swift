@@ -18,6 +18,11 @@ final class ChatViewModel: ObservableObject {
     func connect() {
         manager.observeMessages(completionHandler: NewMsg)
         manager.recieve_chat_msgs(completionHandler: getMessages)
+        request_users()
+    }
+    
+    func request_users() {
+        
     }
     
     private func NewMsg(incoming: Message) {
@@ -98,6 +103,8 @@ struct ChatView: View {
     
     private func copy(msg: Message) {
         print("copy")
+        UIPasteboard.general.string = msg.text
+        // TODO: Add success notification (optional)
     }
     
     private func delete(for_all: Bool, msg: Message) {
@@ -213,7 +220,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", admins: [], left: false))
+        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", admins: [], left: false, users: []))
     }
 }
 
