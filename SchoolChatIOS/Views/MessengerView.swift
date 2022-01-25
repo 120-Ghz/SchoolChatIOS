@@ -71,7 +71,6 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats3(incoming: [String:Any]){
-        print(incoming)
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
         let last_msg_time = (last_msg_info["time"] as! String)
@@ -83,7 +82,7 @@ final class MessengerViewModel: ObservableObject {
             chat_admins.append(Int64(admin as! String)!)
         }
         guard let userdata = last_msg_info["userdata"] as? [String: Any] else {return}
-        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: chatinfo["name"] as! String, creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool))
+        DataWorker(chat: Chat(id: Int64(chatinfo["id"] as! String)!, name: (chatinfo["name"] as! String), creator: Int64(chatinfo["creator"] as! String)!, picture_url: chatinfo["pic"] as? String ?? "", deleted: false, hasLastMsg: last_msg_stat, last_msg_text: last_msg_info["text"] as! String, last_msg_user: Int64(last_msg_info["user_id"] as! String) ?? 0, last_msg_time: (last_msg_info["time"] as! String).JSDateToDate(), last_msg_username: "\(userdata["name"]) \(userdata["surname"])", admins: chat_admins, left: chatinfo["left"] as! Bool))
     }
     
     func getSortedFilteredChats(query: String) -> [Chat] {
