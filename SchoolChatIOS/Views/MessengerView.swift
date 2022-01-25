@@ -11,6 +11,7 @@ final class MessengerViewModel: ObservableObject {
     
     @Published private(set) var chats: [Chat] = []
     @Published var AllowUpdate: Bool = true
+    @Published var firstdata: Bool = true
     
     var manager = SocketIOManager()
     
@@ -48,13 +49,18 @@ final class MessengerViewModel: ObservableObject {
     
     func FillChats2(incoming: [Any]) {
         //print(" aboba")
-        for chat in incoming {
-//            print("requested new")
-//            manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
-//            print(chat)
-            print("requested")
-            print(chat)
-            FillChats3(incoming: chat as! [String: Any])
+        if (!firstdata) {
+            for chat in incoming {
+    //            print("requested new")
+    //            manager.request_chat_data_for_preview(chat_id: Int64(chat as! String) ?? 0)
+    //            print(chat)
+                print("requested")
+                print(chat)
+                FillChats3(incoming: chat as! [String: Any])
+            }
+        } else {
+            firstdata.toggle()
+            FillChats()
         }
     }
     
