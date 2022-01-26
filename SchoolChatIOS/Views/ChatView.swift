@@ -46,8 +46,9 @@ final class ChatViewModel: ObservableObject {
         }
         for i in 0...messages.count-1 {
             if messages[i].id == id {
-                return i
                 print("index: \(id) \(messages[i].id)")
+                return i
+                
             }
         }
         return -1
@@ -57,11 +58,10 @@ final class ChatViewModel: ObservableObject {
 //        print(incoming.last?["user_name"])
         let msg = incoming["data"] as! [String: Any]
 //        for msg in incoming {
-        guard let userdata = incoming["userdata"] as? [String: Any] else {return}
         if get_msg_index_by_id(id: Int64(msg["id"] as! String)!)  != -1 {
             return
         }
-        messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: "\(userdata["name"]) \(userdata["surname"])", user_pic: userdata["pic_url"] as! String))
+        messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["createdAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: msg["user_name"] as! String, user_pic: msg["user_pic_url"] as! String))
 //        }
         scroll.toggle()
     }
