@@ -70,8 +70,8 @@ class SocketIOManager: SocketIOManagerProtocol {
         socket.emit("get-info", ["flag":"chat-for-preview", "data":["chat_id": chat_id, "user_id": USER!.id]])
     }
     
-    func send(message: Message) {
-        socket.emit("newMessage", ["user_id": message.user_id, "id": message.id, "chat_id": message.chat_id, "text": message.text, "attachments": message.attachments, "deleted_all": message.deleted_all, "deleted_user": message.deleted_user, "edited": message.edited])
+    func send(user_id: Int64, chat_id: Int64, text: String, attachments: [String: Any]) {
+        socket.emit("newMessage", ["user_id": user_id, "chat_id": chat_id, "text": text, "attachments": attachments ])
     }
     
     func get_users_from_school_id(school_id: Int64) {

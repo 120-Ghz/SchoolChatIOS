@@ -20,7 +20,7 @@ protocol SocketIOManagerProtocol {
     
     func get_chat_ids(user_id: Int64)
     func request_chat_data_for_preview(chat_id: Int64)
-    func send(message: Message)
+    func send(user_id: Int64, chat_id: Int64, text: String, attachments: [String: Any])
     func get_users_from_school_id(school_id: Int64)
     func requestChatMsgs(user_id: Int64, chat_id: Int64)
     func createChat(creator_id: Int64, name: String, users: [User])
