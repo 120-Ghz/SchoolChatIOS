@@ -39,9 +39,10 @@ final class ChatViewModel: ObservableObject {
     
     func getMessages(incoming: [String:Any]) {
 //        print(incoming.last?["user_name"])
-        let msg = incoming
+        let msg = incoming["data"] as! [String: Any]
 //        for msg in incoming {
-            messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false))
+        guard let userdata = incoming["userdata"] as? [String: Any] else {return}
+        messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["updatedAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: "\(userdata["name"]) \(userdata["surname"])", user_pic: userdata["pic_url"] as! String))
 //        }
         scroll.toggle()
     }
@@ -83,7 +84,7 @@ struct ChatView: View {
     
     private func send_button() {
         if !message.isEmpty {
-            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: false))
+            model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: false, user_name: "", user_pic: ""))
             message = ""
         }
     }
@@ -221,7 +222,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", admins: [], left: false, users: []))
+        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", last_msg_userpic: "", admins: [], left: false, users: []))
     }
 }
 

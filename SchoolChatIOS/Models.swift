@@ -20,6 +20,8 @@ struct Message: Identifiable {
     let edited: Bool
     let time: Date
     let service: Bool
+    let user_name: String
+    let user_pic: String
 }
 
 struct User: Identifiable, Equatable {
@@ -57,6 +59,7 @@ struct Chat: Identifiable, Equatable {
     let last_msg_user: Int64
     let last_msg_time: Date
     let last_msg_username: String
+    let last_msg_userpic: String
     let admins: [Int64]
     let left: Bool
     let users: [[String: Any]]
