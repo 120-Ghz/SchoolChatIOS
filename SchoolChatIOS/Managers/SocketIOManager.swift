@@ -48,7 +48,7 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func recieve_chat_msgs(completionHandler: @escaping ([String:Any]) -> Void){
         socket.on("chat-message-recieve") { (data, ack) in
-            print(data[0])
+            
             completionHandler(data[0] as! [String:Any])
         }
     }

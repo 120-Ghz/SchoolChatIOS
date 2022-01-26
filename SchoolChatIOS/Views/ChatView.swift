@@ -62,6 +62,9 @@ final class ChatViewModel: ObservableObject {
             return
         }
         messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["createdAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: msg["user_name"] as! String, user_pic: msg["user_pic_url"] as! String))
+        messages = messages.sorted {
+            return $0.id < $1.id
+        }
 //        }
         scroll.toggle()
     }
