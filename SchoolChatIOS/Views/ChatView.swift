@@ -11,6 +11,7 @@ final class ChatViewModel: ObservableObject {
     
     @Published private(set) var messages: [Message] = []
     @Published var scroll = false
+    @Published var Users: [User] = []
     
     var chat_id: Int64 = 0
     var manager = SocketIOManager()
@@ -18,13 +19,17 @@ final class ChatViewModel: ObservableObject {
     func connect() {
         manager.observeMessages(completionHandler: NewMsg)
         manager.recieve_chat_msgs(completionHandler: getMessages)
+        manager.recieve_chat_users(completionHandler: get_users)
         request_users()
     }
     
     func request_users() {
-        
+        manager.request_chat_users(chat_id: chat_id)
     }
     
+    func get_users(incoming: [Any]) {
+        print(incoming)
+    }
     private func NewMsg(incoming: Message) {
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all) {
             if get_msg_index_by_id(id: incoming.id) != -1 { return }
