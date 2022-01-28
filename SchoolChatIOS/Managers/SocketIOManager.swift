@@ -42,7 +42,8 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func recieve_chat_users(completionHandler: @escaping ([Any]) -> Void) {
         socket.on("recieve-chat-users") { (data, ack) in
-            print(data)
+            let inc = (data[0] as! [String: Any])["data"] as! [Any]
+            completionHandler(inc)
         }
     }
     

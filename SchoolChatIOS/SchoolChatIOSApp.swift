@@ -8,7 +8,7 @@
 import SwiftUI
 import SocketIO
 
-var USER: User? = User(id: 2, name: "Konstantin", surname: "Leonov", school_id: 4, class_id: 4, email: "aboba@aboba.com", phone: "88005553535")
+var USER: User? = User(id: 2, name: "Konstantin", surname: "Leonov", school_id: 4, class_id: 4, email: "aboba@aboba.com", phone: "88005553535", avatar: "")
 var AUTH: Bool = false
 
 var WShost = URL(string: "https://school-chat-server-ws.herokuapp.com")

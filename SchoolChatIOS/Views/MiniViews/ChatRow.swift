@@ -44,6 +44,6 @@ struct ChatRow: View {
 
 struct ChatMiniPreview_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRow(chat: Chat(id: 5, name: "aaa", creator: 16, picture_url: "  ", deleted: false, hasLastMsg: true, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: Date.now, last_msg_username: "", last_msg_userpic: "", admins: [], left: false, users: []))
+        ChatRow(chat: Chat(id: 5, name: "aaa", creator: 16, picture_url: "  ", deleted: false, hasLastMsg: true, last_msg_text: "Тестовое сообщение", last_msg_user: 5, last_msg_time: Date.now, last_msg_username: "", last_msg_userpic: "", admins: [], left: false))
     }
 }

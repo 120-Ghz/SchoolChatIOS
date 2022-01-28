@@ -28,7 +28,14 @@ final class ChatViewModel: ObservableObject {
     }
     
     func get_users(incoming: [Any]) {
-        print(incoming)
+        for raw in incoming {
+            var r = raw as! [Any]
+            var data = r[0] as! [String: Any]
+            let user = User(id: Int64(data["id"] as! String)!, name: data["name"] as! String, surname: data["surname"] as! String, school_id: Int64(data["school_id"] as! String)!, class_id: Int64(data["class_id"] as! String)!, email: data["email"] as! String, phone: data["phone"] as! String, avatar: "")
+            if (!Users.contains(user)) {
+                Users.append(user)
+            }
+        }
     }
     private func NewMsg(incoming: Message) {
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all) {
@@ -215,7 +222,7 @@ struct ChatView: View {
     
     var leadingBtn: some View {
         HStack {
-            NavigationLink(destination: ChatInfoView(chat: chat)) {
+            NavigationLink(destination: ChatInfoView(chat: chat, users: model.Users)) {
                 HStack {
                     ChatPicture(chat: chat, frameRadius: 40)
                         .frame(width: 40, height: 40)
@@ -236,7 +243,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", last_msg_userpic: "", admins: [], left: false, users: []))
+        ChatView(back: NavigationBeetweenChats(), chat: Chat(id: 2, name: "Test Chat", creator: 2, picture_url: "", deleted: false, hasLastMsg: true, last_msg_text: "Aboba", last_msg_user: 1, last_msg_time: Date.now, last_msg_username: "", last_msg_userpic: "", admins: [], left: false))
     }
 }
 

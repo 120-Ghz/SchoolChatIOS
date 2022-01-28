@@ -30,7 +30,7 @@ final class NewChatViewModel: ObservableObject {
         for user in Users {
 //            print(user)
             counter += 1
-            FilteredUsers.append(User(id: Int64(user["id"] as! String)!, name: user["name"] as! String, surname: user["surname"] as! String, school_id: Int64(user["school_id"] as! String)!, class_id: Int64(user["class_id"] as! String)!, email: user["email"] as! String, phone: user["phone"] as! String))
+            FilteredUsers.append(User(id: Int64(user["id"] as! String)!, name: user["name"] as! String, surname: user["surname"] as! String, school_id: Int64(user["school_id"] as! String)!, class_id: Int64(user["class_id"] as! String)!, email: user["email"] as! String, phone: user["phone"] as! String, avatar: "picture_url"))
         }
     }
     

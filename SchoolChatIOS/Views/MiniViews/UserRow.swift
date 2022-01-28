@@ -48,6 +48,6 @@ struct UserRow: View {
 
 struct UserRow_Previews: PreviewProvider {
     static var previews: some View {
-        UserRow(user: User(id: 1, name: "aboba", surname: "Frolov", school_id: 4, class_id: 1, email: "sd", phone: "88005553535"), selected: false)
+        UserRow(user: User(id: 1, name: "aboba", surname: "Frolov", school_id: 4, class_id: 1, email: "sd", phone: "88005553535", avatar: ""), selected: false)
     }
 }

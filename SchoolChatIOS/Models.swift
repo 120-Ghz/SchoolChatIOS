@@ -32,7 +32,7 @@ struct User: Identifiable, Equatable {
     let class_id: Int64
     let email: String
     let phone: String
-    let avatar: String = ""
+    let avatar: String
 }
 
 struct MiniUser {
@@ -62,5 +62,4 @@ struct Chat: Identifiable, Equatable {
     let last_msg_userpic: String
     let admins: [Int64]
     let left: Bool
-    let users: [[String: Any]]
 }
