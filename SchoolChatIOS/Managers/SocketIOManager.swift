@@ -68,7 +68,7 @@ class SocketIOManager: SocketIOManagerProtocol {
     }
     
     func request_chat_data_for_preview(chat_id: Int64) {
-        socket.emit("get-info", ["flag":"chat-for-preview", "data":["chat_id": chat_id, "user_id": USER!.id]])
+        socket.emit("chat-for-preview",["chat_id": chat_id, "user_id": USER!.id])
     }
     
     func send(user_id: Int64, chat_id: Int64, text: String, attachments: [String: Any]) {
