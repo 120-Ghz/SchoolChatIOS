@@ -93,6 +93,7 @@ struct ChatView: View {
         }
         LinkToInfo = false
         back.Allower = false
+//        print(CryptManagerWrapper().comparePassword("", "aboba"))
     }
     
     private func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {

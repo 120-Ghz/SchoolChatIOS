@@ -14,6 +14,7 @@
 class CryptManager {
 public:
     std::string HashPassword(std::string password);
+    bool ComparePassword(std::string hash, std::string UserInput);
 };
 
 #endif /* CryptManager_hpp */

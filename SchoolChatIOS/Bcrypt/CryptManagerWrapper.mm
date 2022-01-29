@@ -17,5 +17,12 @@
     std::string hashed_password = cryptmanager.HashPassword(pass);
     return [NSString stringWithCString:hashed_password.c_str() encoding:NSUTF8StringEncoding];
 }
+    
+- (BOOL)ComparePassword : (NSString*)hash : (NSString*)UserInput {
+    CryptManager cm;
+    std::string UInput = [UserInput cStringUsingEncoding:[NSString defaultCStringEncoding]];
+    std::string hashh = [hash cStringUsingEncoding:[NSString defaultCStringEncoding]];
+    return cm.ComparePassword(hashh, UInput);
+}
 
 @end
