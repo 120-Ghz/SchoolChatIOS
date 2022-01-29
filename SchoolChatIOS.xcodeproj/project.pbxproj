@@ -35,6 +35,12 @@
 		EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4F279EDE2100D61D32 /* Themes.swift */; };
 		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
 		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
+		EFA5872327A5923100D39553 /* bcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872227A5923100D39553 /* bcrypt.c */; };
+		EFA5872E27A5923C00D39553 /* crypt_blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872427A5923B00D39553 /* crypt_blowfish.c */; };
+		EFA5872F27A5923C00D39553 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872727A5923C00D39553 /* wrapper.c */; };
+		EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872B27A5923C00D39553 /* crypt_gensalt.c */; };
+		EFA5873927A5930400D39553 /* CryptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFA5873727A5930400D39553 /* CryptManager.cpp */; };
+		EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */; };
 		EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthViewSelector.swift */; };
 		EFADA843279555A100DFA595 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA842279555A100DFA595 /* SignUpView.swift */; };
 		EFADA845279555B700DFA595 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA844279555B700DFA595 /* SignInView.swift */; };
@@ -95,6 +101,22 @@
 		EF8F7C4F279EDE2100D61D32 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
+		EFA5872227A5923100D39553 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
+		EFA5872427A5923B00D39553 /* crypt_blowfish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_blowfish.c; sourceTree = "<group>"; };
+		EFA5872527A5923C00D39553 /* crypt_blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_blowfish.h; sourceTree = "<group>"; };
+		EFA5872627A5923C00D39553 /* winbcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winbcrypt.h; sourceTree = "<group>"; };
+		EFA5872727A5923C00D39553 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
+		EFA5872827A5923C00D39553 /* crypt_gensalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt_gensalt.h; sourceTree = "<group>"; };
+		EFA5872927A5923C00D39553 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		EFA5872A27A5923C00D39553 /* ow-crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ow-crypt.h"; sourceTree = "<group>"; };
+		EFA5872B27A5923C00D39553 /* crypt_gensalt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_gensalt.c; sourceTree = "<group>"; };
+		EFA5872C27A5923C00D39553 /* BCrypt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BCrypt.hpp; sourceTree = "<group>"; };
+		EFA5872D27A5923C00D39553 /* bcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcrypt.h; sourceTree = "<group>"; };
+		EFA5873727A5930400D39553 /* CryptManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CryptManager.cpp; sourceTree = "<group>"; };
+		EFA5873827A5930400D39553 /* CryptManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CryptManager.hpp; sourceTree = "<group>"; };
+		EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolChatIOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		EFA5874827A5978200D39553 /* CryptManagerWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptManagerWrapper.h; sourceTree = "<group>"; };
+		EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CryptManagerWrapper.mm; sourceTree = "<group>"; };
 		EFADA83F2790322000DFA595 /* AuthViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewSelector.swift; sourceTree = "<group>"; };
 		EFADA842279555A100DFA595 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		EFADA844279555B700DFA595 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -178,6 +200,7 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
+				EFA5872127A5921D00D39553 /* Bcrypt */,
 				EF8F7C4C279E9F7000D61D32 /* Themes */,
 				EFA5357F2778C550005A2502 /* Extensions */,
 				EFA5357D2774A498005A2502 /* Views */,
@@ -188,6 +211,7 @@
 				EF08E24C275FC55300219285 /* Assets.xcassets */,
 				EF08E24E275FC55300219285 /* Preview Content */,
 				EF08E279275FC66300219285 /* Models.swift */,
+				EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */,
 			);
 			path = SchoolChatIOS;
 			sourceTree = "<group>";
@@ -258,6 +282,28 @@
 				EF60FE8C277CCF7700C612E2 /* Date.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EFA5872127A5921D00D39553 /* Bcrypt */ = {
+			isa = PBXGroup;
+			children = (
+				EFA5872D27A5923C00D39553 /* bcrypt.h */,
+				EFA5872C27A5923C00D39553 /* BCrypt.hpp */,
+				EFA5872427A5923B00D39553 /* crypt_blowfish.c */,
+				EFA5872527A5923C00D39553 /* crypt_blowfish.h */,
+				EFA5872B27A5923C00D39553 /* crypt_gensalt.c */,
+				EFA5872827A5923C00D39553 /* crypt_gensalt.h */,
+				EFA5872927A5923C00D39553 /* crypt.h */,
+				EFA5872A27A5923C00D39553 /* ow-crypt.h */,
+				EFA5872627A5923C00D39553 /* winbcrypt.h */,
+				EFA5872727A5923C00D39553 /* wrapper.c */,
+				EFA5872227A5923100D39553 /* bcrypt.c */,
+				EFA5873727A5930400D39553 /* CryptManager.cpp */,
+				EFA5873827A5930400D39553 /* CryptManager.hpp */,
+				EFA5874827A5978200D39553 /* CryptManagerWrapper.h */,
+				EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */,
+			);
+			path = Bcrypt;
 			sourceTree = "<group>";
 		};
 		EFADA841279032B500DFA595 /* Auth */ = {
@@ -362,6 +408,7 @@
 				TargetAttributes = {
 					EF08E244275FC55000219285 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1320;
 					};
 					EF08E254275FC55400219285 = {
 						CreatedOnToolsVersion = 13.1;
@@ -531,23 +578,29 @@
 				EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */,
 				EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
+				EFA5872F27A5923C00D39553 /* wrapper.c in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
+				EFA5872327A5923100D39553 /* bcrypt.c in Sources */,
 				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
+				EFA5873927A5930400D39553 /* CryptManager.cpp in Sources */,
 				EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */,
 				EFADA845279555B700DFA595 /* SignInView.swift in Sources */,
 				EF6ABA91279C74C400DF33C1 /* LocalDataManager.swift in Sources */,
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */,
+				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
 				EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
 				EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */,
+				EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */,
 				EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */,
 				EFADA843279555A100DFA595 /* SignUpView.swift in Sources */,
 				EF08E27C275FC67500219285 /* MessageView.swift in Sources */,
+				EFA5872E27A5923C00D39553 /* crypt_blowfish.c in Sources */,
 				EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */,
 				EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */,
 				EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */,
@@ -709,6 +762,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SchoolChatIOS/Preview Content\"";
@@ -728,6 +782,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SchoolChatIOS/SchoolChatIOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -739,6 +795,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SchoolChatIOS/Preview Content\"";
@@ -758,6 +815,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-20-HZ.SchoolChatIOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SchoolChatIOS/SchoolChatIOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
