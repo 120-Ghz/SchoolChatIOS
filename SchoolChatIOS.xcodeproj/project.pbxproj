@@ -41,7 +41,7 @@
 		EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872B27A5923C00D39553 /* crypt_gensalt.c */; };
 		EFA5873927A5930400D39553 /* CryptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFA5873727A5930400D39553 /* CryptManager.cpp */; };
 		EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */; };
-		EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthViewSelector.swift */; };
+		EFADA8402790322000DFA595 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthView.swift */; };
 		EFADA843279555A100DFA595 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA842279555A100DFA595 /* SignUpView.swift */; };
 		EFADA845279555B700DFA595 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA844279555B700DFA595 /* SignInView.swift */; };
 		EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */; };
@@ -117,7 +117,7 @@
 		EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolChatIOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		EFA5874827A5978200D39553 /* CryptManagerWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptManagerWrapper.h; sourceTree = "<group>"; };
 		EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CryptManagerWrapper.mm; sourceTree = "<group>"; };
-		EFADA83F2790322000DFA595 /* AuthViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewSelector.swift; sourceTree = "<group>"; };
+		EFADA83F2790322000DFA595 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		EFADA842279555A100DFA595 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		EFADA844279555B700DFA595 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat-Messenger_Navigation.swift"; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		EFADA841279032B500DFA595 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				EFADA83F2790322000DFA595 /* AuthViewSelector.swift */,
+				EFADA83F2790322000DFA595 /* AuthView.swift */,
 				EFADA842279555A100DFA595 /* SignUpView.swift */,
 				EFADA844279555B700DFA595 /* SignInView.swift */,
 			);
@@ -595,7 +595,7 @@
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
-				EFADA8402790322000DFA595 /* AuthViewSelector.swift in Sources */,
+				EFADA8402790322000DFA595 /* AuthView.swift in Sources */,
 				EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */,
 				EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */,
 				EFADA843279555A100DFA595 /* SignUpView.swift in Sources */,

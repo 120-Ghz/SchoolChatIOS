@@ -17,6 +17,7 @@ protocol SocketIOManagerProtocol {
     func recieve_chat_users(completionHandler: @escaping ([Any]) -> Void)
     func recieve_chat_msgs(completionHandler: @escaping ([String:Any]) -> Void)
     func observeMessages(completionHandler: @escaping (Message) -> Void)
+    func recieve_auth_data(completionHandler: @escaping ([String:Any]) -> Void)
     
     func get_chat_ids(user_id: Int64)
     func request_chat_data_for_preview(chat_id: Int64)
@@ -25,4 +26,5 @@ protocol SocketIOManagerProtocol {
     func requestChatMsgs(user_id: Int64, chat_id: Int64)
     func createChat(creator_id: Int64, name: String, users: [User])
     func request_chat_users(chat_id: Int64)
+    func SendAuthData(data: String)
 }

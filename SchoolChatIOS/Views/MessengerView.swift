@@ -16,7 +16,8 @@ final class MessengerViewModel: ObservableObject {
     var manager = SocketIOManager()
     
     func create() {
-        manager.react_con(completionHandler: FillChats)
+//        manager.react_con(completionHandler: FillChats)
+        FillChats()
         manager.recieve_chats(completionHandler: FillChats3)
         manager.observeMessages(completionHandler: FillChatsWhenMessageForUser)
     }

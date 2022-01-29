@@ -49,7 +49,9 @@ struct ContentView: View {
         .padding()
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)*/
-        MessengerView().onAppear(perform: onAppear)
+//        MessengerView().onAppear(perform: onAppear)
+        AuthView()
+        
     }
 }
 

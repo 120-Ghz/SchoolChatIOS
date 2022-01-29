@@ -54,6 +54,13 @@ class SocketIOManager: SocketIOManagerProtocol {
         }
     }
     
+    func recieve_auth_data(completionHandler: @escaping ([String:Any]) -> Void) {
+        socket.on("auth-recieve") { (data, ack) in
+            let incoming = data[0] as! [String: Any]
+            completionHandler(incoming)
+        }
+    }
+    
     func observeMessages(completionHandler: @escaping (Message) -> Void) {
         socket.on("msg") { (dataArray, ack) in
             guard let data = dataArray[0] as? [String: Any] else {return}
@@ -93,6 +100,11 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func request_chat_users(chat_id: Int64) {
         socket.emit("chat-users", ["chat_id": chat_id])
+    }
+    
+    
+    func SendAuthData(data: String) {
+        socket.emit("auth-data", ["data": data])
     }
 }
 
