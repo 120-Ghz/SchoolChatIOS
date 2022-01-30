@@ -50,7 +50,8 @@ struct ContentView: View {
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)*/
 //        MessengerView().onAppear(perform: onAppear)
-        SignInView()
+//        SignInView()
+        SignUpView()
     }
 }
 

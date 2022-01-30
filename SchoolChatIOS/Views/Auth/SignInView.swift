@@ -50,6 +50,7 @@ struct SignInView: View {
     
     var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
     var BGColor = Color(red: 164/255, green: 65/255, blue: 171/255)
+    var HintColor = Color(UIColor(Color(red: 90/255, green: 0, blue: 90/255)).withAlphaComponent(0.7))
     
     func onCommit() {
         print("Login")
@@ -58,7 +59,7 @@ struct SignInView: View {
     
     var Shadow: some View {
         return Capsule().fill(.white).frame(height: 50)
-            .shadow(color: TextColor.opacity(0.2), radius: 8, x: 0, y: 9)
+            .shadow(color: Color(UIColor(TextColor).withAlphaComponent(0.1)), radius: 2, x: 0, y: 3)
     }
     
     var body: some View {
@@ -66,11 +67,9 @@ struct SignInView: View {
             MessengerView()
         } else {
             ZStack {
-                //                BGColor
                 VStack {
                     Spacer()
                     Text("Sign In")
-                    //                    .font(.largeTitle)
                         .font(Font.custom("helvetica", size: 30))
                         .fontWeight(.semibold)
                         .foregroundColor(TextColor)
@@ -80,26 +79,24 @@ struct SignInView: View {
                         VStack {
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.01)
+                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
                                     .frame(height: 50)
                                 HStack {
                                     Image(systemName: "person")
                                         .foregroundColor(TextColor)
                                         .font(Font.body.weight(.semibold))
                                     TextField("", text: $login)
-                                        .font(Font.body.weight(.semibold))
                                         .foregroundColor(TextColor)
                                         .placeholder(when: login.isEmpty) {
-                                            Text("Username").foregroundColor(TextColor).fontWeight(.semibold)
+                                            Text("Username").foregroundColor(HintColor).fontWeight(.semibold)
                                         }
-                                    //                                .foregroundColor(TextColor)
                                 }
                                 .padding()
                             }
                             .padding(.bottom, 5)
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.01)
+                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
                                     .frame(height: 50)
                                 HStack {
                                     Image(systemName: "lock")
@@ -107,17 +104,15 @@ struct SignInView: View {
                                         .font(Font.body.weight(.semibold))
                                     if ShowPassword {
                                         TextField("", text: $password)
-                                            .font(Font.body.weight(.semibold))
                                             .foregroundColor(TextColor)
-                                            .placeholder(when: login.isEmpty) {
+                                            .placeholder(when: password.isEmpty) {
                                                 Text("Password").foregroundColor(TextColor).fontWeight(.semibold)
                                             }
                                     } else {
                                         SecureField("", text: $password)
-                                            .font(Font.body.weight(.semibold))
                                             .foregroundColor(TextColor)
-                                            .placeholder(when: login.isEmpty) {
-                                                Text("Password").foregroundColor(TextColor).fontWeight(.semibold)
+                                            .placeholder(when: password.isEmpty) {
+                                                Text("Password").foregroundColor(HintColor).fontWeight(.semibold)
                                             }
                                     }
                                     if !password.isEmpty {
@@ -129,7 +124,6 @@ struct SignInView: View {
                                     }
                                 }
                                 .padding()
-                                
                             }
                             .padding(.bottom, 20)
                         }
@@ -143,7 +137,7 @@ struct SignInView: View {
                     }
                     .padding()
                     .background(Capsule().fill(Color.purple).frame(width: 150, height: 50))
-                    .shadow(color: .purple, radius: 8, x: 0, y: 9)
+                    .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
                     Spacer()
                     Spacer()
                 }
