@@ -104,12 +104,15 @@ struct SignInView: View {
                                         .font(Font.body.weight(.semibold))
                                     if ShowPassword {
                                         TextField("", text: $password)
+                                            .frame(height: 50)
                                             .foregroundColor(TextColor)
                                             .placeholder(when: password.isEmpty) {
-                                                Text("Password").foregroundColor(TextColor).fontWeight(.semibold)
+                                                Text("Password").foregroundColor(TextColor)
+                                                    .fontWeight(.semibold)
                                             }
                                     } else {
                                         SecureField("", text: $password)
+                                            .frame(height: 20)
                                             .foregroundColor(TextColor)
                                             .placeholder(when: password.isEmpty) {
                                                 Text("Password").foregroundColor(HintColor).fontWeight(.semibold)
