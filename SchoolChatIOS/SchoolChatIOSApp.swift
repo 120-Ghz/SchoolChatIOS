@@ -18,7 +18,6 @@ var WShost = URL(string: "http://192.168.0.12:3000")
 var manager = SocketManager(socketURL: WShost!, config: [.version(.three)])
 var socket = manager.defaultSocket
 
-var LocalManager = LocalDataManager()
 
 @main
 struct SchoolChatIOSApp: App {

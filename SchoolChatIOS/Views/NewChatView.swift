@@ -24,11 +24,11 @@ final class NewChatViewModel: ObservableObject {
     }
     
     func getSchoolUsers(incoming: Any) {
-//        let Users = incoming as! [String: Any]
+        //        let Users = incoming as! [String: Any]
         let Users = incoming as! [[String: Any]]
         var counter = 0
         for user in Users {
-//            print(user)
+            //            print(user)
             counter += 1
             FilteredUsers.append(User(id: Int64(user["id"] as! String)!, name: user["name"] as! String, surname: user["surname"] as! String, school_id: Int64(user["school_id"] as! String)!, class_id: Int64(user["class_id"] as! String)!, email: user["email"] as! String, phone: user["phone"] as! String, avatar: "picture_url"))
         }
@@ -62,7 +62,7 @@ struct NewChatView: View {
             }) {
                 Text("Back")
             }
-                .padding()
+            .padding()
             Spacer()
             Spacer()
             Button(action: {
@@ -71,8 +71,8 @@ struct NewChatView: View {
             }) {
                 Text("Готово")
             }
-                .padding()
-                .disabled(chatName.isEmpty)
+            .padding()
+            .disabled(chatName.isEmpty)
             Spacer()
         }
     }
@@ -120,7 +120,7 @@ struct NewChatView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(Color.blue, lineWidth: 2)
                 )
-//            Spacer()
+            //            Spacer()
             UsersBox()
             bottomButtons()
         }

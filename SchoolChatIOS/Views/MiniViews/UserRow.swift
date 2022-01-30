@@ -22,9 +22,9 @@ struct UserRow: View {
                 Circle()
                     .fill(Color.green)
                     .frame(width: radius, height: radius)
-                    Text(PicText())
-                        .font(.system(size: radius/2))
-                        .foregroundColor(Color.white)
+                Text(PicText())
+                    .font(.system(size: radius/2))
+                    .foregroundColor(Color.white)
             }
         }
     }

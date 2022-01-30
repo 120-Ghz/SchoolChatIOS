@@ -40,9 +40,9 @@ final class ChatViewModel: ObservableObject {
     private func NewMsg(incoming: Message) {
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all) {
             if get_msg_index_by_id(id: incoming.id) != -1 { return }
-                messages.append(incoming)
-                messages = messages.sorted { return $0.id < $1.id }
-                scroll.toggle()
+            messages.append(incoming)
+            messages = messages.sorted { return $0.id < $1.id }
+            scroll.toggle()
         }
     }
     
@@ -84,7 +84,7 @@ struct ChatView: View {
     @State var LinkToInfo = false
     
     var chat: Chat
-
+    
     private func onAppear() {
         if !LinkToInfo {
             model.chat_id = chat.id
@@ -93,7 +93,7 @@ struct ChatView: View {
         }
         LinkToInfo = false
         back.Allower = false
-//        print(CryptManagerWrapper().comparePassword("", "aboba"))
+        //        print(CryptManagerWrapper().comparePassword("", "aboba"))
     }
     
     private func ScrollToMessage(messageUUID: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
@@ -137,32 +137,32 @@ struct ChatView: View {
     
     private func ctxMenu(message: Message) -> some View {
         return
-            Group {
-                Button(action: {
-                    reply(msg: message)
-                }) {
-                    contextButton(text: "Reply", img: "arrowshape.turn.up.right")
-                }
-                
-                Button(action: {
-                    copy(msg: message)
-                }) {
-                    contextButton(text: "Copy", img: "doc.on.doc")
-                }
-                
+        Group {
+            Button(action: {
+                reply(msg: message)
+            }) {
+                contextButton(text: "Reply", img: "arrowshape.turn.up.right")
+            }
+            
+            Button(action: {
+                copy(msg: message)
+            }) {
+                contextButton(text: "Copy", img: "doc.on.doc")
+            }
+            
+            Button(role: .destructive) {
+                delete(for_all: false, msg: message)
+            } label: {
+                contextButton(text: "Delete for me", img: "trash")
+            }
+            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
                 Button(role: .destructive) {
-                    delete(for_all: false, msg: message)
+                    delete(for_all: true, msg: message)
                 } label: {
-                    contextButton(text: "Delete for me", img: "trash")
-                }
-                if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
-                    Button(role: .destructive) {
-                        delete(for_all: true, msg: message)
-                    } label: {
-                        contextButton(text: "Delete for all", img: "trash")
-                    }
+                    contextButton(text: "Delete for all", img: "trash")
                 }
             }
+        }
     }
     
     private func MessagesView() -> some View {
@@ -171,22 +171,22 @@ struct ChatView: View {
                 .frame(height: 2)
             MessageView(message: message, ctxmenu: AnyView(ctxMenu(message: message)))
                 .id(message.InternalId)
-            }
         }
+    }
     
     var body: some View {
         VStack {
             ScrollView(.vertical) {
                 ScrollViewReader { scrollReader in
                     VStack {
-                    MessagesView()
-                        .onChange(of: model.scroll) { _ in
-                            lastMessageUUID = model.messages.last?.InternalId
-                            ScrollToMessage(messageUUID: lastMessageUUID!, anchor: nil, shouldAnimate: !isFirst, scrollReader: scrollReader)
-                            if isFirst {
-                                isFirst = !isFirst
+                        MessagesView()
+                            .onChange(of: model.scroll) { _ in
+                                lastMessageUUID = model.messages.last?.InternalId
+                                ScrollToMessage(messageUUID: lastMessageUUID!, anchor: nil, shouldAnimate: !isFirst, scrollReader: scrollReader)
+                                if isFirst {
+                                    isFirst = !isFirst
+                                }
                             }
-                        }
                     }
                 }
             }

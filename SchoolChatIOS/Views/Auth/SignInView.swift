@@ -46,30 +46,114 @@ struct SignInView: View {
     @StateObject var model: SignInViewModel = SignInViewModel()
     @State var login: String = ""
     @State var password: String = ""
+    @State var ShowPassword: Bool = false
+    
+    var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
+    var BGColor = Color(red: 164/255, green: 65/255, blue: 171/255)
     
     func onCommit() {
+        print("Login")
         model.create(data: login.lowercased(), UserInput: password)
     }
     
+    var Shadow: some View {
+        return Capsule().fill(.white).frame(height: 50)
+            .shadow(color: TextColor.opacity(0.2), radius: 8, x: 0, y: 9)
+    }
+    
     var body: some View {
-        VStack {
-            if model.AuthStat {
-                MessengerView()
-            } else {
-                TextField("Login", text: $login, onCommit: onCommit)
-                    .padding(10)
-                    .background(Color.blue.opacity(0.2))
-                    .cornerRadius(20)
-                TextField("Password", text: $password, onCommit: onCommit)
-                    .padding(10)
-                    .background(Color.blue.opacity(0.2))
-                    .cornerRadius(20)
-                Button("PressMe") {
-                    onCommit()
+        if model.AuthStat {
+            MessengerView()
+        } else {
+            ZStack {
+                //                BGColor
+                VStack {
+                    Spacer()
+                    Text("Sign In")
+                    //                    .font(.largeTitle)
+                        .font(Font.custom("helvetica", size: 30))
+                        .fontWeight(.semibold)
+                        .foregroundColor(TextColor)
+                        .padding(.bottom, 70)
+                    
+                    ZStack {
+                        VStack {
+                            ZStack{
+                                Shadow
+                                Capsule().strokeBorder(Color.black, lineWidth: 0.01)
+                                    .frame(height: 50)
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(TextColor)
+                                        .font(Font.body.weight(.semibold))
+                                    TextField("", text: $login)
+                                        .font(Font.body.weight(.semibold))
+                                        .foregroundColor(TextColor)
+                                        .placeholder(when: login.isEmpty) {
+                                            Text("Username").foregroundColor(TextColor).fontWeight(.semibold)
+                                        }
+                                    //                                .foregroundColor(TextColor)
+                                }
+                                .padding()
+                            }
+                            .padding(.bottom, 5)
+                            ZStack{
+                                Shadow
+                                Capsule().strokeBorder(Color.black, lineWidth: 0.01)
+                                    .frame(height: 50)
+                                HStack {
+                                    Image(systemName: "lock")
+                                        .foregroundColor(TextColor)
+                                        .font(Font.body.weight(.semibold))
+                                    if ShowPassword {
+                                        TextField("", text: $password)
+                                            .font(Font.body.weight(.semibold))
+                                            .foregroundColor(TextColor)
+                                            .placeholder(when: login.isEmpty) {
+                                                Text("Password").foregroundColor(TextColor).fontWeight(.semibold)
+                                            }
+                                    } else {
+                                        SecureField("", text: $password)
+                                            .font(Font.body.weight(.semibold))
+                                            .foregroundColor(TextColor)
+                                            .placeholder(when: login.isEmpty) {
+                                                Text("Password").foregroundColor(TextColor).fontWeight(.semibold)
+                                            }
+                                    }
+                                    if !password.isEmpty {
+                                        Button(action: { self.ShowPassword.toggle()}) {
+                                            Image(systemName: "eye")
+                                                .foregroundColor(TextColor)
+                                                .font(Font.body.weight(.bold))
+                                        }
+                                    }
+                                }
+                                .padding()
+                                
+                            }
+                            .padding(.bottom, 20)
+                        }
+                        .padding(.horizontal, 40)
+                    }
+                    
+                    Button(action: onCommit) {
+                        Text("Log In")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .background(Capsule().fill(Color.purple).frame(width: 150, height: 50))
+                    .shadow(color: .purple, radius: 8, x: 0, y: 9)
+                    Spacer()
+                    Spacer()
                 }
+                .onChange(of: password.isEmpty, perform: { stat in
+                    if stat {
+                        ShowPassword = false
+                    }
+                })
             }
         }
-        .navigationBarHidden(true)
     }
 }
 

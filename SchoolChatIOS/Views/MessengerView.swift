@@ -16,14 +16,14 @@ final class MessengerViewModel: ObservableObject {
     var manager = SocketIOManager()
     
     func create() {
-//        manager.react_con(completionHandler: FillChats)
+        //        manager.react_con(completionHandler: FillChats)
         FillChats()
         manager.recieve_chats(completionHandler: FillChats3)
         manager.observeMessages(completionHandler: FillChatsWhenMessageForUser)
     }
     
     func FillChats() {
-//        chats = LocalManager.get_chats()
+        //        chats = LocalManager.get_chats()
         manager.get_chat_ids(user_id: USER?.id ?? 2)
     }
     
@@ -53,7 +53,7 @@ final class MessengerViewModel: ObservableObject {
     }
     
     func FillChats3(incoming: [String:Any]){
-//        print(incoming)
+        //        print(incoming)
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
         let last_msg_time = (last_msg_info["time"] as! String)
@@ -146,7 +146,7 @@ struct MessengerView: View {
                     ForEach(model.getSortedFilteredChats(query: query)) { chat in
                         Row(chat: chat)
                             .swipeActions(edge: .trailing) {
-        
+                                
                                 if (chat.creator == USER!.id) {
                                     Button(action: {
                                         ConfirmDelete = true

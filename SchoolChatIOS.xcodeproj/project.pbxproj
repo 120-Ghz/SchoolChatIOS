@@ -27,9 +27,8 @@
 		EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8A277CCCB900C612E2 /* Color.swift */; };
 		EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8C277CCF7700C612E2 /* Date.swift */; };
 		EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE90277F79CF00C612E2 /* NewChatView.swift */; };
-		EF6ABA91279C74C400DF33C1 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */; };
 		EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */; };
-		EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */; };
+		EF81574027A6DF4F003BF2BF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81573F27A6DF4F003BF2BF /* View.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
 		EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */; };
 		EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4F279EDE2100D61D32 /* Themes.swift */; };
@@ -41,7 +40,6 @@
 		EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872B27A5923C00D39553 /* crypt_gensalt.c */; };
 		EFA5873927A5930400D39553 /* CryptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFA5873727A5930400D39553 /* CryptManager.cpp */; };
 		EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */; };
-		EFADA8402790322000DFA595 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA83F2790322000DFA595 /* AuthView.swift */; };
 		EFADA843279555A100DFA595 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA842279555A100DFA595 /* SignUpView.swift */; };
 		EFADA845279555B700DFA595 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADA844279555B700DFA595 /* SignInView.swift */; };
 		EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */; };
@@ -93,9 +91,8 @@
 		EF60FE8A277CCCB900C612E2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EF60FE8C277CCF7700C612E2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EF60FE90277F79CF00C612E2 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
-		EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
 		EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManagerInterface.swift; sourceTree = "<group>"; };
-		EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManagerProtocol.swift; sourceTree = "<group>"; };
+		EF81573F27A6DF4F003BF2BF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		EF8F7C4F279EDE2100D61D32 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -117,7 +114,6 @@
 		EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolChatIOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		EFA5874827A5978200D39553 /* CryptManagerWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptManagerWrapper.h; sourceTree = "<group>"; };
 		EFA5874927A597EE00D39553 /* CryptManagerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CryptManagerWrapper.mm; sourceTree = "<group>"; };
-		EFADA83F2790322000DFA595 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		EFADA842279555A100DFA595 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		EFADA844279555B700DFA595 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat-Messenger_Navigation.swift"; sourceTree = "<group>"; };
@@ -280,6 +276,7 @@
 				EFA535802778C569005A2502 /* String.swift */,
 				EF60FE8A277CCCB900C612E2 /* Color.swift */,
 				EF60FE8C277CCF7700C612E2 /* Date.swift */,
+				EF81573F27A6DF4F003BF2BF /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,7 +306,6 @@
 		EFADA841279032B500DFA595 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				EFADA83F2790322000DFA595 /* AuthView.swift */,
 				EFADA842279555A100DFA595 /* SignUpView.swift */,
 				EFADA844279555B700DFA595 /* SignInView.swift */,
 			);
@@ -320,9 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				EF08E273275FC5D900219285 /* SocketIOManager.swift */,
-				EF6ABA90279C74C400DF33C1 /* LocalDataManager.swift */,
 				EF6ABA92279C752700DF33C1 /* SocketIOManagerInterface.swift */,
-				EF6ABA94279C75D400DF33C1 /* LocalDataManagerProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -575,7 +569,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */,
-				EF6ABA95279C75D400DF33C1 /* LocalDataManagerProtocol.swift in Sources */,
 				EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
 				EFA5872F27A5923C00D39553 /* wrapper.c in Sources */,
@@ -586,8 +579,8 @@
 				EFA5873927A5930400D39553 /* CryptManager.cpp in Sources */,
 				EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */,
 				EFADA845279555B700DFA595 /* SignInView.swift in Sources */,
-				EF6ABA91279C74C400DF33C1 /* LocalDataManager.swift in Sources */,
 				EF08E278275FC64100219285 /* ChatView.swift in Sources */,
+				EF81574027A6DF4F003BF2BF /* View.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */,
 				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
@@ -595,7 +588,6 @@
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
-				EFADA8402790322000DFA595 /* AuthView.swift in Sources */,
 				EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */,
 				EF6ABA93279C752700DF33C1 /* SocketIOManagerInterface.swift in Sources */,
 				EFADA843279555A100DFA595 /* SignUpView.swift in Sources */,
