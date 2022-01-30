@@ -87,6 +87,7 @@ struct SignInView: View {
                                         .font(Font.body.weight(.semibold))
                                     TextField("", text: $login)
                                         .foregroundColor(TextColor)
+                                        .font(Font.body.weight(.semibold))
                                         .placeholder(when: login.isEmpty) {
                                             Text("Username").foregroundColor(HintColor).fontWeight(.semibold)
                                         }
@@ -106,6 +107,7 @@ struct SignInView: View {
                                         TextField("", text: $password)
                                             .frame(height: 50)
                                             .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
                                             .placeholder(when: password.isEmpty) {
                                                 Text("Password").foregroundColor(TextColor)
                                                     .fontWeight(.semibold)
@@ -114,6 +116,7 @@ struct SignInView: View {
                                         SecureField("", text: $password)
                                             .frame(height: 20)
                                             .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
                                             .placeholder(when: password.isEmpty) {
                                                 Text("Password").foregroundColor(HintColor).fontWeight(.semibold)
                                             }
