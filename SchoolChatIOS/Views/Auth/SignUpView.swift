@@ -15,6 +15,7 @@ struct SignUpView: View {
     @State var invite_code: String = ""
     @State var ShowPassword: Bool = false
     @State var ShowPasswordConfirmation: Bool = false
+    @State var ComparePassword: Bool = false
     
     @State var ShouldShowConfirmation: Bool = false
     
@@ -127,8 +128,13 @@ struct SignUpView: View {
                                 .padding(.bottom, 5)
                                 ZStack{
                                     Shadow
+                                    if ShouldShowConfirmation {
+                                        Capsule().fill( ComparePassword ? Color.green.opacity(0.3) : Color.red.opacity(0.3))
+                                            .frame(height: 50)
+                                    } else {
                                     Capsule().strokeBorder(Color.black, lineWidth: 0.001)
                                         .frame(height: 50)
+                                    }
                                     HStack {
                                         Image(systemName: "lock")
                                             .foregroundColor(TextColor)
@@ -165,7 +171,7 @@ struct SignUpView: View {
                                 if ShouldShowConfirmation {
                                     ZStack{
                                         Shadow
-                                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        Capsule().fill( ComparePassword ? Color.green.opacity(0.3) : Color.red.opacity(0.3))
                                             .frame(height: 50)
                                         HStack {
                                             Image(systemName: "lock")
@@ -246,12 +252,23 @@ struct SignUpView: View {
                     
                     
                 }
+                .onChange(of: password, perform: {val in
+                    withAnimation {
+                    ComparePassword = val == password_confirmation
+                    }
+                })
+                .onChange(of: password_confirmation, perform: { val in
+                    withAnimation {
+                    ComparePassword = val == password
+                    }
+                })
                 .onChange(of: password.isEmpty, perform: { stat in
                     withAnimation {
                         ShouldShowConfirmation.toggle()
                     }
                     if stat {
                         ShowPassword = false
+                        password_confirmation = ""
                     }
                 })
             }
