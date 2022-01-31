@@ -18,6 +18,8 @@ struct SignUpView: View {
     
     @State var ShouldShowConfirmation: Bool = false
     
+    @ObservedObject var AuthOb: AuthObj
+    
     var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
     var BGColor = Color(red: 164/255, green: 65/255, blue: 171/255)
     var HintColor = Color(UIColor(Color(red: 90/255, green: 0, blue: 90/255)).withAlphaComponent(0.7))
@@ -33,93 +35,96 @@ struct SignUpView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack {
-                Spacer()
+        
+        VStack{
+            ZStack {
                 VStack {
-                    Text("Sign Up")
-                        .font(Font.custom("helvetica", size: 30))
-                        .fontWeight(.semibold)
-                        .foregroundColor(TextColor)
-                        .padding(.bottom, 70)
-                }
-                VStack {
-                    ZStack {
-                        VStack {
-                            ZStack{
-                                Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
-                                HStack {
-                                    Image(systemName: "envelope")
-                                        .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                    TextField("", text: $email)
-                                        .font(Font.body.weight(.semibold))
-                                        .foregroundColor(TextColor)
-                                        .placeholder(when: email.isEmpty) {
-                                            Text("Email").foregroundColor(HintColor).fontWeight(.semibold)
-                                        }
-                                }
-                                .padding()
-                                .padding(.top, 0)
-                            }
-                            .padding(.bottom, 5)
-                            ZStack{
-                                Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
-                                HStack {
-                                    Image(systemName: "phone")
-                                        .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                    TextField("", text: $phone)
-                                        .font(Font.body.weight(.semibold))
-                                        .foregroundColor(TextColor)
-                                        .placeholder(when: phone.isEmpty) {
-                                            Text("Phone").foregroundColor(HintColor).fontWeight(.semibold)
-                                        }
-                                }
-                                .padding()
-                                .padding(.top, 0)
-                            }
-                            .padding(.bottom, 5)
-                            ZStack{
-                                Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
-                                HStack {
-                                    Image(systemName: "lock")
-                                        .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                    if ShowPassword {
-                                        TextField("", text: $password)
+                    VStack {
+//                        Text("Sign Up")
+//                            .font(Font.custom("helvetica", size: 30))
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(TextColor)
+//                            .padding(.bottom, 70)
+                    }
+                    VStack {
+                        ZStack {
+                            VStack {
+                                ZStack{
+                                    Shadow
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                    HStack {
+                                        Image(systemName: "person")
+                                            .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
+                                        TextField("", text: $email)
                                             .font(Font.body.weight(.semibold))
                                             .foregroundColor(TextColor)
-                                            .placeholder(when: password.isEmpty) {
-                                                Text("Password").foregroundColor(HintColor).fontWeight(.semibold)
+                                            .placeholder(when: email.isEmpty) {
+                                                Text("Фамилия").foregroundColor(HintColor).fontWeight(.semibold)
                                             }
-                                    } else {
-                                        SecureField("", text: $password)
+                                    }
+                                    .padding()
+                                    .padding(.top, 0)
+                                }
+                                .padding(.bottom, 5)
+                                ZStack{
+                                    Shadow
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                    HStack {
+                                        Image(systemName: "person")
+                                            .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
+                                        TextField("", text: $email)
                                             .font(Font.body.weight(.semibold))
                                             .foregroundColor(TextColor)
-                                            .placeholder(when: password.isEmpty) {
-                                                Text("Password").foregroundColor(HintColor).fontWeight(.semibold)
+                                            .placeholder(when: email.isEmpty) {
+                                                Text("Имя").foregroundColor(HintColor).fontWeight(.semibold)
                                             }
                                     }
-                                    if !password.isEmpty {
-                                        Button(action: { self.ShowPassword.toggle()}) {
-                                            Image(systemName: "eye")
-                                                .foregroundColor(TextColor)
-                                                .font(Font.body.weight(.bold))
-                                        }
-                                    }
+                                    .padding()
+                                    .padding(.top, 0)
                                 }
-                                .padding()
-                                .padding(.top, 0)
-                            }
-                            .padding(.bottom, 5)
-                            if ShouldShowConfirmation {
+                                .padding(.bottom, 5)
+                                ZStack{
+                                    Shadow
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                    HStack {
+                                        Image(systemName: "envelope")
+                                            .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
+                                        TextField("", text: $email)
+                                            .font(Font.body.weight(.semibold))
+                                            .foregroundColor(TextColor)
+                                            .placeholder(when: email.isEmpty) {
+                                                Text("Эл. почта").foregroundColor(HintColor).fontWeight(.semibold)
+                                            }
+                                    }
+                                    .padding()
+                                    .padding(.top, 0)
+                                }
+                                .padding(.bottom, 5)
+                                ZStack{
+                                    Shadow
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                    HStack {
+                                        Image(systemName: "phone")
+                                            .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
+                                        TextField("", text: $phone)
+                                            .font(Font.body.weight(.semibold))
+                                            .foregroundColor(TextColor)
+                                            .placeholder(when: phone.isEmpty) {
+                                                Text("Номер телефона").foregroundColor(HintColor).fontWeight(.semibold)
+                                            }
+                                    }
+                                    .padding()
+                                    .padding(.top, 0)
+                                }
+                                .padding(.bottom, 5)
                                 ZStack{
                                     Shadow
                                     Capsule().strokeBorder(Color.black, lineWidth: 0.001)
@@ -128,23 +133,25 @@ struct SignUpView: View {
                                         Image(systemName: "lock")
                                             .foregroundColor(TextColor)
                                             .font(Font.body.weight(.semibold))
-                                        if ShowPasswordConfirmation {
-                                            TextField("", text: $password_confirmation)
+                                        if ShowPassword {
+                                            TextField("", text: $password)
                                                 .font(Font.body.weight(.semibold))
                                                 .foregroundColor(TextColor)
-                                                .placeholder(when: password_confirmation.isEmpty) {
-                                                    Text("Confirm password").foregroundColor(HintColor).fontWeight(.semibold)
+                                                .frame(height: 20)
+                                                .placeholder(when: password.isEmpty) {
+                                                    Text("Пароль").foregroundColor(HintColor).fontWeight(.semibold)
                                                 }
                                         } else {
-                                            SecureField("", text: $password_confirmation)
+                                            SecureField("", text: $password)
                                                 .font(Font.body.weight(.semibold))
                                                 .foregroundColor(TextColor)
-                                                .placeholder(when: password_confirmation.isEmpty) {
-                                                    Text("Confirm password").foregroundColor(HintColor).fontWeight(.semibold)
+                                                .frame(height: 20)
+                                                .placeholder(when: password.isEmpty) {
+                                                    Text("Пароль").foregroundColor(HintColor).fontWeight(.semibold)
                                                 }
                                         }
-                                        if !password_confirmation.isEmpty {
-                                            Button(action: { self.ShowPasswordConfirmation.toggle()}) {
+                                        if !password.isEmpty {
+                                            Button(action: { self.ShowPassword.toggle()}) {
                                                 Image(systemName: "eye")
                                                     .foregroundColor(TextColor)
                                                     .font(Font.body.weight(.bold))
@@ -155,60 +162,99 @@ struct SignUpView: View {
                                     .padding(.top, 0)
                                 }
                                 .padding(.bottom, 5)
-                            }
-                            ZStack{
-                                Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
-                                HStack {
-                                    Image(systemName: "person.text.rectangle")
-                                        .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                    TextField("", text: $invite_code)
-                                        .font(Font.body.weight(.semibold))
-                                        .foregroundColor(TextColor)
-                                        .placeholder(when: invite_code.isEmpty) {
-                                            Text("Invite code").foregroundColor(HintColor).fontWeight(.semibold)
+                                if ShouldShowConfirmation {
+                                    ZStack{
+                                        Shadow
+                                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                            .frame(height: 50)
+                                        HStack {
+                                            Image(systemName: "lock")
+                                                .foregroundColor(TextColor)
+                                                .font(Font.body.weight(.semibold))
+                                            if ShowPasswordConfirmation {
+                                                TextField("", text: $password_confirmation)
+                                                    .font(Font.body.weight(.semibold))
+                                                    .foregroundColor(TextColor)
+                                                    .frame(height: 20)
+                                                    .placeholder(when: password_confirmation.isEmpty) {
+                                                        Text("Подтверждение пароля").foregroundColor(HintColor).fontWeight(.semibold)
+                                                    }
+                                            } else {
+                                                SecureField("", text: $password_confirmation)
+                                                    .font(Font.body.weight(.semibold))
+                                                    .foregroundColor(TextColor)
+                                                    .frame(height: 20)
+                                                    .placeholder(when: password_confirmation.isEmpty) {
+                                                        Text("Подтверждение пароля").foregroundColor(HintColor).fontWeight(.semibold)
+                                                    }
+                                            }
+                                            if !password_confirmation.isEmpty {
+                                                Button(action: { self.ShowPasswordConfirmation.toggle()}) {
+                                                    Image(systemName: "eye")
+                                                        .foregroundColor(TextColor)
+                                                        .font(Font.body.weight(.bold))
+                                                }
+                                            }
                                         }
+                                        .padding()
+                                        .padding(.top, 0)
+                                    }
+                                    .padding(.bottom, 5)
                                 }
-                                .padding()
-                                .padding(.top, 0)
+                                ZStack{
+                                    Shadow
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                    HStack {
+                                        Image(systemName: "person.text.rectangle")
+                                            .foregroundColor(TextColor)
+                                            .font(Font.body.weight(.semibold))
+                                        TextField("", text: $invite_code)
+                                            .font(Font.body.weight(.semibold))
+                                            .foregroundColor(TextColor)
+                                            .placeholder(when: invite_code.isEmpty) {
+                                                Text("Код приглашения").foregroundColor(HintColor).fontWeight(.semibold)
+                                            }
+                                    }
+                                    .padding()
+                                    .padding(.top, 0)
+                                }
+                                .padding(.bottom, 20)
                             }
-                            .padding(.bottom, 20)
+                            .padding(.horizontal, 40)
                         }
-                        .padding(.horizontal, 40)
+                        
+                        Button(action: onCommit) {
+                            Text("Зарегистрироваться")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                        .padding()
+                        .padding(.top, 0)
+                        .padding(.bottom, 0)
+                        .background(Capsule().fill(Color.purple).frame(height: 50))
+                        .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
+                        
+                        if (!ShouldShowConfirmation) {
+                            Capsule().strokeBorder(Color.black.opacity(0), lineWidth: 0.001)
+                                .frame(height: 50).padding(.bottom, 7.4).padding(.top, 0)
+                        }
+                        
                     }
+                    .fixedSize(horizontal: false, vertical: true)
                     
-                    Button(action: onCommit) {
-                        Text("Sign Up")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                    }
-                    .padding()
-                    .padding(.top, 0)
-                    .padding(.bottom, 0)
-                    .background(Capsule().fill(Color.purple).frame(width: 150, height: 50))
-                    .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
-                    
-                    if (!ShouldShowConfirmation) {
-                        Capsule().strokeBorder(Color.black.opacity(0), lineWidth: 0.001)
-                            .frame(height: 50).padding(.bottom, 7.4).padding(.top, 0)
-                    }
                     
                 }
-                .fixedSize(horizontal: false, vertical: true)
-                
-                Spacer()
-                Spacer()
+                .onChange(of: password.isEmpty, perform: { stat in
+                    withAnimation {
+                        ShouldShowConfirmation.toggle()
+                    }
+                    if stat {
+                        ShowPassword = false
+                    }
+                })
             }
-            .onChange(of: password.isEmpty, perform: { stat in
-                withAnimation {
-                    ShouldShowConfirmation.toggle()
-                }
-                if stat {
-                    ShowPassword = false
-                }
-            })
         }
     }
 }
@@ -216,6 +262,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(AuthOb: AuthObj())
     }
 }

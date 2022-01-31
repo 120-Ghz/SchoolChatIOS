@@ -18,6 +18,9 @@ struct MiniView: View {
 }
 
 struct ContentView: View {
+    
+    @StateObject var AuthOb: AuthObj = AuthObj()
+    
     private func onAppear(){
         socket.connect()
     }
@@ -27,31 +30,12 @@ struct ContentView: View {
     }
     
     var body: some View {
-        /*VStack {
-            TabView {
-                MessengerView()
-                    .tabItem {
-                        Image(systemName: "message.fill")
-                        Text("Chats")
-                }
-                Text("Settings Screen")
-                    .tabItem {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                }
-                Text("Feed Screen")
-                    .tabItem {
-                        Image(systemName: "heart.fill")
-                        Text("Settings")
-                }
-            }
+        
+        if AuthOb.Auth {
+            MessengerView()
+        } else {
+            AuthView(AuthOb: AuthOb)
         }
-        .padding()
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)*/
-//        MessengerView().onAppear(perform: onAppear)
-        SignInView()
-//        SignUpView()
     }
 }
 
