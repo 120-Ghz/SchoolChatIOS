@@ -66,108 +66,108 @@ struct SignInView: View {
     }
     
     var body: some View {
-            VStack {
-//                Text("Sign In")
-//                    .font(Font.custom("helvetica", size: 30))
-//                    .fontWeight(.semibold)
-//                    .foregroundColor(TextColor)
-//                    .padding(.bottom, 70)
-                
-                ZStack {
-                    VStack {
-                        ZStack{
-                            Shadow
-                            Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                .frame(height: 50)
-                            HStack {
-                                Image(systemName: "person")
+        VStack {
+            //                Text("Sign In")
+            //                    .font(Font.custom("helvetica", size: 30))
+            //                    .fontWeight(.semibold)
+            //                    .foregroundColor(TextColor)
+            //                    .padding(.bottom, 70)
+            
+            ZStack {
+                VStack {
+                    ZStack{
+                        Shadow
+                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                            .frame(height: 50)
+                        HStack {
+                            Image(systemName: "person")
+                                .foregroundColor(TextColor)
+                                .font(Font.body.weight(.semibold))
+                            TextField("", text: $login)
+                                .foregroundColor(TextColor)
+                                .font(Font.body.weight(.semibold))
+                                .placeholder(when: login.isEmpty) {
+                                    Text("Эл. почта или телефон").foregroundColor(HintColor).fontWeight(.semibold)
+                                        .lineLimit(1)
+                                }
+                        }
+                        .padding()
+                    }
+                    .padding(.bottom, 5)
+                    ZStack{
+                        Shadow
+                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                            .frame(height: 50)
+                        HStack {
+                            Image(systemName: "lock")
+                                .foregroundColor(TextColor)
+                                .font(Font.body.weight(.semibold))
+                            if ShowPassword {
+                                TextField("", text: $password)
+                                    .frame(height: 20)
                                     .foregroundColor(TextColor)
                                     .font(Font.body.weight(.semibold))
-                                TextField("", text: $login)
+                                    .placeholder(when: password.isEmpty) {
+                                        Text("Пароль").foregroundColor(TextColor)
+                                            .fontWeight(.semibold)
+                                    }
+                            } else {
+                                SecureField("", text: $password)
+                                    .frame(height: 20)
                                     .foregroundColor(TextColor)
                                     .font(Font.body.weight(.semibold))
-                                    .placeholder(when: login.isEmpty) {
-                                        Text("Эл. почта или телефон").foregroundColor(HintColor).fontWeight(.semibold)
-                                            .lineLimit(1)
+                                    .placeholder(when: password.isEmpty) {
+                                        Text("Пароль").foregroundColor(HintColor).fontWeight(.semibold)
                                     }
                             }
-                            .padding()
-                        }
-                        .padding(.bottom, 5)
-                        ZStack{
-                            Shadow
-                            Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                .frame(height: 50)
-                            HStack {
-                                Image(systemName: "lock")
-                                    .foregroundColor(TextColor)
-                                    .font(Font.body.weight(.semibold))
-                                if ShowPassword {
-                                    TextField("", text: $password)
-                                        .frame(height: 20)
+                            if !password.isEmpty {
+                                Button(action: { self.ShowPassword.toggle()}) {
+                                    Image(systemName: "eye")
                                         .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                        .placeholder(when: password.isEmpty) {
-                                            Text("Пароль").foregroundColor(TextColor)
-                                                .fontWeight(.semibold)
-                                        }
-                                } else {
-                                    SecureField("", text: $password)
-                                        .frame(height: 20)
-                                        .foregroundColor(TextColor)
-                                        .font(Font.body.weight(.semibold))
-                                        .placeholder(when: password.isEmpty) {
-                                            Text("Пароль").foregroundColor(HintColor).fontWeight(.semibold)
-                                        }
-                                }
-                                if !password.isEmpty {
-                                    Button(action: { self.ShowPassword.toggle()}) {
-                                        Image(systemName: "eye")
-                                            .foregroundColor(TextColor)
-                                            .font(Font.body.weight(.bold))
-                                    }
+                                        .font(Font.body.weight(.bold))
                                 }
                             }
-                            .padding()
                         }
-                        .padding(.bottom, 20)
+                        .padding()
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.bottom, 20)
                 }
-                HStack{
-                    Button(action: onCommit) {
-                        Text("Войти")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                    }
-                    .background(Capsule().fill(Color.purple).frame(width: screenWidth/2.7, height: 50))
-                    .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
-                    .padding(.top)
-                }
-                .padding(.vertical, 0)
-//                HStack {
-//                    Button(action: {
-//                        withAnimation {
-//                        navigator.SignUp.toggle()
-//                        }
-//                    }) {
-//                        Text("Sign Up")
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(HintColor)
-//                    }
-//                    .background(Capsule().fill(Color.white.opacity(0.8)).frame(width: screenWidth/2.7, height: 50))
-//                    .shadow(color: Color(UIColor(Color.white.opacity(0.8)).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
-//                    .padding()
-//                }
+                .padding(.horizontal, 40)
             }
-            .onChange(of: model.AuthStat, perform: {stat in
-                AuthO.Auth = stat
-            })
-            .onChange(of: password.isEmpty, perform: { stat in
-                if stat {
-                    ShowPassword = false
+            HStack{
+                Button(action: onCommit) {
+                    Text("Войти")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
                 }
-            })
+                .background(Capsule().fill(Color.purple).frame(width: screenWidth/2.7, height: 50))
+                .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
+                .padding(.top)
+            }
+            .padding(.vertical, 0)
+            //                HStack {
+            //                    Button(action: {
+            //                        withAnimation {
+            //                        navigator.SignUp.toggle()
+            //                        }
+            //                    }) {
+            //                        Text("Sign Up")
+            //                            .fontWeight(.semibold)
+            //                            .foregroundColor(HintColor)
+            //                    }
+            //                    .background(Capsule().fill(Color.white.opacity(0.8)).frame(width: screenWidth/2.7, height: 50))
+            //                    .shadow(color: Color(UIColor(Color.white.opacity(0.8)).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
+            //                    .padding()
+            //                }
+        }
+        .onChange(of: model.AuthStat, perform: {stat in
+            AuthO.Auth = stat
+        })
+        .onChange(of: password.isEmpty, perform: { stat in
+            if stat {
+                ShowPassword = false
+            }
+        })
     }
 }
 

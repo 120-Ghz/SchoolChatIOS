@@ -41,11 +41,11 @@ struct SignUpView: View {
             ZStack {
                 VStack {
                     VStack {
-//                        Text("Sign Up")
-//                            .font(Font.custom("helvetica", size: 30))
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(TextColor)
-//                            .padding(.bottom, 70)
+                        //                        Text("Sign Up")
+                        //                            .font(Font.custom("helvetica", size: 30))
+                        //                            .fontWeight(.semibold)
+                        //                            .foregroundColor(TextColor)
+                        //                            .padding(.bottom, 70)
                     }
                     VStack {
                         ZStack {
@@ -132,8 +132,8 @@ struct SignUpView: View {
                                         Capsule().fill( ComparePassword ? Color.green.opacity(0.3) : Color.red.opacity(0.3))
                                             .frame(height: 50)
                                     } else {
-                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                        .frame(height: 50)
+                                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                            .frame(height: 50)
                                     }
                                     HStack {
                                         Image(systemName: "lock")
@@ -254,12 +254,12 @@ struct SignUpView: View {
                 }
                 .onChange(of: password, perform: {val in
                     withAnimation {
-                    ComparePassword = val == password_confirmation
+                        ComparePassword = val == password_confirmation
                     }
                 })
                 .onChange(of: password_confirmation, perform: { val in
                     withAnimation {
-                    ComparePassword = val == password
+                        ComparePassword = val == password
                     }
                 })
                 .onChange(of: password.isEmpty, perform: { stat in

@@ -36,28 +36,28 @@ struct AuthView: View {
                 }
                 Spacer()
                 Spacer()
-                    HStack {
-                        Text("Авторизация")
-                            .fontWeight(.semibold)
-                            .foregroundColor(SignUp ? HintColor : .white)
-                            .padding()
-                            .background(Capsule().fill(Color.purple.opacity(SignUp ? 0 : 1)).frame(height: 50))
-                            .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0 : 0.8)), radius: 8, x: 0, y: 9)
-                        Text("Регистрация")
-                            .fontWeight(.semibold)
-                            .foregroundColor(SignUp ? .white : HintColor)
-                            .padding()
-                            .background(Capsule().fill(Color.purple.opacity(SignUp ? 1 : 0)).frame(height: 50))
-                            .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0.8 : 0)), radius: 8, x: 0, y: 9)
-                        
+                HStack {
+                    Text("Авторизация")
+                        .fontWeight(.semibold)
+                        .foregroundColor(SignUp ? HintColor : .white)
+                        .padding()
+                        .background(Capsule().fill(Color.purple.opacity(SignUp ? 0 : 1)).frame(height: 50))
+                        .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0 : 0.8)), radius: 8, x: 0, y: 9)
+                    Text("Регистрация")
+                        .fontWeight(.semibold)
+                        .foregroundColor(SignUp ? .white : HintColor)
+                        .padding()
+                        .background(Capsule().fill(Color.purple.opacity(SignUp ? 1 : 0)).frame(height: 50))
+                        .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0.8 : 0)), radius: 8, x: 0, y: 9)
+                    
+                }
+                .onTapGesture {
+                    withAnimation {
+                        SignUp.toggle()
                     }
-                    .onTapGesture {
-                        withAnimation {
-                            SignUp.toggle()
-                        }
-                    }
-                    .padding()
-                    .padding(.top, 5)
+                }
+                .padding()
+                .padding(.top, 5)
             }
         }
         .background(LinearGradient(gradient: Gradient(colors: [.white, .purple.opacity(0.2), .yellow.opacity(0.7)]), startPoint: .topTrailing, endPoint: .bottomLeading))
