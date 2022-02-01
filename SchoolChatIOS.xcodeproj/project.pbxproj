@@ -24,6 +24,7 @@
 		EF08E27E275FC69600219285 /* MessengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27D275FC69600219285 /* MessengerView.swift */; };
 		EF08E282275FC6C100219285 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatRow.swift */; };
 		EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF580E1B279DEE1B00E8AF35 /* ChatInfoView.swift */; };
+		EF58FA0827A9C507008644CB /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58FA0727A9C507008644CB /* Other.swift */; };
 		EF59670827A739D700589EC1 /* bcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = EF59670727A739D700589EC1 /* bcrypt.c */; };
 		EF59670A27A7D05700589EC1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF59670927A7D05700589EC1 /* AuthView.swift */; };
 		EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8A277CCCB900C612E2 /* Color.swift */; };
@@ -89,6 +90,7 @@
 		EF08E27D275FC69600219285 /* MessengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerView.swift; sourceTree = "<group>"; };
 		EF08E281275FC6C100219285 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		EF580E1B279DEE1B00E8AF35 /* ChatInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInfoView.swift; sourceTree = "<group>"; };
+		EF58FA0727A9C507008644CB /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		EF59670727A739D700589EC1 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
 		EF59670927A7D05700589EC1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		EF60FE8A277CCCB900C612E2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				EF60FE8A277CCCB900C612E2 /* Color.swift */,
 				EF60FE8C277CCF7700C612E2 /* Date.swift */,
 				EF81573F27A6DF4F003BF2BF /* View.swift */,
+				EF58FA0727A9C507008644CB /* Other.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
 				EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */,
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
+				EF58FA0827A9C507008644CB /* Other.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EF59670A27A7D05700589EC1 /* AuthView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
