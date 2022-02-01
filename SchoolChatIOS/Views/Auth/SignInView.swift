@@ -46,6 +46,8 @@ struct SignInView: View {
     @State var login: String = ""
     @State var password: String = ""
     @State var ShowPassword: Bool = false
+    @State var RedLogin: Bool = false
+    @State var RedPassword: Bool = false
     @ObservedObject var AuthO: AuthObj
     
     var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
@@ -56,6 +58,22 @@ struct SignInView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     
     func onCommit() {
+        var ret = false
+        if (login.isEmpty) {
+            RedLogin = true
+            ret = true
+        } else {
+            RedLogin = false
+        }
+        if (password.isEmpty) {
+            RedPassword = true
+            ret = true
+        } else {
+            RedPassword = false
+        }
+        if ret {
+            return
+        }
         print(screenWidth)
         model.create(data: login.lowercased(), UserInput: password)
     }
@@ -77,8 +95,13 @@ struct SignInView: View {
                 VStack {
                     ZStack{
                         Shadow
+                        if RedLogin {
+                            Capsule().fill(Color.red.opacity(0.3))
+                                .frame(height: 50)
+                        } else {
                         Capsule().strokeBorder(Color.black, lineWidth: 0.001)
                             .frame(height: 50)
+                        }
                         HStack {
                             Image(systemName: "person")
                                 .foregroundColor(TextColor)
@@ -96,8 +119,13 @@ struct SignInView: View {
                     .padding(.bottom, 5)
                     ZStack{
                         Shadow
+                        if RedPassword {
+                            Capsule().fill(Color.red.opacity(0.3))
+                                .frame(height: 50)
+                        } else {
                         Capsule().strokeBorder(Color.black, lineWidth: 0.001)
                             .frame(height: 50)
+                        }
                         HStack {
                             Image(systemName: "lock")
                                 .foregroundColor(TextColor)
@@ -143,6 +171,7 @@ struct SignInView: View {
                 .background(Capsule().fill(Color.purple).frame(width: screenWidth/2.7, height: 50))
                 .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
                 .padding(.top)
+                
             }
             .padding(.vertical, 0)
             //                HStack {

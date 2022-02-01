@@ -120,7 +120,6 @@ struct NewChatView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(Color.blue, lineWidth: 2)
                 )
-            //            Spacer()
             UsersBox()
             bottomButtons()
         }
