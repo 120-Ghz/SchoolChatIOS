@@ -85,12 +85,6 @@ struct SignInView: View {
     
     var body: some View {
         VStack {
-            //                Text("Sign In")
-            //                    .font(Font.custom("helvetica", size: 30))
-            //                    .fontWeight(.semibold)
-            //                    .foregroundColor(TextColor)
-            //                    .padding(.bottom, 70)
-            
             ZStack {
                 VStack {
                     ZStack{
@@ -99,8 +93,8 @@ struct SignInView: View {
                             Capsule().fill(Color.red.opacity(0.3))
                                 .frame(height: 50)
                         } else {
-                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                            .frame(height: 50)
+                            Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                .frame(height: 50)
                         }
                         HStack {
                             Image(systemName: "person")
@@ -123,8 +117,8 @@ struct SignInView: View {
                             Capsule().fill(Color.red.opacity(0.3))
                                 .frame(height: 50)
                         } else {
-                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                            .frame(height: 50)
+                            Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                .frame(height: 50)
                         }
                         HStack {
                             Image(systemName: "lock")
