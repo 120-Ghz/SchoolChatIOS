@@ -27,6 +27,10 @@ class SocketIOManager: SocketIOManagerProtocol {
         }
     }
     
+    func stop_rect_con() {
+        socket.off("connected")
+    }
+    
     func react_register(completionHandler: @escaping ([String: Any]) -> Void) {
         socket.on("register_ans") { data, ack in
             completionHandler(data[0] as! [String: Any])

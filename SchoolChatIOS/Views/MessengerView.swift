@@ -17,9 +17,9 @@ final class MessengerViewModel: ObservableObject {
     
     func create() {
         //        manager.react_con(completionHandler: FillChats)
-        FillChats()
         manager.recieve_chats(completionHandler: FillChats3)
         manager.observeMessages(completionHandler: FillChatsWhenMessageForUser)
+        FillChats()
     }
     
     func FillChats() {
@@ -193,6 +193,8 @@ struct MessengerView: View {
                 .navigationBarItems(trailing: PlusButton)
             }
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
         .onAppear(perform: onAppear)
         .onChange(of: updater.toggler, perform: onChange)
         .onChange(of: updater.Allower, perform: BlockUpdates)

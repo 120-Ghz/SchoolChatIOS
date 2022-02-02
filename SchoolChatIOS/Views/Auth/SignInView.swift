@@ -34,9 +34,10 @@ final class SignInViewModel: ObservableObject {
         }
         
         let data = incoming["data"] as! [String: Any]
-        AuthStat = ComparePasswords(hash: data["password"] as! String)
-        if AuthStat {
+        var stat = ComparePasswords(hash: data["password"] as! String)
+        if stat {
             USER = User(id: Int64(data["id"] as! String)!, name: data["name"] as! String, surname: data["surname"] as! String, school_id: Int64(data["school_id"] as! String)!, class_id: Int64(data["class_id"] as! String)!, email: data["email"] as! String, phone: data["phone"] as! String, avatar: data["picture_url"] as? String ?? "")
+            AuthStat = true
         }
     }
     

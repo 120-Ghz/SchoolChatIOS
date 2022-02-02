@@ -30,12 +30,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        
-        if AuthOb.Auth {
-            MessengerView()
-        } else {
-            AuthView(AuthOb: AuthOb)
-        }
+        AuthView(AuthOb: AuthOb)
     }
 }
 

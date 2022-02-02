@@ -11,6 +11,7 @@ struct AuthView: View {
     
     @State var SignUp = false
     @StateObject var AuthOb: AuthObj
+    @State private var Messenger = false
     
     var HintColor = Color(UIColor(Color(red: 90/255, green: 0, blue: 90/255)).withAlphaComponent(0.7))
     var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
@@ -20,58 +21,64 @@ struct AuthView: View {
     var defaultWidth = 390.0
     
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
-                ZStack {
-                    VStack {
-                        Spacer()
-                        Text(SignUp ? "Регистрация" : "Авторизация")
-                            .font(Font.custom("helvetica", size: 30))
-                            .fontWeight(.semibold)
-                            .foregroundColor(TextColor)
-                            .padding()
-                            
-                        Spacer()
-                        
-                        if SignUp {
-                            SignUpView(AuthOb: AuthOb)
-                        } else {
-                            SignInView(AuthO: AuthOb)
-                        }
-                        Spacer()
-                        Spacer()
-                        HStack {
-                            Text("Авторизация")
+                
+                VStack {
+                    ZStack {
+                        NavigationLink("Messenger", destination: MessengerView(), isActive: $Messenger)
+                        VStack {
+                            Spacer()
+                            Text(SignUp ? "Регистрация" : "Авторизация")
+                                .font(Font.custom("helvetica", size: 30))
                                 .fontWeight(.semibold)
-                                .foregroundColor(SignUp ? HintColor : .white)
+                                .foregroundColor(TextColor)
                                 .padding()
-                                .background(Capsule().fill(SignUp ? Color.white : Color.purple.opacity(SignUp ? 0 : 1)).frame(height: 50))
-                                .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0 : 0.8)), radius: 8, x: 0, y: 9)
-                            Text("Регистрация")
-                                .fontWeight(.semibold)
-                                .foregroundColor(SignUp ? .white : HintColor)
-                                .padding()
-                                .background(Capsule().fill( SignUp ?  Color.purple.opacity(SignUp ? 1 : 0) : Color.white).frame(height: 50))
-                                .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0.8 : 0)), radius: 8, x: 0, y: 9)
                             
-                        }
-                        .onTapGesture {
-                            withAnimation {
-                                SignUp.toggle()
+                            Spacer()
+                            
+                            if SignUp {
+                                SignUpView(AuthOb: AuthOb)
+                            } else {
+                                SignInView(AuthO: AuthOb)
                             }
+                            Spacer()
+                            Spacer()
+                            HStack {
+                                Text("Авторизация")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(SignUp ? HintColor : .white)
+                                    .padding()
+                                    .background(Capsule().fill(SignUp ? Color.white : Color.purple.opacity(SignUp ? 0 : 1)).frame(height: 50))
+                                    .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0 : 0.8)), radius: 8, x: 0, y: 9)
+                                Text("Регистрация")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(SignUp ? .white : HintColor)
+                                    .padding()
+                                    .background(Capsule().fill( SignUp ?  Color.purple.opacity(SignUp ? 1 : 0) : Color.white).frame(height: 50))
+                                    .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0.8 : 0)), radius: 8, x: 0, y: 9)
+                                
+                            }
+                            .onTapGesture {
+                                withAnimation {
+                                    SignUp.toggle()
+                                }
+                            }
+                            .padding()
+                            .padding(.top, 5)
                         }
-                        .padding()
-                        .padding(.top, 5)
                     }
                 }
+                .padding(.bottom, 4)
+                //            .scaleEffect( UIScreen.main.bounds.height < defaultHeight ? UIScreen.main.bounds.height/(defaultHeight*0.9) : 1)
             }
-            .padding(.bottom, 4)
-            .scaleEffect( UIScreen.main.bounds.height < defaultHeight ? UIScreen.main.bounds.height/(defaultHeight*0.9) : 1)
-            .onAppear(perform: {
-                print(UIScreen.main.bounds.width)
+            .onChange(of: AuthOb.Auth, perform: {stat in
+                print(stat)
+                Messenger = stat
             })
+            .background(LinearGradient(gradient: Gradient(colors: [.white, .purple.opacity(0.2), .yellow.opacity(0.7)]), startPoint: .topTrailing, endPoint: .bottomLeading))
         }
-        .background(LinearGradient(gradient: Gradient(colors: [.white, .purple.opacity(0.2), .yellow.opacity(0.7)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+        
     }
 }
 
