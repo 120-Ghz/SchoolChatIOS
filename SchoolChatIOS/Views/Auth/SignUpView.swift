@@ -7,6 +7,38 @@
 
 import SwiftUI
 
+final class SignUpViewModel: ObservableObject {
+    
+    var manager = SocketIOManager()
+    @Published var AuthStat = false
+    @Published var CorrectCode = true
+    
+    func create(data: [String: Any]) {
+        manager.react_register(completionHandler: register_recieve)
+        manager.react_con {
+            self.send_register_data(data: data)
+        }
+        socket.connect()
+    }
+    
+    func register_recieve(incoming: [String: Any]) {
+        print(incoming)
+        if (incoming["stat"] as! String == "CODE") {
+            CorrectCode = false
+            return
+        }
+        let data = incoming["data"] as! [String:Any]
+        
+        USER = User(id: Int64(data["id"] as! String)!, name: data["name"] as! String, surname: data["surname"] as! String, school_id: Int64(data["school_id"] as! String)!, class_id: Int64(data["class_id"] as! String)!, email: data["email"] as! String, phone: data["phone"] as! String, avatar: data["picture_url"] as? String ?? "")
+        AuthStat = true
+    }
+    
+    func send_register_data(data: [String: Any]) {
+        manager.SendRegistrationData(data: data)
+    }
+    
+}
+
 struct SignUpView: View {
     @State var surname: String = ""
     @State var name: String = ""
@@ -24,7 +56,7 @@ struct SignUpView: View {
     @State var RedEmail: Bool = false
     @State var RedPhone: Bool = false
     @State var RedInviteCode: Bool = false
-    
+    @StateObject var model: SignUpViewModel = SignUpViewModel()
     @ObservedObject var AuthOb: AuthObj
     
     var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
@@ -66,7 +98,8 @@ struct SignUpView: View {
         if ret {
             return
         }
-        //        model.create(data: login.lowercased(), UserInput: password)
+        let hashed_password = CryptManagerWrapper().hashPassword(password)
+        model.create(data: ["name": name, "surname": surname, "email": email, "phone": phone, "password": hashed_password!, "invite_code": invite_code])
     }
     
     var Shadow: some View {
@@ -283,6 +316,14 @@ struct SignUpView: View {
                 
                 
             }
+            .onChange(of: model.AuthStat, perform: {stat in
+                AuthOb.Auth = stat
+            })
+            .onChange(of: model.CorrectCode, perform: {stat in
+                    withAnimation{
+                        RedInviteCode = true
+                    }
+            })
             .onChange(of: password, perform: {val in
                 withAnimation {
                     ComparePassword = val == password_confirmation

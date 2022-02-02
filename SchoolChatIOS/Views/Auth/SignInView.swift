@@ -28,6 +28,11 @@ final class SignInViewModel: ObservableObject {
     
     func AuthdataHandler(incoming: [String: Any]) {
         print(incoming)
+        
+        if (incoming["stat"] as! String) != "OK" {
+            return
+        }
+        
         let data = incoming["data"] as! [String: Any]
         AuthStat = ComparePasswords(hash: data["password"] as! String)
         if AuthStat {

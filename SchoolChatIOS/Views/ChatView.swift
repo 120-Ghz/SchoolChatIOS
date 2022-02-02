@@ -59,6 +59,10 @@ final class ChatViewModel: ObservableObject {
     }
     
     func getMessages(incoming: [String:Any]) {
+        if (incoming["stat"] as! String) != "OK" {
+            return
+        }
+        
         let msg = incoming["data"] as! [String: Any]
         if get_msg_index_by_id(id: Int64(msg["id"] as! String)!)  != -1 {
             return

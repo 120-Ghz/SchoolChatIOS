@@ -27,10 +27,16 @@ class SocketIOManager: SocketIOManagerProtocol {
         }
     }
     
+    func react_register(completionHandler: @escaping ([String: Any]) -> Void) {
+        socket.on("register_ans") { data, ack in
+            completionHandler(data[0] as! [String: Any])
+        }
+    }
+    
     func react_users(completionHandler: @escaping (Any) -> Void) {
         socket.on("get_users_school") { data, ack in
             let da = data as! [[String: Any]]
-            completionHandler(da[0]["data"])
+            completionHandler(da[0])
         }
     }
     
@@ -63,8 +69,12 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func observeMessages(completionHandler: @escaping (Message) -> Void) {
         socket.on("msg") { (dataArray, ack) in
-            guard let data = dataArray[0] as? [String: Any] else {return}
-            print(data["user_name"])
+            guard let dat = dataArray[0] as? [String: Any] else {return}
+            if (dat["stat"] as! String) != "OK" {
+                print(dat["stat"])
+                return
+            }
+            let data = dat["data"] as! [String: Any] 
             let msg = Message(id: Int64(data["id"] as! String)!, chat_id: data["chat_id"] as! Int64, user_id: data["user_id"] as! Int64, text: data["text"] as! String, attachments: data["attachments"] as! [String: Any], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["createdAt"] as! String).JSDateToDate(), service: data["service"] as? Bool ?? false, user_name: data["user_name"] as! String, user_pic: data["user_pic_url"] as! String)
             completionHandler(msg)
         }
@@ -105,6 +115,10 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func SendAuthData(data: String) {
         socket.emit("auth-data", ["data": data])
+    }
+    
+    func SendRegistrationData(data: [String: Any]) {
+        socket.emit("register", data)
     }
 }
 

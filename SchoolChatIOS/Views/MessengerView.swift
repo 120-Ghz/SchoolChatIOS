@@ -52,8 +52,13 @@ final class MessengerViewModel: ObservableObject {
         chats.append(chat)
     }
     
-    func FillChats3(incoming: [String:Any]){
+    func FillChats3(inc: [String:Any]){
         //        print(incoming)
+        if (inc["stat"] as! String) != "OK" {
+            return
+        }
+        
+        let incoming = inc["data"] as! [String: Any]
         let chatinfo = incoming["chat"] as! [String: Any]
         let last_msg_info = incoming["last_msg"] as! [String: Any]
         let last_msg_time = (last_msg_info["time"] as! String)

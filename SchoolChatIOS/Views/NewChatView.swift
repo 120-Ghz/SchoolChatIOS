@@ -23,8 +23,12 @@ final class NewChatViewModel: ObservableObject {
         manager.get_users_from_school_id(school_id: school_id)
     }
     
-    func getSchoolUsers(incoming: Any) {
+    func getSchoolUsers(inc: Any) {
         //        let Users = incoming as! [String: Any]
+        if ((inc as! [String: Any])["stat"] as! String) != "OK" {
+            return
+        }
+        let incoming = (inc as! [String: Any])["data"]
         let Users = incoming as! [[String: Any]]
         var counter = 0
         for user in Users {
