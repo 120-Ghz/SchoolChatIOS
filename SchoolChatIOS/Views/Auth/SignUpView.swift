@@ -56,6 +56,7 @@ struct SignUpView: View {
     @State var RedEmail: Bool = false
     @State var RedPhone: Bool = false
     @State var RedInviteCode: Bool = false
+    @State var RedPassword: Bool = false
     @StateObject var model: SignUpViewModel = SignUpViewModel()
     @ObservedObject var AuthOb: AuthObj
     
@@ -95,6 +96,15 @@ struct SignUpView: View {
         } else {
             RedInviteCode = false
         }
+        if password.isEmpty {
+            RedPassword = true
+            ret = true
+        } else {
+            RedPassword = false
+        }
+        if !ComparePassword {
+            return
+        }
         if ret {
             return
         }
@@ -116,8 +126,13 @@ struct SignUpView: View {
                         VStack {
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
+                                if RedSurname {
+                                    Capsule().fill(Color.red.opacity(0.3))
+                                        .frame(height: 50)
+                                } else {
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                }
                                 HStack {
                                     Image(systemName: "person")
                                         .foregroundColor(TextColor)
@@ -135,8 +150,13 @@ struct SignUpView: View {
                             .padding(.bottom, 5)
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
+                                if RedName {
+                                    Capsule().fill(Color.red.opacity(0.3))
+                                        .frame(height: 50)
+                                } else {
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                }
                                 HStack {
                                     Image(systemName: "person")
                                         .foregroundColor(TextColor)
@@ -154,8 +174,13 @@ struct SignUpView: View {
                             .padding(.bottom, 5)
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
+                                if RedEmail {
+                                    Capsule().fill(Color.red.opacity(0.3))
+                                        .frame(height: 50)
+                                } else {
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                }
                                 HStack {
                                     Image(systemName: "envelope")
                                         .foregroundColor(TextColor)
@@ -173,8 +198,13 @@ struct SignUpView: View {
                             .padding(.bottom, 5)
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
+                                if RedPhone {
+                                    Capsule().fill(Color.red.opacity(0.3))
+                                        .frame(height: 50)
+                                } else {
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                }
                                 HStack {
                                     Image(systemName: "phone")
                                         .foregroundColor(TextColor)
@@ -196,8 +226,13 @@ struct SignUpView: View {
                                     Capsule().fill( ComparePassword ? Color.green.opacity(0.3) : Color.red.opacity(0.3))
                                         .frame(height: 50)
                                 } else {
-                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                        .frame(height: 50)
+                                    if RedPassword {
+                                        Capsule().fill(Color.red.opacity(0.3))
+                                            .frame(height: 50)
+                                    } else {
+                                        Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                            .frame(height: 50)
+                                    }
                                 }
                                 HStack {
                                     Image(systemName: "lock")
@@ -273,8 +308,13 @@ struct SignUpView: View {
                             }
                             ZStack{
                                 Shadow
-                                Capsule().strokeBorder(Color.black, lineWidth: 0.001)
-                                    .frame(height: 50)
+                                if RedInviteCode {
+                                    Capsule().fill(Color.red.opacity(0.3))
+                                        .frame(height: 50)
+                                } else {
+                                    Capsule().strokeBorder(Color.black, lineWidth: 0.001)
+                                        .frame(height: 50)
+                                }
                                 HStack {
                                     Image(systemName: "person.text.rectangle")
                                         .foregroundColor(TextColor)
