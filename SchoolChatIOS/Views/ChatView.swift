@@ -30,8 +30,11 @@ final class ChatViewModel: ObservableObject {
     func get_users(incoming: [Any]) {
         for raw in incoming {
             var r = raw as! [Any]
-            var data = r[0] as! [String: Any]
-            let user = User(id: Int64(data["id"] as! String)!, name: data["name"] as! String, surname: data["surname"] as! String, school_id: Int64(data["school_id"] as! String)!, class_id: Int64(data["class_id"] as! String)!, email: data["email"] as! String, phone: data["phone"] as! String, avatar: "")
+            if (r.count == 0) {
+                continue
+            }
+            guard let data = r[0] as? [String: Any] else {continue}
+            let user = User(id: Int64(data["id"] as? String ?? "") ?? 0, name: data["name"] as? String ?? "", surname: data["surname"] as? String ?? "", school_id: Int64(data["school_id"] as? String ?? "") ?? 0, class_id: Int64(data["class_id"] as? String ?? "") ?? 0, email: data["email"] as? String ?? "", phone: data["phone"] as? String ?? "", avatar: data["picture_url"] as? String ?? "")
             if (!Users.contains(user)) {
                 Users.append(user)
             }
@@ -39,7 +42,10 @@ final class ChatViewModel: ObservableObject {
     }
     private func NewMsg(incoming: Message) {
         if (incoming.chat_id == chat_id) && (!incoming.deleted_all) {
-            if get_msg_index_by_id(id: incoming.id) != -1 { return }
+            if get_msg_index_by_id(id: incoming.id) != -1 {
+                print("bug")
+                return
+            }
             messages.append(incoming)
             messages = messages.sorted { return $0.id < $1.id }
             scroll.toggle()
@@ -53,7 +59,10 @@ final class ChatViewModel: ObservableObject {
     private func get_msg_index_by_id(id: Int64) -> Int {
         if messages.count == 0 { return -1 }
         for i in 0...messages.count-1 {
-            if messages[i].id == id { return i }
+            if messages[i].id == id  {
+                return i
+                
+            }
         }
         return -1
     }
@@ -67,7 +76,7 @@ final class ChatViewModel: ObservableObject {
         if get_msg_index_by_id(id: Int64(msg["id"] as! String)!)  != -1 {
             return
         }
-        messages.append(Message(id: Int64(msg["id"] as! String)!, chat_id: Int64(msg["chat_id"] as! String)!, user_id: Int64(msg["user_id"] as! String)!, text: msg["text"] as! String, attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["createdAt"] as! String).JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: msg["user_name"] as! String, user_pic: msg["user_pic_url"] as! String))
+        messages.append(Message(id: Int64(msg["id"] as? String ?? "") ?? 0, chat_id: Int64(msg["chat_id"] as? String ?? "") ?? 0, user_id: Int64(msg["user_id"] as? String ?? "") ?? 0, text: msg["text"] as? String ?? "", attachments: msg["attachments"] as? [String:Any] ?? [:], deleted_all: msg["deleted_all"] as? Bool ?? false, deleted_user: msg["deleted_user"] as? Bool ?? false, edited: msg["edited"] as? Bool ?? false, time: (msg["createdAt"] as? String ?? "").JSDateToDate(), service: msg["service"] as? Bool ?? false, user_name: msg["user_name"] as? String ?? "", user_pic: msg["user_pic_url"] as? String ?? ""))
         messages = messages.sorted { return $0.id < $1.id }
         scroll.toggle()
     }
@@ -109,6 +118,7 @@ struct ChatView: View {
     }
     
     private func send_button() {
+        print("ABOBA")
         if !message.isEmpty {
             model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: false, user_name: "", user_pic: ""))
             message = ""
