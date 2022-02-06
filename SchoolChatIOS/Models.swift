@@ -9,19 +9,19 @@ import Foundation
 import SwiftUI
 
 struct Message: Identifiable {
-    let InternalId = UUID()
-    let id: Int64
-    let chat_id: Int64
-    let user_id: Int64
-    let text: String
-    let attachments: [String: Any]
-    let deleted_all: Bool
-    let deleted_user: Bool
-    let edited: Bool
-    let time: Date
-    let service: Bool
-    let user_name: String
-    let user_pic: String
+    var InternalId = UUID()
+    var id: Int64
+    var chat_id: Int64
+    var user_id: Int64
+    var text: String
+    var attachments: [String: Any]
+    var deleted_all: Bool
+    var deleted_user: Bool
+    var edited: Bool
+    var time: Date
+    var service: Bool
+    var user_name: String
+    var user_pic: String
 }
 
 struct User: Identifiable, Equatable {

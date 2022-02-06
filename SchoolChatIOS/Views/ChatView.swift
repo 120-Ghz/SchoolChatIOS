@@ -21,6 +21,7 @@ final class ChatViewModel: ObservableObject {
         manager.recieve_chat_msgs(completionHandler: getMessages)
         manager.recieve_chat_users(completionHandler: get_users)
         manager.message_deleted(completionHandler: deletedMessageHandler)
+        manager.message_edited(completionHandler: editedMessageHandler)
         request_users()
     }
     
@@ -31,7 +32,26 @@ final class ChatViewModel: ObservableObject {
         guard let data = incoming["data"] as? [String: Any] else {return}
         guard let id = data["id"] as? Int64 else {return}
         let index = get_msg_index_by_id(id: id)
+        if index == -1 {
+            return
+        }
         messages.remove(at: index)
+    }
+    
+    func editedMessageHandler(incoming: [String: Any]) {
+        if (incoming["stat"] as? String ?? "" != "OK") {
+            return
+        }
+        guard let data = incoming["data"] as? [String: Any] else {return}
+        let id = Int64(data["id"] as? String ?? "") ?? 0
+        let index = get_msg_index_by_id(id: id)
+        if index == -1 {
+            return
+        }
+        messages[index].edited = true
+        messages[index].attachments = data["attachments"] as? [String: Any] ?? [:]
+        messages[index].text = data["text"] as? String ?? messages[index].text
+        messages[index].time = (data["updatedAt"] as? String ?? "").JSDateToDate()
     }
     
     func request_users() {
@@ -103,6 +123,10 @@ final class ChatViewModel: ObservableObject {
     func delete_message_for_user(id: Int64) {
         manager.delete_msg_for_user(id: id)
     }
+    
+    func edit_message(id: Int64) {
+        manager.edit_msg(id: id)
+    }
 }
 
 struct ChatView: View {
@@ -172,9 +196,20 @@ struct ChatView: View {
         }
     }
     
+    private func edit(msg: Message) {
+        // TODO: editing message context menu
+        model.edit_message(id: msg.id)
+    }
+    
     private func ctxMenu(message: Message) -> some View {
-        return
-        Group {
+        return Group {
+            
+            Button(action: {
+                edit(msg: message)
+            }) {
+                contextButton(text: "Edit", img: "pencil")
+            }
+            
             Button(action: {
                 reply(msg: message)
             }) {

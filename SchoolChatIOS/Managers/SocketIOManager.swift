@@ -91,6 +91,13 @@ class SocketIOManager: NSObject {
         }
     }
     
+    func message_edited(completionHandler: @escaping ([String: Any]) -> Void) {
+        socket.on("message-edited") { (dataArr, ack) in
+            guard let data = dataArr[0] as? [String: Any] else {return}
+            completionHandler(data)
+        }
+    }
+    
     func get_chat_ids(user_id: Int64){
         socket.emit("chats", ["user_id": user_id])
     }
@@ -138,6 +145,10 @@ class SocketIOManager: NSObject {
     
     func delete_msg_for_user(id: Int64) {
         socket.emit("delete-msg-user", ["msg_id": id])
+    }
+    
+    func edit_msg(id: Int64) {
+        socket.emit("edit-msg", ["msg_id": id, "requester_id": USER?.id])
     }
 }
 
