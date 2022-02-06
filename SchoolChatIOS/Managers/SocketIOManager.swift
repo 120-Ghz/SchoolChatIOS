@@ -8,7 +8,7 @@
 import Foundation
 import SocketIO
 
-class SocketIOManager: SocketIOManagerProtocol {
+class SocketIOManager: NSObject {
     // Connect and Disconnect
     
     func establishConnection() {
@@ -59,14 +59,14 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func recieve_chat_msgs(completionHandler: @escaping ([String:Any]) -> Void){
         socket.on("chat-message-recieve") { (data, ack) in
-            
-            completionHandler(data[0] as! [String:Any])
+            guard let r = data[0] as? [String:Any] else {return}
+            completionHandler(r)
         }
     }
     
     func recieve_auth_data(completionHandler: @escaping ([String:Any]) -> Void) {
         socket.on("auth-recieve") { (data, ack) in
-            let incoming = data[0] as! [String: Any]
+            guard let incoming = data[0] as? [String: Any] else {return}
             completionHandler(incoming)
         }
     }
@@ -81,6 +81,13 @@ class SocketIOManager: SocketIOManagerProtocol {
             
             let msg = Message(id: Int64(data["id"] as? String ?? "") ?? 0, chat_id: data["chat_id"] as? Int64 ?? 0, user_id: data["user_id"] as? Int64 ?? 0, text: data["text"] as? String ?? "", attachments: data["attachments"] as? [String: Any] ?? [:], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["createdAt"] as? String ?? "").JSDateToDate(), service: data["service"] as? Bool ?? false, user_name: data["user_name"] as? String ?? "", user_pic: data["user_pic_url"] as? String ?? "")
             completionHandler(msg)
+        }
+    }
+    
+    func message_deleted(completionHandler: @escaping ([String:Any]) -> Void) {
+        socket.on("message-deleted") { (dataArr, ack) in
+            guard let data = dataArr[0] as? [String: Any] else {return}
+            completionHandler(data)
         }
     }
     
@@ -123,6 +130,14 @@ class SocketIOManager: SocketIOManagerProtocol {
     
     func SendRegistrationData(data: [String: Any]) {
         socket.emit("register", data)
+    }
+    
+    func delete_msg_for_all(id: Int64) {
+        socket.emit("delete-msg-all", ["msg_id": id, "requester_id": USER?.id])
+    }
+    
+    func delete_msg_for_user(id: Int64) {
+        socket.emit("delete-msg-user", ["msg_id": id])
     }
 }
 

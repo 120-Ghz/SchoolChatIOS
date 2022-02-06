@@ -20,7 +20,18 @@ final class ChatViewModel: ObservableObject {
         manager.observeMessages(completionHandler: NewMsg)
         manager.recieve_chat_msgs(completionHandler: getMessages)
         manager.recieve_chat_users(completionHandler: get_users)
+        manager.message_deleted(completionHandler: deletedMessageHandler)
         request_users()
+    }
+    
+    func deletedMessageHandler(incoming: [String: Any]) {
+        if (incoming["stat"] as? String ?? "" != "OK") {
+            return
+        }
+        guard let data = incoming["data"] as? [String: Any] else {return}
+        guard let id = data["id"] as? Int64 else {return}
+        let index = get_msg_index_by_id(id: id)
+        messages.remove(at: index)
     }
     
     func request_users() {
@@ -84,6 +95,14 @@ final class ChatViewModel: ObservableObject {
     func requestMessages() {
         manager.requestChatMsgs(user_id: USER!.id, chat_id: chat_id)
     }
+    
+    func delete_message_for_all(id: Int64) {
+        manager.delete_msg_for_all(id: id)
+    }
+    
+    func delete_message_for_user(id: Int64) {
+        manager.delete_msg_for_user(id: id)
+    }
 }
 
 struct ChatView: View {
@@ -146,7 +165,11 @@ struct ChatView: View {
     }
     
     private func delete(for_all: Bool, msg: Message) {
-        print("delete")
+        if for_all {
+            model.delete_message_for_all(id: msg.id)
+        } else {
+            model.delete_message_for_user(id: msg.id)
+        }
     }
     
     private func ctxMenu(message: Message) -> some View {
