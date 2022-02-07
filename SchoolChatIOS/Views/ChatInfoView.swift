@@ -10,9 +10,17 @@ import SwiftUI
 struct ChatInfoView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var query: String = ""
     
     var chat: Chat
     var users: [User]
+    
+    func getSortedFilteredUsers() -> [User] {
+        if query == "" {
+            return users
+        }
+        return users.filter {$0.name.lowercased().contains(query.lowercased()) || $0.surname.lowercased().contains(query.lowercased())}
+    }
     
     func onAppear() {
         
@@ -20,20 +28,27 @@ struct ChatInfoView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                ChatPicture(chat: chat, frameRadius: 100)
-                Spacer()
-            }
+            ChatPicture(chat: chat, frameRadius: 150)
+                .padding()
             Text(chat.name)
+                .font(.title)
                 .padding()
             // TODO: Chat members count
+            Divider()
+            TextField("Найти пользователей", text: $query)
+                .padding(.vertical, 4)
+                .padding(.horizontal)
+                .background(Capsule().fill(Color.gray.opacity(0.2)))
+                .padding(.horizontal)
             List {
-                ForEach(users) { user in
+                ForEach(getSortedFilteredUsers()) { user in
                     UserRow(user: user, selected: false)
                 }
             }
-        }.onAppear(perform: onAppear)
+            .listStyle(PlainListStyle())
+        }
+        .navigationBarTitle("", displayMode: .inline)
+        .onAppear(perform: onAppear)
     }
 }
 

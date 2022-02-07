@@ -147,52 +147,52 @@ struct MessengerView: View {
     var body: some View {
         VStack {
             NavigationView {
-                List {
-                    ForEach(model.getSortedFilteredChats(query: query)) { chat in
-                        Row(chat: chat)
-                            .listRowBackground(Color.clear)
-                            .swipeActions(edge: .trailing) {
-                                
-                                if (chat.creator == USER!.id) {
+                    List {
+                        ForEach(model.getSortedFilteredChats(query: query)) { chat in
+                            Row(chat: chat)
+                                .listRowBackground(Color.clear)
+                                .swipeActions(edge: .trailing) {
+                                    
+                                    if (chat.creator == USER!.id) {
+                                        Button(action: {
+                                            ConfirmDelete = true
+                                        }) {
+                                            VStack {
+                                                Image(systemName: "trash")
+                                                Text("Delete")
+                                            }
+                                        }.tint(.red)
+                                    }
+                                    
                                     Button(action: {
-                                        ConfirmDelete = true
+                                        ConfirmLeave = true
                                     }) {
                                         VStack {
-                                            Image(systemName: "trash")
-                                            Text("Delete")
+                                            Image(systemName: "")
+                                            Text("Leave")
                                         }
-                                    }.tint(.red)
-                                }
-                                
-                                Button(action: {
-                                    ConfirmLeave = true
-                                }) {
-                                    VStack {
-                                        Image(systemName: "")
-                                        Text("Leave")
                                     }
+                                    .tint(.blue)
                                 }
-                                .tint(.blue)
-                            }
-                            .confirmationDialog("Are you sure?", isPresented: $ConfirmLeave, titleVisibility: .visible) {
-                                Button("Yes", role: .destructive) {
-                                    LeaveChat(chat: chat)
+                                .confirmationDialog("Are you sure?", isPresented: $ConfirmLeave, titleVisibility: .visible) {
+                                    Button("Yes", role: .destructive) {
+                                        LeaveChat(chat: chat)
+                                    }
+                                    Button("Cancel", role: .cancel) {}
                                 }
-                                Button("Cancel", role: .cancel) {}
-                            }
-                            .confirmationDialog("Are you sure you want delete \(chat.name)?", isPresented: $ConfirmDelete, titleVisibility: .visible) {
-                                Button("Yes", role: .destructive) {
-                                    DeleteChat(chat: chat)
+                                .confirmationDialog("Are you sure you want delete \(chat.name)?", isPresented: $ConfirmDelete, titleVisibility: .visible) {
+                                    Button("Yes", role: .destructive) {
+                                        DeleteChat(chat: chat)
+                                    }
+                                    Button("Cancel", role: .cancel) {}
                                 }
-                                Button("Cancel", role: .cancel) {}
-                            }
+                        }
                     }
-                }
-                .listStyle(PlainListStyle())
-                .searchable(text: $query)
-                .navigationBarTitle("Chats", displayMode: .inline)
-                .navigationBarItems(trailing: PlusButton)
-                .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+                    .listStyle(PlainListStyle())
+                    .searchable(text: $query)
+                    .navigationBarTitle("Chats", displayMode: .inline)
+                    .navigationBarItems(trailing: PlusButton)
+                    .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
             }
         }
         .navigationBarTitle("")
