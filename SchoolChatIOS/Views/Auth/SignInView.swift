@@ -11,6 +11,8 @@ final class SignInViewModel: ObservableObject {
     
     var manager = SocketIOManager()
     @Published var AuthStat = false
+    @Published var WrongPassword = false
+    @Published var NoUser = false
     @Published var UserPassword = ""
     
     func create(data: String, UserInput: String) {
@@ -30,7 +32,7 @@ final class SignInViewModel: ObservableObject {
         print(incoming)
         
         if (incoming["stat"] as! String) != "OK" {
-            return
+            NoUser = true
         }
         
         let data = incoming["data"] as! [String: Any]
@@ -38,6 +40,8 @@ final class SignInViewModel: ObservableObject {
         if stat {
             USER = User(id: Int64(data["id"] as! String)!, name: data["name"] as! String, surname: data["surname"] as! String, school_id: Int64(data["school_id"] as! String)!, class_id: Int64(data["class_id"] as! String)!, email: data["email"] as! String, phone: data["phone"] as! String, avatar: data["picture_url"] as? String ?? "")
             AuthStat = true
+        } else {
+            WrongPassword = true
         }
     }
     
@@ -184,6 +188,12 @@ struct SignInView: View {
             if stat {
                 ShowPassword = false
             }
+        })
+        .onChange(of: model.WrongPassword, perform: { stat in
+            AuthO.WrongPassword = stat
+        })
+        .onChange(of: model.NoUser, perform: {stat in
+            AuthO.NoUser = stat
         })
     }
 }

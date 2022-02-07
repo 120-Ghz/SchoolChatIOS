@@ -123,7 +123,7 @@ struct SignUpView: View {
             ZStack {
                 VStack(spacing: 0.0) {
                     ZStack {
-                        VStack(spacing: 3) {
+                        VStack(spacing: 5) {
                             ZStack{
                                 Shadow
                                 if RedSurname {

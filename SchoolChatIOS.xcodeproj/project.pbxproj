@@ -31,6 +31,7 @@
 		EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8C277CCF7700C612E2 /* Date.swift */; };
 		EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE90277F79CF00C612E2 /* NewChatView.swift */; };
 		EF7FBBD627B13158004D48DD /* MessageEditingMiniTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7FBBD527B13158004D48DD /* MessageEditingMiniTable.swift */; };
+		EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7FBBD727B132D1004D48DD /* AuthObject.swift */; };
 		EF81574027A6DF4F003BF2BF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81573F27A6DF4F003BF2BF /* View.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
 		EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */; };
@@ -97,6 +98,7 @@
 		EF60FE8C277CCF7700C612E2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EF60FE90277F79CF00C612E2 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
 		EF7FBBD527B13158004D48DD /* MessageEditingMiniTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEditingMiniTable.swift; sourceTree = "<group>"; };
+		EF7FBBD727B132D1004D48DD /* AuthObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObject.swift; sourceTree = "<group>"; };
 		EF81573F27A6DF4F003BF2BF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				EFDD1D3D276D0514000BDE25 /* Chat-Messenger_Navigation.swift */,
+				EF7FBBD727B132D1004D48DD /* AuthObject.swift */,
 			);
 			path = StateObjects;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF58FA0827A9C507008644CB /* Other.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
+				EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */,
 				EF59670A27A7D05700589EC1 /* AuthView.swift in Sources */,
 				EFA535812778C569005A2502 /* String.swift in Sources */,
 				EFA5874A27A597EE00D39553 /* CryptManagerWrapper.mm in Sources */,

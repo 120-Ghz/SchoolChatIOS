@@ -21,9 +21,8 @@ struct MessageView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 4)
-                .background(message.user_id == USER?.id ? Color.blue : Color.gray)
+                .background(Capsule().fill(message.user_id == USER?.id ? Color.blue : Color.gray))
                 .foregroundColor(message.user_id == USER?.id ? Color.white : Color.black)
-                .cornerRadius(25)
             
             if message.user_id != USER?.id {
                 Spacer()
@@ -40,8 +39,7 @@ struct MessageView: View {
                 .padding(.vertical, 4)
                 .padding(.horizontal, 12)
                 .foregroundColor(.black)
-                .background(Color.green)
-                .cornerRadius(25)
+                .background(Capsule().fill(Color.green))
             Spacer()
         }
     }

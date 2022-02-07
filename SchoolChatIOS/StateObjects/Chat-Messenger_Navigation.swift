@@ -11,7 +11,3 @@ class NavigationBeetweenChats: ObservableObject {
     @Published var toggler: Bool = false
     @Published var Allower: Bool = true
 }
-
-class AuthObj: ObservableObject {
-    @Published var Auth: Bool = false
-}
