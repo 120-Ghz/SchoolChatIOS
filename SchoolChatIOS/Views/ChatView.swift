@@ -275,6 +275,7 @@ struct ChatView: View {
                     }
                 }
             }
+            .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
             if (chat.left) {
                 Text("You cannot send messages to this channel")
             } else {
@@ -285,20 +286,20 @@ struct ChatView: View {
                     HStack {
                         TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
                             .padding(10)
-                            .background(Color.secondary.opacity(0.2))
-                            .cornerRadius(5)
+                            .background(Capsule().fill(Color.gray.opacity(0.3)))
+                            .padding(.horizontal)
                         Button(action: send_button) {
                             Image(systemName: "arrow.turn.up.right")
                                 .font(.system(size: 20))
                         }
-                        .padding()
+                        .padding(.horizontal)
                         .disabled(message.isEmpty)
                     }
-                    .padding()
+                    .padding(.top)
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
         .navigationBarItems(leading: leadingBtn)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

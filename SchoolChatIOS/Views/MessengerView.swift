@@ -150,6 +150,7 @@ struct MessengerView: View {
                 List {
                     ForEach(model.getSortedFilteredChats(query: query)) { chat in
                         Row(chat: chat)
+                            .listRowBackground(Color.clear)
                             .swipeActions(edge: .trailing) {
                                 
                                 if (chat.creator == USER!.id) {
@@ -191,10 +192,14 @@ struct MessengerView: View {
                 .searchable(text: $query)
                 .navigationBarTitle("Chats", displayMode: .inline)
                 .navigationBarItems(trailing: PlusButton)
+                .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
             }
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .background(Color.purple)
         .onAppear(perform: onAppear)
         .onChange(of: updater.toggler, perform: onChange)
         .onChange(of: updater.Allower, perform: BlockUpdates)

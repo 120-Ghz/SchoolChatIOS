@@ -84,7 +84,7 @@ struct AuthView: View {
                 .navigationBarHidden(true)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
-                .background(LinearGradient(gradient: Gradient(colors: [.white, .purple.opacity(0.2), .yellow.opacity(0.7)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+                .background(LinearGradient(gradient: Gradient(colors: [.white, .purple.opacity(0.2), .cyan.opacity(0.5)]), startPoint: .topTrailing, endPoint: .bottomLeading))
                 
             }
         }

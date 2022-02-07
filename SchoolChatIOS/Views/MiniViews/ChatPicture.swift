@@ -34,7 +34,7 @@ struct ChatPicture: View {
         VStack {
             ZStack {
                 Circle()
-                    .fill(Color.green)
+                    .fill(Color.purple)
                     .frame(width: frameRadius, height: frameRadius)
                 
                 if chat.picture_url.space_deleter() == "" {
