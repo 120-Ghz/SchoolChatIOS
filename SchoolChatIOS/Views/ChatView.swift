@@ -296,6 +296,7 @@ struct ChatView: View {
                         .disabled(message.isEmpty)
                     }
                     .padding(.top)
+                    .opacity(0.8)
                 }
             }
         }
