@@ -30,6 +30,7 @@
 		EF60FE8B277CCCB900C612E2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8A277CCCB900C612E2 /* Color.swift */; };
 		EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE8C277CCF7700C612E2 /* Date.swift */; };
 		EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60FE90277F79CF00C612E2 /* NewChatView.swift */; };
+		EF7FBBD627B13158004D48DD /* MessageEditingMiniTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7FBBD527B13158004D48DD /* MessageEditingMiniTable.swift */; };
 		EF81574027A6DF4F003BF2BF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81573F27A6DF4F003BF2BF /* View.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
 		EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */; };
@@ -95,6 +96,7 @@
 		EF60FE8A277CCCB900C612E2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EF60FE8C277CCF7700C612E2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EF60FE90277F79CF00C612E2 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
+		EF7FBBD527B13158004D48DD /* MessageEditingMiniTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEditingMiniTable.swift; sourceTree = "<group>"; };
 		EF81573F27A6DF4F003BF2BF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				EF08E27B275FC67500219285 /* MessageView.swift */,
 				EFA535822778C9F9005A2502 /* ChatPicture.swift */,
 				EF8EE7AA27996CB4003A0D5C /* UserRow.swift */,
+				EF7FBBD527B13158004D48DD /* MessageEditingMiniTable.swift */,
 			);
 			path = MiniViews;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
 				EFA5872F27A5923C00D39553 /* wrapper.c in Sources */,
+				EF7FBBD627B13158004D48DD /* MessageEditingMiniTable.swift in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
 				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,

@@ -48,10 +48,12 @@ final class ChatViewModel: ObservableObject {
         if index == -1 {
             return
         }
-        messages[index].edited = true
-        messages[index].attachments = data["attachments"] as? [String: Any] ?? [:]
-        messages[index].text = data["text"] as? String ?? messages[index].text
-        messages[index].time = (data["updatedAt"] as? String ?? "").JSDateToDate()
+        withAnimation {
+            messages[index].edited = true
+            messages[index].attachments = data["attachments"] as? [String: Any] ?? [:]
+            messages[index].text = data["text"] as? String ?? messages[index].text
+            messages[index].time = (data["updatedAt"] as? String ?? "").JSDateToDate()
+        }
     }
     
     func request_users() {
@@ -124,8 +126,8 @@ final class ChatViewModel: ObservableObject {
         manager.delete_msg_for_user(id: id)
     }
     
-    func edit_message(id: Int64) {
-        manager.edit_msg(id: id)
+    func edit_message(id: Int64, text: String) {
+        manager.edit_msg(id: id, text: text)
     }
 }
 
@@ -136,7 +138,8 @@ struct ChatView: View {
     @StateObject private var model: ChatViewModel = ChatViewModel()
     @State private var lastMessageUUID: UUID?
     @State private var isFirst: Bool = true
-    
+    @State private var editing: Bool = false
+    @State private var EditingMessage: Message?
     @State var LinkToInfo = false
     
     var chat: Chat
@@ -162,6 +165,10 @@ struct ChatView: View {
     
     private func send_button() {
         print("ABOBA")
+        if editing {
+            edit()
+            return
+        }
         if !message.isEmpty {
             model.sendMessage(message: Message(id: Int64(model.messages.count), chat_id: model.chat_id, user_id: USER?.id ?? 0, text: message, attachments: [:], deleted_all: false, deleted_user: false, edited: false, time: Date.now, service: false, user_name: "", user_pic: ""))
             message = ""
@@ -196,40 +203,46 @@ struct ChatView: View {
         }
     }
     
-    private func edit(msg: Message) {
-        // TODO: editing message context menu
-        model.edit_message(id: msg.id)
+    private func edit() {
+        model.edit_message(id: EditingMessage!.id, text: message)
+        editing = false
+        message = ""
     }
     
-    private func ctxMenu(message: Message) -> some View {
+    private func ctxMenu(msg: Message) -> some View {
         return Group {
             
-            Button(action: {
-                edit(msg: message)
-            }) {
-                contextButton(text: "Edit", img: "pencil")
+            if (msg.user_id == USER?.id && !chat.left) {
+                Button(action: {
+                    editing = true
+                    message = msg.text
+                    EditingMessage = msg
+                }) {
+                    contextButton(text: "Edit", img: "pencil")
+                }
+            }
+            if (!chat.left) {
+                Button(action: {
+                    reply(msg: msg)
+                }) {
+                    contextButton(text: "Reply", img: "arrowshape.turn.up.right")
+                }
             }
             
             Button(action: {
-                reply(msg: message)
-            }) {
-                contextButton(text: "Reply", img: "arrowshape.turn.up.right")
-            }
-            
-            Button(action: {
-                copy(msg: message)
+                copy(msg: msg)
             }) {
                 contextButton(text: "Copy", img: "doc.on.doc")
             }
             
             Button(role: .destructive) {
-                delete(for_all: false, msg: message)
+                delete(for_all: false, msg: msg)
             } label: {
                 contextButton(text: "Delete for me", img: "trash")
             }
-            if (message.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) {
+            if ((msg.user_id == USER?.id || chat.creator == USER?.id || chat.admins.contains(USER!.id)) && !chat.left){
                 Button(role: .destructive) {
-                    delete(for_all: true, msg: message)
+                    delete(for_all: true, msg: msg)
                 } label: {
                     contextButton(text: "Delete for all", img: "trash")
                 }
@@ -241,7 +254,7 @@ struct ChatView: View {
         ForEach(model.messages) { message in
             Spacer()
                 .frame(height: 2)
-            MessageView(message: message, ctxmenu: AnyView(ctxMenu(message: message)))
+            MessageView(message: message, ctxmenu: AnyView(ctxMenu(msg: message)))
                 .id(message.InternalId)
         }
     }
@@ -265,19 +278,24 @@ struct ChatView: View {
             if (chat.left) {
                 Text("You cannot send messages to this channel")
             } else {
-                HStack {
-                    TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
-                        .padding(10)
-                        .background(Color.secondary.opacity(0.2))
-                        .cornerRadius(5)
-                    Button(action: send_button) {
-                        Image(systemName: "arrow.turn.up.right")
-                            .font(.system(size: 20))
+                VStack {
+                    if editing {
+                        MessageEditingMiniTable()
+                    }
+                    HStack {
+                        TextField("Message", text: $message, onEditingChanged: {_ in}, onCommit: send_button)
+                            .padding(10)
+                            .background(Color.secondary.opacity(0.2))
+                            .cornerRadius(5)
+                        Button(action: send_button) {
+                            Image(systemName: "arrow.turn.up.right")
+                                .font(.system(size: 20))
+                        }
+                        .padding()
+                        .disabled(message.isEmpty)
                     }
                     .padding()
-                    .disabled(message.isEmpty)
                 }
-                .padding()
             }
         }
         .navigationBarTitleDisplayMode(.inline)

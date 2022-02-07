@@ -21,14 +21,6 @@ struct ContentView: View {
     
     @StateObject var AuthOb: AuthObj = AuthObj()
     
-    private func onAppear(){
-        socket.connect()
-    }
-    
-    private func onDisappear(){
-        socket.disconnect()
-    }
-    
     var body: some View {
         AuthView(AuthOb: AuthOb)
     }

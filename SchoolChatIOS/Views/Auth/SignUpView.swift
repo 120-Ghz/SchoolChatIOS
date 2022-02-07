@@ -121,9 +121,9 @@ struct SignUpView: View {
         
         VStack{
             ZStack {
-                VStack {
+                VStack(spacing: 0.0) {
                     ZStack {
-                        VStack {
+                        VStack(spacing: 3) {
                             ZStack{
                                 Shadow
                                 if RedSurname {
@@ -147,7 +147,7 @@ struct SignUpView: View {
                                 .padding()
                                 .padding(.top, 0)
                             }
-                            .padding(.bottom, 5)
+                            
                             ZStack{
                                 Shadow
                                 if RedName {
@@ -171,7 +171,7 @@ struct SignUpView: View {
                                 .padding()
                                 .padding(.top, 0)
                             }
-                            .padding(.bottom, 5)
+                            
                             ZStack{
                                 Shadow
                                 if RedEmail {
@@ -195,7 +195,7 @@ struct SignUpView: View {
                                 .padding()
                                 .padding(.top, 0)
                             }
-                            .padding(.bottom, 5)
+                            
                             ZStack{
                                 Shadow
                                 if RedPhone {
@@ -219,7 +219,7 @@ struct SignUpView: View {
                                 .padding()
                                 .padding(.top, 0)
                             }
-                            .padding(.bottom, 5)
+                            
                             ZStack{
                                 Shadow
                                 if ShouldShowConfirmation {
@@ -266,7 +266,7 @@ struct SignUpView: View {
                                 .padding()
                                 .padding(.top, 0)
                             }
-                            .padding(.bottom, 5)
+                            
                             if ShouldShowConfirmation {
                                 ZStack{
                                     Shadow
@@ -304,7 +304,7 @@ struct SignUpView: View {
                                     .padding()
                                     .padding(.top, 0)
                                 }
-                                .padding(.bottom, 5)
+                                
                             }
                             ZStack{
                                 Shadow
@@ -335,15 +335,14 @@ struct SignUpView: View {
                     }
                     
                     Button(action: onCommit) {
-                        Text("Зарегистрироваться")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding()
+                            Text("Зарегистрироваться")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Capsule().fill(Color.purple).frame(height: 50))
+                                .padding(.horizontal)
+                        
                     }
-                    .padding()
-                    .padding(.top, 0)
-                    .padding(.bottom, 0)
-                    .background(Capsule().fill(Color.purple).frame(height: 50))
                     .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
                     
                     if (!ShouldShowConfirmation) {
@@ -352,17 +351,14 @@ struct SignUpView: View {
                     }
                     
                 }
-                .fixedSize(horizontal: false, vertical: true)
-                
-                
             }
             .onChange(of: model.AuthStat, perform: {stat in
                 AuthOb.Auth = stat
             })
             .onChange(of: model.CorrectCode, perform: {stat in
-                    withAnimation{
-                        RedInviteCode = true
-                    }
+                withAnimation{
+                    RedInviteCode = true
+                }
             })
             .onChange(of: password, perform: {val in
                 withAnimation {

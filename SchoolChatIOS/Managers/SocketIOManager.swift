@@ -79,7 +79,7 @@ class SocketIOManager: NSObject {
             }
             let data = dat["data"] as! [String: Any]
             
-            let msg = Message(id: Int64(data["id"] as? String ?? "") ?? 0, chat_id: data["chat_id"] as? Int64 ?? 0, user_id: data["user_id"] as? Int64 ?? 0, text: data["text"] as? String ?? "", attachments: data["attachments"] as? [String: Any] ?? [:], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["createdAt"] as? String ?? "").JSDateToDate(), service: data["service"] as? Bool ?? false, user_name: data["user_name"] as? String ?? "", user_pic: data["user_pic_url"] as? String ?? "")
+            let msg = Message(id: (data["id"] as? Int64 ?? 0), chat_id: data["chat_id"] as? Int64 ?? 0, user_id: data["user_id"] as? Int64 ?? 0, text: data["text"] as? String ?? "", attachments: data["attachments"] as? [String: Any] ?? [:], deleted_all: data["deleted_all"] as? Bool ?? false, deleted_user: data["deleted_user"] as? Bool ?? false, edited: data["edited"] as? Bool ?? false, time: (data["createdAt"] as? String ?? "").JSDateToDate(), service: data["service"] as? Bool ?? false, user_name: data["user_name"] as? String ?? "", user_pic: data["user_pic_url"] as? String ?? "")
             completionHandler(msg)
         }
     }
@@ -147,8 +147,8 @@ class SocketIOManager: NSObject {
         socket.emit("delete-msg-user", ["msg_id": id])
     }
     
-    func edit_msg(id: Int64) {
-        socket.emit("edit-msg", ["msg_id": id, "requester_id": USER?.id])
+    func edit_msg(id: Int64, text: String) {
+        socket.emit("edit-msg", ["msg_id": id, "requester_id": USER?.id, "text": text])
     }
 }
 

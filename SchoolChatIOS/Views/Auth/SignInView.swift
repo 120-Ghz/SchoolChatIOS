@@ -164,30 +164,18 @@ struct SignInView: View {
             }
             HStack{
                 Button(action: onCommit) {
+                    ZStack {
+                    Capsule().fill(Color.purple).frame(width: screenWidth/2.7, height: 50)
                     Text("Войти")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
+                    }
                 }
-                .background(Capsule().fill(Color.purple).frame(width: screenWidth/2.7, height: 50))
                 .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
                 .padding(.top)
                 
             }
             .padding(.vertical, 0)
-            //                HStack {
-            //                    Button(action: {
-            //                        withAnimation {
-            //                        navigator.SignUp.toggle()
-            //                        }
-            //                    }) {
-            //                        Text("Sign Up")
-            //                            .fontWeight(.semibold)
-            //                            .foregroundColor(HintColor)
-            //                    }
-            //                    .background(Capsule().fill(Color.white.opacity(0.8)).frame(width: screenWidth/2.7, height: 50))
-            //                    .shadow(color: Color(UIColor(Color.white.opacity(0.8)).withAlphaComponent(0.8)), radius: 8, x: 0, y: 9)
-            //                    .padding()
-            //                }
         }
         .onChange(of: model.AuthStat, perform: {stat in
             AuthO.Auth = stat
