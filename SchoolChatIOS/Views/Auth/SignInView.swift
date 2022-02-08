@@ -60,10 +60,8 @@ struct SignInView: View {
     @State var RedPassword: Bool = false
     @ObservedObject var AuthO: AuthObj
     
-    var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
-    var BGColor = Color(red: 164/255, green: 65/255, blue: 171/255)
-    var HintColor = Color(UIColor(Color(red: 90/255, green: 0, blue: 90/255)).withAlphaComponent(0.7))
-    
+    var TextColor = Color("TextColor")
+    var HintColor = Color("HintColor")
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     

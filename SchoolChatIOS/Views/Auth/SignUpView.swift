@@ -60,9 +60,8 @@ struct SignUpView: View {
     @StateObject var model: SignUpViewModel = SignUpViewModel()
     @ObservedObject var AuthOb: AuthObj
     
-    var TextColor = Color(red: 90/255, green: 0, blue: 90/255)
-    var BGColor = Color(red: 164/255, green: 65/255, blue: 171/255)
-    var HintColor = Color(UIColor(Color(red: 90/255, green: 0, blue: 90/255)).withAlphaComponent(0.7))
+    var TextColor = Color("TextColor")
+    var HintColor = Color("HintColor")
     
     func onCommit() {
         var ret = false
