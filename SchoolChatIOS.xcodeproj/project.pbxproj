@@ -10,6 +10,11 @@
 		60E718EC78FE7D009F0A43BE /* Pods_SchoolChatIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B3D796985F2F1DED1F6012 /* Pods_SchoolChatIOS.framework */; };
 		7BF569E4AD8E5211414341DC /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */; };
 		D981215042D026FF53175A1D /* Pods_SchoolChatIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BB8C226131BE82494369AA /* Pods_SchoolChatIOSTests.framework */; };
+		EF04656027B3336600680C8E /* MessengerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04655F27B3336500680C8E /* MessengerViewModel.swift */; };
+		EF04656227B3339900680C8E /* NewChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04656127B3339900680C8E /* NewChatViewModel.swift */; };
+		EF04656427B333D200680C8E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04656327B333D200680C8E /* ChatViewModel.swift */; };
+		EF04656627B3340500680C8E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04656527B3340500680C8E /* SignUpViewModel.swift */; };
+		EF04656827B3341000680C8E /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04656727B3341000680C8E /* SignInViewModel.swift */; };
 		EF069F4027B2D82100F12259 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F3F27B2D82100F12259 /* Chat.swift */; };
 		EF069F4227B2D82A00F12259 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F4127B2D82A00F12259 /* User.swift */; };
 		EF069F4427B2D83800F12259 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F4327B2D83800F12259 /* Message.swift */; };
@@ -75,6 +80,11 @@
 		9EC1F2BFB7D9B79629654B5A /* Pods-SchoolChatIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOSTests/Pods-SchoolChatIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1BD7FC462A4DEC03556ECB3 /* Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E1E349016882AD9F80F9B4C3 /* Pods-SchoolChatIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EF04655F27B3336500680C8E /* MessengerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerViewModel.swift; sourceTree = "<group>"; };
+		EF04656127B3339900680C8E /* NewChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewModel.swift; sourceTree = "<group>"; };
+		EF04656327B333D200680C8E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		EF04656527B3340500680C8E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		EF04656727B3341000680C8E /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		EF069F3F27B2D82100F12259 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		EF069F4127B2D82A00F12259 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EF069F4327B2D83800F12259 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -179,6 +189,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EF04655E27B3331300680C8E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EF04656727B3341000680C8E /* SignInViewModel.swift */,
+				EF04656527B3340500680C8E /* SignUpViewModel.swift */,
+				EF04655F27B3336500680C8E /* MessengerViewModel.swift */,
+				EF04656127B3339900680C8E /* NewChatViewModel.swift */,
+				EF04656327B333D200680C8E /* ChatViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		EF069F3C27B2D7A500F12259 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,10 +239,12 @@
 			children = (
 				EFA5872127A5921D00D39553 /* Bcrypt */,
 				EFDD1D39276C6922000BDE25 /* Managers */,
+				EFA5357F2778C550005A2502 /* Extensions */,
 				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
 				EF069F3C27B2D7A500F12259 /* Structs */,
-				EFA5357F2778C550005A2502 /* Extensions */,
+				EF04655E27B3331300680C8E /* ViewModels */,
 				EFA5357D2774A498005A2502 /* Views */,
+				EFA5357E2774A4B2005A2502 /* MiniViews */,
 				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
 				EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */,
 				EF08E24C275FC55300219285 /* Assets.xcassets */,
@@ -257,7 +281,6 @@
 		EFA5357D2774A498005A2502 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EFA5357E2774A4B2005A2502 /* MiniViews */,
 				EFADA841279032B500DFA595 /* Auth */,
 				EF08E277275FC64100219285 /* ChatView.swift */,
 				EF08E27D275FC69600219285 /* MessengerView.swift */,
@@ -584,10 +607,14 @@
 				EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
 				EF069F4627B2D85F00F12259 /* MiniUser.swift in Sources */,
+				EF04656027B3336600680C8E /* MessengerViewModel.swift in Sources */,
 				EF069F4427B2D83800F12259 /* Message.swift in Sources */,
 				EFA5872F27A5923C00D39553 /* wrapper.c in Sources */,
 				EF7FBBD627B13158004D48DD /* MessageEditingMiniTable.swift in Sources */,
+				EF04656427B333D200680C8E /* ChatViewModel.swift in Sources */,
 				EF069F4027B2D82100F12259 /* Chat.swift in Sources */,
+				EF04656827B3341000680C8E /* SignInViewModel.swift in Sources */,
+				EF04656227B3339900680C8E /* NewChatViewModel.swift in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
 				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
@@ -599,6 +626,7 @@
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF59670827A739D700589EC1 /* bcrypt.c in Sources */,
 				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
+				EF04656627B3340500680C8E /* SignUpViewModel.swift in Sources */,
 				EF58FA0827A9C507008644CB /* Other.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */,

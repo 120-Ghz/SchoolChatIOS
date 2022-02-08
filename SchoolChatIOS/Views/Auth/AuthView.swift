@@ -31,20 +31,17 @@ struct AuthView: View {
                             VStack {
                                 Spacer()
                                 Text(SignUp ? "Регистрация" : "Авторизация")
-                                    .font(Font.custom("helvetica", size: 30))
+                                    .font(.title)
                                     .fontWeight(.semibold)
                                     .foregroundColor(TextColor)
-                                    .padding(.bottom)
                                     .padding(.top, 20)
                                 
                                 Spacer()
                                 Spacer()
                                 if SignUp {
                                     SignUpView(AuthOb: AuthOb)
-                                        .padding(0)
                                 } else {
                                     SignInView(AuthO: AuthOb)
-                                        .padding(0)
                                 }
                                 Spacer()
                                 Spacer()
@@ -54,13 +51,17 @@ struct AuthView: View {
                                         .foregroundColor(SignUp ? HintColor : .white)
                                         .padding()
                                         .background(Capsule().fill(SignUp ? Color.white : Color.purple.opacity(SignUp ? 0 : 1)).frame(height: 50))
+                                        .frame(maxWidth: .infinity)
                                         .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0 : 0.8)), radius: 8, x: 0, y: 9)
+                                        .padding(.leading)
                                     Text("Регистрация")
                                         .fontWeight(.semibold)
                                         .foregroundColor(SignUp ? .white : HintColor)
                                         .padding()
                                         .background(Capsule().fill( SignUp ?  Color.purple.opacity(SignUp ? 1 : 0) : Color.white).frame(height: 50))
+                                        .frame(maxWidth: .infinity)
                                         .shadow(color: Color(UIColor(Color.purple).withAlphaComponent(SignUp ? 0.8 : 0)), radius: 8, x: 0, y: 9)
+                                        .padding(.trailing)
                                     
                                 }
                                 .onTapGesture {

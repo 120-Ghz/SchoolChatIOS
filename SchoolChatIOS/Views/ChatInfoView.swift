@@ -14,6 +14,7 @@ struct ChatInfoView: View {
     @State var query: String = ""
     @State var EditingName: Bool = false
     @State var NewName: String = ""
+    @State var DisplayingName: String = ""
     
     var chat: Chat
     var users: [User]
@@ -27,12 +28,14 @@ struct ChatInfoView: View {
     
     func onAppear() {
         NewName = chat.name
+        DisplayingName = chat.name
     }
     
     func EditedName() {
         withAnimation{
             EditingName = false
         }
+        DisplayingName = NewName
         print("Edited Name")
     }
     
@@ -61,7 +64,7 @@ struct ChatInfoView: View {
             VStack {
                 ChatPicture(chat: chat, frameRadius: 150)
                     .padding()
-                Text(chat.name)
+                Text(DisplayingName)
                     .font(.title)
                     .onTapGesture { TextOnTap() }
                 Text("\(users.count) \(membersWord(number: users.count))")

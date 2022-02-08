@@ -8,15 +8,6 @@
 import SwiftUI
 import SocketIO
 
-struct MiniView: View {
-    let t: Int
-    var body: some View {
-        VStack {
-            Text("Row \(t)")
-        }
-    }
-}
-
 struct ContentView: View {
     
     @StateObject var AuthOb: AuthObj = AuthObj()

@@ -13,7 +13,7 @@ struct Chat: Identifiable, Equatable {
     }
     
     let id: Int64
-    let name: String
+    var name: String
     let creator: Int64
     let picture_url: String
     let deleted: Bool
