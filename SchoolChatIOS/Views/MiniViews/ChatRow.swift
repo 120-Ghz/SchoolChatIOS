@@ -10,16 +10,17 @@ import SwiftUI
 struct ChatRow: View {
     let chat: Chat
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 0) {
             
             ChatPicture(chat: chat, frameRadius: 70)
-                .padding()
+                .padding(.trailing, 16)
             
             ZStack {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         Text(chat.name)
-                            .bold()
+                            .font(.headline)
+                            .fontWeight(.semibold)
                         
                         Spacer()
                         

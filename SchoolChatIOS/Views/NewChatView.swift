@@ -100,7 +100,7 @@ struct NewChatView: View {
             List {
                 ForEach(model.FilteredUsers) { user in
                     Button(action: {PressedUser(user: user)}) {
-                        UserRow(user: user, selected: CheckUserSelect(user: user))
+                        UserRow(user: user, selected: CheckUserSelect(user: user), creator: false, admin: false)
                     }
                 }
             }

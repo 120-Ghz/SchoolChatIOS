@@ -37,8 +37,6 @@
 		EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7FBBD727B132D1004D48DD /* AuthObject.swift */; };
 		EF81574027A6DF4F003BF2BF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81573F27A6DF4F003BF2BF /* View.swift */; };
 		EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8EE7AA27996CB4003A0D5C /* UserRow.swift */; };
-		EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */; };
-		EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8F7C4F279EDE2100D61D32 /* Themes.swift */; };
 		EFA535812778C569005A2502 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535802778C569005A2502 /* String.swift */; };
 		EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA535822778C9F9005A2502 /* ChatPicture.swift */; };
 		EFA5872E27A5923C00D39553 /* crypt_blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = EFA5872427A5923B00D39553 /* crypt_blowfish.c */; };
@@ -107,8 +105,6 @@
 		EF7FBBD727B132D1004D48DD /* AuthObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthObject.swift; sourceTree = "<group>"; };
 		EF81573F27A6DF4F003BF2BF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EF8EE7AA27996CB4003A0D5C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
-		EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
-		EF8F7C4F279EDE2100D61D32 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		EFA535802778C569005A2502 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EFA535822778C9F9005A2502 /* ChatPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPicture.swift; sourceTree = "<group>"; };
 		EFA5872427A5923B00D39553 /* crypt_blowfish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt_blowfish.c; sourceTree = "<group>"; };
@@ -223,7 +219,6 @@
 				EFDD1D39276C6922000BDE25 /* Managers */,
 				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
 				EF069F3C27B2D7A500F12259 /* Structs */,
-				EF8F7C4C279E9F7000D61D32 /* Themes */,
 				EFA5357F2778C550005A2502 /* Extensions */,
 				EFA5357D2774A498005A2502 /* Views */,
 				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
@@ -257,15 +252,6 @@
 				EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */,
 			);
 			path = SchoolChatIOSUITests;
-			sourceTree = "<group>";
-		};
-		EF8F7C4C279E9F7000D61D32 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				EF8F7C4D279E9F9100D61D32 /* ThemeProtocol.swift */,
-				EF8F7C4F279EDE2100D61D32 /* Themes.swift */,
-			);
-			path = Themes;
 			sourceTree = "<group>";
 		};
 		EFA5357D2774A498005A2502 /* Views */ = {
@@ -612,9 +598,7 @@
 				EF81574027A6DF4F003BF2BF /* View.swift in Sources */,
 				EFDD1D3E276D0514000BDE25 /* Chat-Messenger_Navigation.swift in Sources */,
 				EF59670827A739D700589EC1 /* bcrypt.c in Sources */,
-				EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */,
 				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
-				EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */,
 				EF58FA0827A9C507008644CB /* Other.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */,

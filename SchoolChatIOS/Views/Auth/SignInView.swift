@@ -53,8 +53,8 @@ final class SignInViewModel: ObservableObject {
 struct SignInView: View {
     
     @StateObject var model: SignInViewModel = SignInViewModel()
-    @State var login: String = ""
-    @State var password: String = ""
+    @State var login: String = "Test"
+    @State var password: String = "aboba"
     @State var ShowPassword: Bool = false
     @State var RedLogin: Bool = false
     @State var RedPassword: Bool = false

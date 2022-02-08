@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ExytePopupView
 
 struct ChatInfoView: View {
     
@@ -28,8 +29,21 @@ struct ChatInfoView: View {
         NewName = chat.name
     }
     
+    func EditedName() {
+        withAnimation{
+            EditingName = false
+        }
+        print("Edited Name")
+    }
+    
     func TextOnTap() {
-        print("Text tapped")
+        withAnimation {
+            EditingName.toggle()
+        }
+    }
+    
+    func AddUser() {
+        print("Aboba adding user")
     }
     
     func membersWord(number: Int) -> String {
@@ -43,35 +57,72 @@ struct ChatInfoView: View {
     }
     
     var body: some View {
-        VStack {
-            ChatPicture(chat: chat, frameRadius: 150)
-                .padding()
-            Text(chat.name)
-                .font(.title)
-                .onTapGesture { TextOnTap() }
-            Text("\(users.count) \(membersWord(number: users.count))")
-                .font(.body)
-                .foregroundColor(.gray)
-            // TODO: Chat members count
-            Divider()
-            
-            TextField("Найти пользователей", text: $query)
-                .padding(.vertical, 4)
-                .padding(.horizontal)
-                .background(Capsule().fill(Color.gray.opacity(0.2)))
-                .padding(.horizontal)
-            List {
-                ForEach(getSortedFilteredUsers()) { user in
-                    UserRow(user: user, selected: false)
-                        .listRowBackground(Color.clear)
+        ZStack {
+            VStack {
+                ChatPicture(chat: chat, frameRadius: 150)
+                    .padding()
+                Text(chat.name)
+                    .font(.title)
+                    .onTapGesture { TextOnTap() }
+                Text("\(users.count) \(membersWord(number: users.count))")
+                    .font(.body)
+                    .foregroundColor(.gray)
+                // TODO: Chat members count
+                Divider()
+                
+                TextField("Найти пользователей", text: $query)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal)
+                    .background(Capsule().fill(Color.gray.opacity(0.2)))
+                    .padding(.horizontal)
+                List {
+                    
+                    HStack {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                            .frame(width: 35, height: 35)
+                        Text("Add User")
+                            .font(.headline)
+                            .fontWeight(.regular)
+                    }
+                    .listRowBackground(Color.clear)
+                    .onTapGesture {
+                        AddUser()
+                    }
+                    
+                    ForEach(getSortedFilteredUsers()) { user in
+                        UserRow(user: user, selected: false, creator: user.id == chat.creator, admin: chat.admins.contains(user.id))
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                    }
                 }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
+            .navigationBarTitle("", displayMode: .inline)
+            .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+            .onAppear(perform: onAppear)
+            if (EditingName) {
+                Color.black.opacity(0.3).ignoresSafeArea()
+                    .onTapGesture {
+                        EditedName()
+                    }
+            }
+        }.popup(isPresented: $EditingName,type: .toast, position: .bottom, closeOnTap: false) {
+            VStack {
+                Text("Название чата")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .padding()
+                
+                TextField("New name", text: $NewName, onCommit: EditedName)
+                    .padding(10)
+                    .foregroundColor(.black)
+                    .background(Capsule().fill(.gray.opacity(0.2)))
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+            }
+            .background(Color.white)
+            .cornerRadius(20)
         }
-        .navigationBarTitle("", displayMode: .inline)
-        .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
-        .onAppear(perform: onAppear)
-        
     }
 }
 
