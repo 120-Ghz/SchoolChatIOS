@@ -36,6 +36,7 @@ struct UserRow: View {
     var Name: some View {
         Text(FormattedText())
             .foregroundColor(selected ? Color.blue : Color.black)
+            .background(Color.clear)
     }
     
     var body: some View {

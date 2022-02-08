@@ -251,31 +251,34 @@ struct ChatView: View {
     }
     
     private func MessagesView() -> some View {
-        ForEach(model.messages) { message in
-            Spacer()
-                .frame(height: 2)
-            MessageView(message: message, ctxmenu: AnyView(ctxMenu(msg: message)))
-                .id(message.InternalId)
+        LazyVGrid(columns: columns, spacing: 0) {
+            ForEach(model.messages) { message in
+                Spacer()
+                    .frame(height: 2)
+                MessageView(message: message, ctxmenu: AnyView(ctxMenu(msg: message)))
+                    .id(message.InternalId)
+            }
         }
     }
     
     var body: some View {
         VStack {
-            ScrollView(.vertical) {
-                ScrollViewReader { scrollReader in
-                    VStack {
-                        MessagesView()
-                            .onChange(of: model.scroll) { _ in
-                                lastMessageUUID = model.messages.last?.InternalId
-                                ScrollToMessage(messageUUID: lastMessageUUID!, anchor: nil, shouldAnimate: !isFirst, scrollReader: scrollReader)
-                                if isFirst {
-                                    isFirst = !isFirst
+            GeometryReader {reader in
+                VStack {
+                    ScrollView(.vertical) {
+                        ScrollViewReader { scrollReader in
+                            MessagesView()
+                                .onChange(of: model.scroll) { _ in
+                                    lastMessageUUID = model.messages.last?.InternalId
+                                    ScrollToMessage(messageUUID: lastMessageUUID!, anchor: .bottom, shouldAnimate: !isFirst, scrollReader: scrollReader)
+                                    if isFirst {
+                                        isFirst = !isFirst
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
             }
-            .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
             if (chat.left) {
                 Text("You cannot send messages to this channel")
             } else {
@@ -300,7 +303,9 @@ struct ChatView: View {
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.large)
+        .padding(.top, 1)
+        .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(leading: leadingBtn)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

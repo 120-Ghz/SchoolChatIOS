@@ -11,6 +11,8 @@ struct ChatInfoView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var query: String = ""
+    @State var EditingName: Bool = false
+    @State var NewName: String = ""
     
     var chat: Chat
     var users: [User]
@@ -23,7 +25,21 @@ struct ChatInfoView: View {
     }
     
     func onAppear() {
-        
+        NewName = chat.name
+    }
+    
+    func TextOnTap() {
+        print("Text tapped")
+    }
+    
+    func membersWord(number: Int) -> String {
+        if number%10 == 1 {
+            return "участник"
+        }
+        if number%10 < 5 && number%10 != 0 {
+            return "участника"
+        }
+        return "участников"
     }
     
     var body: some View {
@@ -32,9 +48,13 @@ struct ChatInfoView: View {
                 .padding()
             Text(chat.name)
                 .font(.title)
-                .padding()
+                .onTapGesture { TextOnTap() }
+            Text("\(users.count) \(membersWord(number: users.count))")
+                .font(.body)
+                .foregroundColor(.gray)
             // TODO: Chat members count
             Divider()
+            
             TextField("Найти пользователей", text: $query)
                 .padding(.vertical, 4)
                 .padding(.horizontal)
@@ -43,12 +63,15 @@ struct ChatInfoView: View {
             List {
                 ForEach(getSortedFilteredUsers()) { user in
                     UserRow(user: user, selected: false)
+                        .listRowBackground(Color.clear)
                 }
             }
             .listStyle(PlainListStyle())
         }
         .navigationBarTitle("", displayMode: .inline)
+        .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
         .onAppear(perform: onAppear)
+        
     }
 }
 

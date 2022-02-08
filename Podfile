@@ -7,6 +7,7 @@ target 'SchoolChatIOS' do
 
   # Pods for SchoolChatIOS
   pod 'Socket.IO-Client-Swift', '~> 16.0.1'
+  pod 'ExytePopupView'
 
   target 'SchoolChatIOSTests' do
     inherit! :search_paths

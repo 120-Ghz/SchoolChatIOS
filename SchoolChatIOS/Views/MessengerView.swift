@@ -194,12 +194,11 @@ struct MessengerView: View {
                     .navigationBarItems(trailing: PlusButton)
                     .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
             }
+            .background(LinearGradient(gradient: Gradient(colors: [.white, .cyan.opacity(0.3)]), startPoint: .topTrailing, endPoint: .bottomLeading))
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.all)
-        .background(Color.purple)
         .onAppear(perform: onAppear)
         .onChange(of: updater.toggler, perform: onChange)
         .onChange(of: updater.Allower, perform: BlockUpdates)

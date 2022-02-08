@@ -1,20 +1,24 @@
 PODS:
+  - ExytePopupView (1.0.4)
   - Socket.IO-Client-Swift (16.0.1):
     - Starscream (~> 4.0)
   - Starscream (4.0.4)
 
 DEPENDENCIES:
+  - ExytePopupView
   - Socket.IO-Client-Swift (~> 16.0.1)
 
 SPEC REPOS:
   trunk:
+    - ExytePopupView
     - Socket.IO-Client-Swift
     - Starscream
 
 SPEC CHECKSUMS:
+  ExytePopupView: b3bdb813148e9a1d9488b38fb741c0493f09320e
   Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 5fa55a621c7521ba3fd01c039bb1d5c33f5a8edc
+PODFILE CHECKSUM: 45ca1c101191393f1aad9ec884a79a6e5f216f5f
 
 COCOAPODS: 1.11.2

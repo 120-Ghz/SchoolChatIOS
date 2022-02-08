@@ -10,6 +10,10 @@
 		60E718EC78FE7D009F0A43BE /* Pods_SchoolChatIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B3D796985F2F1DED1F6012 /* Pods_SchoolChatIOS.framework */; };
 		7BF569E4AD8E5211414341DC /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54608944D1686B65407C9AA /* Pods_SchoolChatIOS_SchoolChatIOSUITests.framework */; };
 		D981215042D026FF53175A1D /* Pods_SchoolChatIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42BB8C226131BE82494369AA /* Pods_SchoolChatIOSTests.framework */; };
+		EF069F4027B2D82100F12259 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F3F27B2D82100F12259 /* Chat.swift */; };
+		EF069F4227B2D82A00F12259 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F4127B2D82A00F12259 /* User.swift */; };
+		EF069F4427B2D83800F12259 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F4327B2D83800F12259 /* Message.swift */; };
+		EF069F4627B2D85F00F12259 /* MiniUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF069F4527B2D85F00F12259 /* MiniUser.swift */; };
 		EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */; };
 		EF08E24B275FC55000219285 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E24A275FC55000219285 /* ContentView.swift */; };
 		EF08E24D275FC55300219285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF08E24C275FC55300219285 /* Assets.xcassets */; };
@@ -19,7 +23,6 @@
 		EF08E266275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */; };
 		EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E273275FC5D900219285 /* SocketIOManager.swift */; };
 		EF08E278275FC64100219285 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E277275FC64100219285 /* ChatView.swift */; };
-		EF08E27A275FC66300219285 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E279275FC66300219285 /* Models.swift */; };
 		EF08E27C275FC67500219285 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27B275FC67500219285 /* MessageView.swift */; };
 		EF08E27E275FC69600219285 /* MessengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E27D275FC69600219285 /* MessengerView.swift */; };
 		EF08E282275FC6C100219285 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E281275FC6C100219285 /* ChatRow.swift */; };
@@ -74,6 +77,10 @@
 		9EC1F2BFB7D9B79629654B5A /* Pods-SchoolChatIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOSTests/Pods-SchoolChatIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1BD7FC462A4DEC03556ECB3 /* Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS-SchoolChatIOSUITests/Pods-SchoolChatIOS-SchoolChatIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E1E349016882AD9F80F9B4C3 /* Pods-SchoolChatIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolChatIOS.debug.xcconfig"; path = "Target Support Files/Pods-SchoolChatIOS/Pods-SchoolChatIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EF069F3F27B2D82100F12259 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		EF069F4127B2D82A00F12259 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EF069F4327B2D83800F12259 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EF069F4527B2D85F00F12259 /* MiniUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniUser.swift; sourceTree = "<group>"; };
 		EF08E245275FC55000219285 /* SchoolChatIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SchoolChatIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSApp.swift; sourceTree = "<group>"; };
 		EF08E24A275FC55000219285 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +93,6 @@
 		EF08E265275FC55400219285 /* SchoolChatIOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolChatIOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF08E273275FC5D900219285 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		EF08E277275FC64100219285 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		EF08E279275FC66300219285 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		EF08E27B275FC67500219285 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		EF08E27D275FC69600219285 /* MessengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerView.swift; sourceTree = "<group>"; };
 		EF08E281275FC6C100219285 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
@@ -177,6 +183,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EF069F3C27B2D7A500F12259 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				EF069F3F27B2D82100F12259 /* Chat.swift */,
+				EF069F4127B2D82A00F12259 /* User.swift */,
+				EF069F4327B2D83800F12259 /* Message.swift */,
+				EF069F4527B2D85F00F12259 /* MiniUser.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
 		EF08E23C275FC55000219285 = {
 			isa = PBXGroup;
 			children = (
@@ -202,18 +219,17 @@
 		EF08E247275FC55000219285 /* SchoolChatIOS */ = {
 			isa = PBXGroup;
 			children = (
+				EFDD1D39276C6922000BDE25 /* Managers */,
+				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
+				EF069F3C27B2D7A500F12259 /* Structs */,
 				EFA5872127A5921D00D39553 /* Bcrypt */,
 				EF8F7C4C279E9F7000D61D32 /* Themes */,
 				EFA5357F2778C550005A2502 /* Extensions */,
 				EFA5357D2774A498005A2502 /* Views */,
-				EFDD1D3C276D04ED000BDE25 /* StateObjects */,
-				EFDD1D39276C6922000BDE25 /* Managers */,
 				EF08E248275FC55000219285 /* SchoolChatIOSApp.swift */,
-				EF08E24A275FC55000219285 /* ContentView.swift */,
+				EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */,
 				EF08E24C275FC55300219285 /* Assets.xcassets */,
 				EF08E24E275FC55300219285 /* Preview Content */,
-				EF08E279275FC66300219285 /* Models.swift */,
-				EFA5874727A596F100D39553 /* SchoolChatIOS-Bridging-Header.h */,
 			);
 			path = SchoolChatIOS;
 			sourceTree = "<group>";
@@ -261,6 +277,7 @@
 				EF08E27D275FC69600219285 /* MessengerView.swift */,
 				EF60FE90277F79CF00C612E2 /* NewChatView.swift */,
 				EF580E1B279DEE1B00E8AF35 /* ChatInfoView.swift */,
+				EF08E24A275FC55000219285 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -580,8 +597,11 @@
 				EFA535832778C9F9005A2502 /* ChatPicture.swift in Sources */,
 				EF580E1C279DEE1B00E8AF35 /* ChatInfoView.swift in Sources */,
 				EF08E24B275FC55000219285 /* ContentView.swift in Sources */,
+				EF069F4627B2D85F00F12259 /* MiniUser.swift in Sources */,
+				EF069F4427B2D83800F12259 /* Message.swift in Sources */,
 				EFA5872F27A5923C00D39553 /* wrapper.c in Sources */,
 				EF7FBBD627B13158004D48DD /* MessageEditingMiniTable.swift in Sources */,
+				EF069F4027B2D82100F12259 /* Chat.swift in Sources */,
 				EF08E274275FC5D900219285 /* SocketIOManager.swift in Sources */,
 				EF08E282275FC6C100219285 /* ChatRow.swift in Sources */,
 				EF08E27E275FC69600219285 /* MessengerView.swift in Sources */,
@@ -595,7 +615,6 @@
 				EF8F7C4E279E9F9100D61D32 /* ThemeProtocol.swift in Sources */,
 				EFA5873027A5923C00D39553 /* crypt_gensalt.c in Sources */,
 				EF8F7C50279EDE2200D61D32 /* Themes.swift in Sources */,
-				EF08E27A275FC66300219285 /* Models.swift in Sources */,
 				EF58FA0827A9C507008644CB /* Other.swift in Sources */,
 				EF60FE91277F79CF00C612E2 /* NewChatView.swift in Sources */,
 				EF7FBBD827B132D1004D48DD /* AuthObject.swift in Sources */,
@@ -608,6 +627,7 @@
 				EF60FE8D277CCF7700C612E2 /* Date.swift in Sources */,
 				EF08E249275FC55000219285 /* SchoolChatIOSApp.swift in Sources */,
 				EF8EE7AB27996CB4003A0D5C /* UserRow.swift in Sources */,
+				EF069F4227B2D82A00F12259 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
