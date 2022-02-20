@@ -7,29 +7,27 @@
 
 import Foundation
 
+enum WeekDay: Int {
+    case Sunday = 1, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+    static let allValues = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+}
+
+enum Months: Int {
+    case January = 1, February, March, April, May, June, July, August, September, October, November, December
+    static let allValues = [January, February, March, April, May, June, July, August, September, October, November, December]
+}
+
 extension Date {
     func DayFromNumber(num: Int) -> String {
-        switch (num) {
-        case 1:
-            return "Sun"
-        case 2:
-            return "Mon"
-        case 3:
-            return "Tue"
-        case 4:
-            return "Wed"
-        case 5:
-            return "Thu"
-        case 6:
-            return "Fri"
-        case 7:
-            return "Sat"
-        default:
-            return "Day"
+        for e in WeekDay.allValues {
+            if e.rawValue == num {
+                return String("\(e)".prefix(3))
+            }
         }
+        return "Day"
     }
     
-    func MonthFromNumber(num: Int) -> String {
+    func MonthFormat(num: Int) -> String {
         switch (num) {
         case 1, 2, 3, 4, 5, 6, 7, 8, 9:
             return "0\(num)"
@@ -41,34 +39,12 @@ extension Date {
     }
     
     func MonthNameFromNumber(num: Int) -> String {
-        switch(num) {
-        case 1:
-            return "Jan"
-        case 2:
-            return "Feb"
-        case 3:
-            return "Mar"
-        case 4:
-            return "Apr"
-        case 5:
-            return "May"
-        case 6:
-            return "Jun"
-        case 7:
-            return "Jul"
-        case 8:
-            return "Aug"
-        case 9:
-            return "Sep"
-        case 10:
-            return "Oct"
-        case 11:
-            return "Nov"
-        case 12:
-            return "Dec"
-        default:
-            return ""
+        for e in Months.allValues {
+            if e.rawValue == num {
+                return String("\(e)".prefix(3))
+            }
         }
+        return "Err"
     }
     
     func TimeFormat(hour: Int, minutes: Int) -> String {
@@ -102,14 +78,14 @@ extension Date {
         
         if (calendar.component(.month, from: self) == calendar.component(.month, from: Date.now)) {
             return "\(calendar.component(.day, from: self))."
-                + "\(MonthFromNumber(num: calendar.component(.month, from: self)))"
+                + "\(MonthFormat(num: calendar.component(.month, from: self)))"
         }
         
         if (calendar.component(.year, from: self) == calendar.component(.year, from: Date.now)) {
             return "\(MonthNameFromNumber(num: Int(calendar.component(.month, from: self))))"
         }
         
-        return "\(MonthFromNumber(num: Int(calendar.component(.month, from: self)))) "
+        return "\(MonthFormat(num: Int(calendar.component(.month, from: self)))) "
                 + "\(calendar.component(.year, from: self))"
     }
 }
